@@ -343,40 +343,57 @@ def process_data(gdelt_data, acled_data, rss_data, openai_api_key):
     return unified_data
 
 
-def save_data(data_items, data_dir="data"):
-    """Saves the processed data to JSON files (dated and latest)."""
-    if not os.path.exists(data_dir):
-        os.makedirs(data_dir)
+def save_data(data_items, archive_data_dir="data", static_data_dir="static/data"):
+    """
+    Saves the processed data to JSON files:
+    - A date-stamped archive file in `archive_data_dir`.
+    - `latest.json` in `static_data_dir` for the frontend.
+    """
+    # Ensure directories exist
+    if not os.path.exists(archive_data_dir):
+        os.makedirs(archive_data_dir)
+        print(f"Created archive data directory: {archive_data_dir}")
+
+    if not os.path.exists(static_data_dir):
+        os.makedirs(static_data_dir)
+        print(f"Created static data directory: {static_data_dir}")
 
     today_date_str = datetime.utcnow().strftime("%Y-%m-%d")
-    dated_filename = os.path.join(data_dir, f"{today_date_str}.json")
-    latest_filename = os.path.join(data_dir, "latest.json")
+
+    # Define filenames
+    dated_filename = os.path.join(archive_data_dir, f"{today_date_str}.json")
+    latest_filename_for_frontend = os.path.join(static_data_dir, "latest.json")
 
     try:
+        # Save the dated archive file
         with open(dated_filename, 'w') as f:
             json.dump(data_items, f, indent=2)
-        print(f"Data saved to {dated_filename}")
+        print(f"Archival data saved to {dated_filename}")
 
-        with open(latest_filename, 'w') as f:
+        # Save/overwrite latest.json for the frontend
+        with open(latest_filename_for_frontend, 'w') as f:
             json.dump(data_items, f, indent=2)
-        print(f"Data saved to {latest_filename}")
+        print(f"Frontend data saved to {latest_filename_for_frontend}")
     except IOError as e:
         print(f"Error saving data: {e}")
 
 
-def cleanup_old_data(data_dir="data", days_to_keep=90):
-    """Deletes JSON files in data_dir older than days_to_keep."""
-    print(f"Cleaning up old data files older than {days_to_keep} days...")
-    if not os.path.isdir(data_dir):
-        print(f"Data directory {data_dir} not found. Skipping cleanup.")
+def cleanup_old_data(archive_data_dir="data", days_to_keep=90):
+    """Deletes JSON files in archive_data_dir older than days_to_keep."""
+    print(f"Cleaning up old data files from {archive_data_dir} older than {days_to_keep} days...")
+    if not os.path.isdir(archive_data_dir):
+        print(f"Archive data directory {archive_data_dir} not found. Skipping cleanup.")
         return
 
     cutoff_date = datetime.utcnow() - timedelta(days=days_to_keep)
     cleaned_count = 0
-    for filename in os.listdir(data_dir):
-        if filename.endswith(".json") and filename != "latest.json":
+    # Only clean up dated files, not 'latest.json' which might be in 'data' if paths were misconfigured.
+    # The primary 'latest.json' for the frontend is now in 'static/data/'.
+    for filename in os.listdir(archive_data_dir):
+        if filename.endswith(".json") and filename != "latest.json": # Explicitly avoid deleting a root 'latest.json' if it exists
             try:
-                file_date_str = filename.split('.')[0] # Assumes YYYY-MM-DD.json format
+                # Assumes YYYY-MM-DD.json format for archived files
+                file_date_str = filename.split('.')[0]
                 file_date = datetime.strptime(file_date_str, "%Y-%m-%d")
                 if file_date < cutoff_date:
                     os.remove(os.path.join(data_dir, filename))
@@ -426,10 +443,12 @@ if __name__ == "__main__":
 
     # 3. Save data
     print("\n--- Saving Data ---")
+    # save_data now uses default "data" for archives and "static/data" for frontend's latest.json
     save_data(processed_unified_data)
 
     # 4. Cleanup old data
     print("\n--- Cleaning Old Data ---")
+    # cleanup_old_data now defaults to "data" directory for archives
     cleanup_old_data(days_to_keep=90)
 
     print("\nETL script finished.")
