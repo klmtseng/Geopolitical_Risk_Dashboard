@@ -1,0 +1,662 @@
+[
+  {
+    "timestamp": "2025-06-08T00:00:00Z",
+    "country": "USA",
+    "lat": 40.7128,
+    "lon": -74.006,
+    "risk_score": 47,
+    "title": "ACLED Event: Protests",
+    "source_url": "ACLED Placeholder Data",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 20,
+    "title": "Markets digest bank earnings after recent turmoil",
+    "source_url": "https://www.cnn.com/business/live-news/stock-market-bank-earnings/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 51,
+    "title": "Still haven't filed your taxes? Here's what you need to know",
+    "source_url": "https://www.cnn.com/2023/04/13/success/tax-filing-tips/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 48,
+    "title": "Retail spending fell in March as consumers pull back",
+    "source_url": "https://www.cnn.com/2023/04/14/economy/march-retail-sales/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 23,
+    "title": "Analysis: Fox News is about to enter the true No Spin Zone",
+    "source_url": "https://www.cnn.com/2023/04/14/media/fox-news-dominion-hnk-intl/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 33,
+    "title": "Silicon Valley Bank collapse renews calls to address disparities impacting entrepreneurs of color",
+    "source_url": "https://www.cnn.com/2023/04/13/business/silicon-valley-bank-entrepreneurs-of-color-reaj/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 43,
+    "title": "Not only is Lake Powell's water level plummeting because of drought, its total capacity is shrinking, too",
+    "source_url": "https://www.cnn.com/2022/03/21/us/lake-powell-capacity-shrinking-drought-climate/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 38,
+    "title": "These were the best and worst places for air quality in 2021, new report shows",
+    "source_url": "https://www.cnn.com/2022/03/22/world/air-pollution-2021-iqair-report-climate/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 42,
+    "title": "Big-box stores could help slash emissions and save millions by putting solar panels on roofs. Why aren't more of them doing it?",
+    "source_url": "https://www.cnn.com/2022/03/20/us/solar-power-on-big-box-store-rooftops-climate/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 31,
+    "title": "Look of the Week: Blackpink headline Coachella in Korean hanboks",
+    "source_url": "https://www.cnn.com/style/article/blackpink-coachella-2023-hanboks-lotw/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 49,
+    "title": "Scientists identify secret ingredient in Leonardo da Vinci paintings",
+    "source_url": "https://www.cnn.com/style/article/old-masters-da-vinci-egg-yolk-painting-scn/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 26,
+    "title": "How Playboy cut ties with Hugh Hefner to create a post-MeToo brand",
+    "source_url": "https://www.cnn.com/style/article/playboy-the-conversation/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 33,
+    "title": "'A definitive backslide.' Inside fashion's worrying runway trend",
+    "source_url": "https://www.cnn.com/style/article/fashion-week-fall-winter-2023-size-diversity-skinny-wegovy/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 50,
+    "title": "Michael Jordan's 1998 NBA Finals sneakers sell for a record $2.2 million",
+    "source_url": "https://www.cnn.com/style/article/michael-jordan-sneakers-1998-finals-sothebys-auction-record/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 42,
+    "title": "The surreal facades of America's strip clubs",
+    "source_url": "https://www.cnn.com/style/article/francois-prost-gentlemens-club/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 51,
+    "title": "Here's the real reason to turn on airplane mode when you fly",
+    "source_url": "https://www.cnn.com/travel/article/airplane-mode-reasons-why/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 36,
+    "title": "'I was up to my waist down a hippo's throat.' He survived, and here's his advice",
+    "source_url": "https://www.cnn.com/travel/article/hippo-attack-avoid-survive-paul-templer/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 38,
+    "title": "They bought an abandoned 'ghost house' in the Japanese countryside",
+    "source_url": "https://www.cnn.com/travel/article/couple-turned-abandoned-japanese-home-into-guest-house/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 44,
+    "title": "Relaxed entry rules make it easier than ever to visit this stunning Asian nation",
+    "source_url": "https://www.cnn.com/travel/article/mongolia-reasons-to-visit-2023/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 45,
+    "title": "The most beautiful sections of China's Great Wall",
+    "source_url": "https://www.cnn.com/travel/article/china-beautiful-great-wall-sections-cmd/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 18,
+    "title": "Sign up to our newsletter for a weekly roundup of travel news",
+    "source_url": "https://www.cnn.com/specials/travel-newsletter",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 44,
+    "title": "Nelly Cheboi, who creates computer labs for Kenyan schoolchildren, is CNN's Hero of the Year",
+    "source_url": "https://www.cnn.com/2022/12/11/us/cnn-heroes-all-star-tribute-hero-of-the-year/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 20,
+    "title": "CNN Heroes: Sharing the Spotlight",
+    "source_url": "https://www.cnn.com/specials/cnn-heroes-salutes-special",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 22,
+    "title": "Donate now to a Top 10 CNN Hero",
+    "source_url": "https://www.cnn.com/videos/tv/2021/11/26/how-to-donate-matching-cnnheroes.cnn",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 41,
+    "title": "0% intro APR until 2024 is 100% insane",
+    "source_url": "https://www.fool.com/the-ascent/credit-cards/landing/wells-fargo-reflect-review/?utm_site=theascent&utm_campaign=ta-cc-co-cnn-welref2-ron-5-hp-sfpb&utm_medium=cpc&utm_source=cnn",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 32,
+    "title": "It's official: now avoid credit card interest into 2024",
+    "source_url": "https://www.fool.com/the-ascent/credit-cards/landing/citi-simplicity-review/?utm_site=theascent&utm_campaign=ta-cc-co-cnn-citisimp2-ron-5-hp-sfpb&utm_medium=cpc&utm_source=cnn",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 43,
+    "title": "Experts: this is the best cash back card of 2022",
+    "source_url": "https://www.fool.com/the-ascent/credit-cards/landing/wells-fargo-active-cash-card-review/?utm_site=theascent&utm_campaign=ta-cc-co-cnn-welac2-ron-5-hp-sfpb&utm_medium=cpc&utm_source=cnn",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 35,
+    "title": "Turn Your Rising Home Equity Into Cash You Can Use",
+    "source_url": "https://www.lendingtree.com/?splitterid=home-equity&cproduct=he&cchannel=content&csource=cnn&cmethod=heform&ccreative=risingequitycash_housemoneystack&placement_name=sectionfronts&ad_headline=risingequitycash&ad_image_name=housemoneystack&ctype=sectionfronts&bdst=revshare&mtaid=AC53E&esourceid=6348616",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 47,
+    "title": "Dream Big with a Home Equity Loan",
+    "source_url": "https://www.lendingtree.com/?splitterid=home-equity&cproduct=he&cchannel=content&csource=cnn&cmethod=heform&ccreative=dreambighomeequity_housemoneystack&placement_name=sectionfronts&ad_headline=dreambighomeequity&ad_image_name=housemoneystack&ctype=sectionfronts&bdst=revshare&mtaid=AC53E&esourceid=6348616",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 20,
+    "title": "Want Cash Out of Your Home? Here Are Your Best Options",
+    "source_url": "https://www.lendingtree.com/?splitterid=home-equity&cproduct=he&cchannel=content&csource=cnn&cmethod=heform&ccreative=cashoutoptions_housemoneystack&placement_name=sectionfronts&ad_headline=cashoutoptions&ad_image_name=housemoneystack&ctype=sectionfronts&bdst=revshare&mtaid=AC53E&esourceid=6348616",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 22,
+    "title": "Austrians hold vigil to mourn 10 victims of school shooting",
+    "source_url": "https://www.bbc.com/news/articles/ced27g4e6xwo",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 33,
+    "title": "UK sanctions far-right Israeli ministers for 'inciting violence' against Palestinians",
+    "source_url": "https://www.bbc.com/news/articles/c8xgk1ek19lo",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 52,
+    "title": "US-China talks end with plan for Trump and Xi to approve",
+    "source_url": "https://www.bbc.com/news/articles/c4gkmy26e2po",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 19,
+    "title": "Bolsonaro denies involvement in alleged coup plot",
+    "source_url": "https://www.bbc.com/news/articles/c0j73573v4qo",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 22,
+    "title": "At least seven dead in Colombia attacks, local media reports",
+    "source_url": "https://www.bbc.com/news/articles/cdd2vn0j3gvo",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 23,
+    "title": "Russian strikes in Ukraine hit Kyiv and kill two in Odesa",
+    "source_url": "https://www.bbc.com/news/articles/cx2jzp0ewe0o",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 30,
+    "title": "Schoolchildren swept away as heavy floods and snow hit South Africa",
+    "source_url": "https://www.bbc.com/news/articles/c93lvxglykeo",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 24,
+    "title": "Greta Thunberg deported, Israel says, after Gaza aid boat intercepted",
+    "source_url": "https://www.bbc.com/news/articles/c5y264x3nnno",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 46,
+    "title": "Teaching assistant killed in stabbing outside France school",
+    "source_url": "https://www.bbc.com/news/articles/c5y8mgrmdjvo",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 52,
+    "title": "Four crew members missing as Singapore-flagged cargo ship burns off India coast",
+    "source_url": "https://www.bbc.com/news/articles/cd7g9el8q15o",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 38,
+    "title": "Two BTS stars finish military service as fans await comeback",
+    "source_url": "https://www.bbc.com/news/articles/cwynzkg7ml7o",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 29,
+    "title": "World fertility rates in 'unprecedented decline', UN says",
+    "source_url": "https://www.bbc.com/news/articles/clynq459wxgo",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 51,
+    "title": "Israeli navy strikes Houthi-controlled port city of Hudaydah",
+    "source_url": "https://www.bbc.com/news/articles/c80k4kj9lyro",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 32,
+    "title": "Uber brings forward trialling driverless taxis in UK",
+    "source_url": "https://www.bbc.com/news/articles/cwynm4wl1j7o",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 30,
+    "title": "RFK Jr sacks entire US vaccine committee",
+    "source_url": "https://www.bbc.com/news/articles/clyge27y2g9o",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 44,
+    "title": "Italian citizenship referendum void after low turnout",
+    "source_url": "https://www.bbc.com/news/articles/crr7vg1zdklo",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 20,
+    "title": "Colombia presidential hopeful shot in head at rally",
+    "source_url": "https://www.bbc.com/news/articles/c9dq8yxxy8zo",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 29,
+    "title": "Iran expands dog-walking ban",
+    "source_url": "https://www.bbc.com/news/articles/cn0gngq4wjqo",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 48,
+    "title": "'Have my house' - Usyk invites Trump to witness Ukraine war",
+    "source_url": "https://www.bbc.com/sport/boxing/articles/c4gej271x22o",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 50,
+    "title": "Trump-Musk row heightens fears over Nasa budget cuts",
+    "source_url": "https://www.bbc.com/news/articles/c87jq0djw00o",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 36,
+    "title": "Watch: National Guard on LA streets as unrest erupts",
+    "source_url": "https://www.bbc.com/news/videos/cwynm87e1d3o",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 37,
+    "title": "Protest hits Kenya after shock death of man held by police",
+    "source_url": "https://www.bbc.com/news/articles/cwy3eqpqqnzo",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 51,
+    "title": "South Korea cements cultural status with six Tonys for Maybe Happy Ending",
+    "source_url": "https://www.bbc.com/news/articles/cy0j71xgrv8o",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 33,
+    "title": "Record number of drone attacks signals dangerous shift in war",
+    "source_url": "https://www.bbc.com/news/articles/cvg5yjnw7dlo",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 27,
+    "title": "Perfect storm as Trump's mass deportation drive collides with city of immigrants",
+    "source_url": "https://www.bbc.com/news/articles/c3d47v7394go",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 38,
+    "title": "China's electric cars are becoming slicker and cheaper - but is there a deeper cost?",
+    "source_url": "https://www.bbc.com/news/articles/cy8d4v69jw6o",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 21,
+    "title": "Watch: Syria former prison guard tells BBC he showed detainees 'no mercy'",
+    "source_url": "https://www.bbc.com/news/videos/c78034xn2jpo",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 51,
+    "title": "Sly Stone: A funky life - in pictures",
+    "source_url": "https://www.bbc.com/news/articles/c9q0r7y9xj3o",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 45,
+    "title": "The forgotten story of India's brush with presidential rule",
+    "source_url": "https://www.bbc.com/news/articles/cwyvwerr640o",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 25,
+    "title": "Italy citizenship referendum: 'I was born here - but feel rejected'",
+    "source_url": "https://www.bbc.com/news/articles/c780yk3z2lyo",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 41,
+    "title": "Bowen: Israel is accused of the gravest war crimes - how governments respond could haunt them for years",
+    "source_url": "https://www.bbc.com/news/articles/c0r1xl5wgnko",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 34,
+    "title": "Watch: At the scene of Austria's worst shooting in modern history",
+    "source_url": "https://www.bbc.com/news/videos/cvgnyv4q168o",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 34,
+    "title": "Gunshots heard and students evacuate in videos filmed at Austrian school",
+    "source_url": "https://www.bbc.com/news/videos/c9q0rewrv4ro",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 25,
+    "title": "Watch: 'It's important' - LA protesters on why they're taking to the streets",
+    "source_url": "https://www.bbc.com/news/videos/cnv1l9vl8p5o",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 44,
+    "title": "BBC Verify examines tunnels footage after IDF says Hamas leader body found",
+    "source_url": "https://www.bbc.com/news/videos/cql2wvnn7zgo",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2025-06-11T09:51:48.143383Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 25,
+    "title": "Australian journalist hit by 'rubber bullet' while reporting from LA",
+    "source_url": "https://www.bbc.com/news/videos/c98p008kxn1o",
+    "tag": "news"
+  }
+]
