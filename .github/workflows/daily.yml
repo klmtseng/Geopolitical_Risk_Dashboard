@@ -41,7 +41,8 @@ jobs:
         run: |
           git config --global user.name 'GitHub Actions Bot'
           git config --global user.email 'actions-bot@github.com'
-          # Add all json files in data directory, including latest.json and the dated file
+          # Add the frontend data file and the archival data files
+          git add static/data/latest.json
           git add data/*.json
           # Check if there are changes to commit to avoid error if no data changed
           if ! git diff --staged --quiet; then
