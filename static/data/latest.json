@@ -1,0 +1,42 @@
+[
+  {
+    "timestamp": "2023-10-27T10:00:00Z",
+    "country": "USA",
+    "lat": 38.9072,
+    "lon": -77.0369,
+    "risk_score": 75,
+    "title": "Protest in Washington D.C.",
+    "source_url": "http://example.com/news1",
+    "tag": "protest"
+  },
+  {
+    "timestamp": "2023-10-26T15:30:00Z",
+    "country": "FRA",
+    "lat": 48.8566,
+    "lon": 2.3522,
+    "risk_score": 60,
+    "title": "Market Jitters in Paris",
+    "source_url": "http://example.com/news2",
+    "tag": "market"
+  },
+  {
+    "timestamp": "2023-10-28T12:00:00Z",
+    "country": "JPN",
+    "lat": 35.6895,
+    "lon": 139.6917,
+    "risk_score": 85,
+    "title": "Major Conflict Reported in Tokyo",
+    "source_url": "http://example.com/news3",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2023-10-20T00:00:00Z",
+    "country": "DEU",
+    "lat": 52.5200,
+    "lon": 13.4050,
+    "risk_score": 40,
+    "title": "Economic Concerns in Berlin",
+    "source_url": "http://example.com/news4",
+    "tag": "news"
+  }
+]
