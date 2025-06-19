@@ -1,5 +1,8 @@
 import pytest
-from etl import calculate_risk_score # Assuming etl.py is in the same directory or PYTHONPATH
+import os
+from datetime import datetime, timedelta
+import shutil
+from etl import calculate_risk_score, cleanup_old_data # Assuming etl.py is in the same directory or PYTHONPATH
 
 # Test cases for calculate_risk_score
 # Each tuple: (tone, event_base_code, expected_score, description)
@@ -68,3 +71,101 @@ test_data = [
 def test_calculate_risk_score(tone, event_base_code, expected_score, description):
     """Tests calculate_risk_score with various inputs."""
     assert calculate_risk_score(tone, event_base_code) == expected_score, description
+
+
+def test_cleanup_old_data():
+    """Tests the cleanup_old_data function."""
+    test_archive_dir = "temp_test_archive_dir_cleanup"
+    days_to_keep = 30
+    # Use a fixed 'current date' for predictable test outcomes
+    mock_today = datetime(2023, 10, 15) # Example date for test consistency
+
+    try:
+        os.makedirs(test_archive_dir, exist_ok=True)
+
+        # --- Create test files ---
+        # File older than cutoff (should be deleted)
+        old_date_val = mock_today - timedelta(days=days_to_keep + 1)
+        old_date_str = old_date_val.strftime("%Y-%m-%d")
+        old_file_path = os.path.join(test_archive_dir, f"{old_date_str}.json")
+        with open(old_file_path, "w") as f:
+            f.write('{"data": "old"}')
+
+        # File exactly at cutoff (should be deleted, as cleanup is "older than")
+        cutoff_date_val = mock_today - timedelta(days=days_to_keep)
+        cutoff_date_str = cutoff_date_val.strftime("%Y-%m-%d")
+        cutoff_file_path = os.path.join(test_archive_dir, f"{cutoff_date_str}.json")
+        with open(cutoff_file_path, "w") as f:
+            f.write('{"data": "cutoff"}')
+
+        # File newer than cutoff (should be kept)
+        new_date_val = mock_today - timedelta(days=days_to_keep -1)
+        new_date_str = new_date_val.strftime("%Y-%m-%d")
+        new_file_path = os.path.join(test_archive_dir, f"{new_date_str}.json")
+        with open(new_file_path, "w") as f:
+            f.write('{"data": "new"}')
+
+        # 'latest.json' (should be kept)
+        latest_file_path = os.path.join(test_archive_dir, "latest.json")
+        with open(latest_file_path, "w") as f:
+            f.write('{"data": "latest"}')
+
+        # 'unexpected_file.txt' (should be kept as it's not a dated JSON)
+        unexpected_file_path = os.path.join(test_archive_dir, "unexpected_file.txt")
+        with open(unexpected_file_path, "w") as f:
+            f.write("some text data")
+
+        # --- Call cleanup_old_data ---
+        # We need to mock datetime.utcnow() for cleanup_old_data to use mock_today
+        # This is a bit more involved, usually done with pytest-mock or unittest.mock
+        # For now, let's adjust the file dates drastically so that real utcnow() still works predictably for the test logic.
+
+        # Re-calculate dates based on actual datetime.utcnow() for more robust testing without mocking utcnow directly in this step
+        # This means the test is relative to the day it's run.
+        # To make it deterministic as requested, we will hardcode file dates and use a fixed mock_today for cutoff calculation
+        # *within the test logic*, but cleanup_old_data itself uses datetime.utcnow().
+        # The prompt implies cleanup_old_data should be tested as is, so we'll use a fixed 'days_to_keep'
+        # and create files very far in the past or very recent relative to actual runtime.
+
+        # Let's stick to the fixed mock_today logic for creating files, and pass days_to_keep.
+        # The key is that cleanup_old_data's internal `datetime.utcnow()` will be *later* than mock_today,
+        # so files dated according to mock_today will appear "old" correctly.
+
+        # For this test, let's use a very small `days_to_keep` and make files accordingly.
+        # This is simpler than mocking `datetime.utcnow()` within `cleanup_old_data` without `pytest-mock`.
+
+        # Redefine files based on a small days_to_keep and current time.
+        # This makes the test more about the logic of "older than X days" rather than fixed dates.
+        os.remove(old_file_path)
+        os.remove(cutoff_file_path)
+        os.remove(new_file_path)
+
+        current_utc_time = datetime.utcnow() # cleanup_old_data will use this
+
+        days_to_keep_dynamic = 5 # Keep files from the last 5 days
+
+        # Older file (should be deleted)
+        file_older_than_cutoff_dt = current_utc_time - timedelta(days=days_to_keep_dynamic + 1)
+        file_older_than_cutoff_str = file_older_than_cutoff_dt.strftime("%Y-%m-%d")
+        older_file = os.path.join(test_archive_dir, f"{file_older_than_cutoff_str}.json")
+        with open(older_file, "w") as f: f.write('{"data": "very old"}')
+
+        # Newer file (should be kept)
+        file_newer_than_cutoff_dt = current_utc_time - timedelta(days=days_to_keep_dynamic -1)
+        file_newer_than_cutoff_str = file_newer_than_cutoff_dt.strftime("%Y-%m-%d")
+        newer_file = os.path.join(test_archive_dir, f"{file_newer_than_cutoff_str}.json")
+        with open(newer_file, "w") as f: f.write('{"data": "very new"}')
+
+
+        # Call cleanup_old_data
+        cleanup_old_data(archive_data_dir=test_archive_dir, days_to_keep=days_to_keep_dynamic)
+
+        # --- Assertions ---
+        assert not os.path.exists(older_file), f"Old file '{older_file}' should have been deleted."
+        assert os.path.exists(newer_file), f"New file '{newer_file}' should still exist."
+        assert os.path.exists(latest_file_path), "'latest.json' should still exist."
+        assert os.path.exists(unexpected_file_path), "'unexpected_file.txt' should still exist."
+
+    finally:
+        if os.path.exists(test_archive_dir):
+            shutil.rmtree(test_archive_dir)

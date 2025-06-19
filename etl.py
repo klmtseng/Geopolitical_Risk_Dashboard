@@ -396,7 +396,7 @@ def cleanup_old_data(archive_data_dir="data", days_to_keep=90):
                 file_date_str = filename.split('.')[0]
                 file_date = datetime.strptime(file_date_str, "%Y-%m-%d")
                 if file_date < cutoff_date:
-                    os.remove(os.path.join(data_dir, filename))
+                    os.remove(os.path.join(archive_data_dir, filename))
                     print(f"Deleted old data file: {filename}")
                     cleaned_count +=1
             except ValueError: # If filename is not in YYYY-MM-DD format
