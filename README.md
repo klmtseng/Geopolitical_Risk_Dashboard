@@ -114,3 +114,7 @@ The daily data update is managed by a GitHub Actions workflow defined in `.githu
 *Note: A `.env` file (not committed to the repository) should be present in the root directory for local development to store API keys and other secrets.*
 
 *Further note on data paths: The `etl.py` script is responsible for generating `static/data/latest.json` (for the frontend) and potentially daily archive files like `data/YYYY-MM-DD.json`. The GitHub Actions workflow is configured to commit changes in both `static/data/` and `data/` directories.*
+
+---
+
+*Disclaimer: personal research/educational project. Not investment advice; no solicitation or recommendation of any security. Any figures are illustrative and hypothetical; past or backtested results do not indicate future performance.*
