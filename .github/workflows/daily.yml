@@ -13,6 +13,9 @@ env:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     permissions:
       contents: write      # To commit data and push
       pages: write         # To deploy to GitHub Pages
