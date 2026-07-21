@@ -157,7 +157,7 @@
 {/if}
 
 <style>
-  div[bind:this={chartContainer}] {
+  div {
     width: 100%;
     height: 300px; /* Default height, can be overridden by parent or props */
   }

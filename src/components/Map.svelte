@@ -127,7 +127,7 @@
 <style>
   /* Ensure the map container has a defined height, as required by Leaflet. */
   /* The style attribute on the div takes precedence but this can be a fallback. */
-  div[bind:this={mapContainer}] {
+  div {
     height: 500px;
     width: 100%;
     background-color: #eee; /* Placeholder background */

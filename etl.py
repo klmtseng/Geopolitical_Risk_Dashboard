@@ -47,57 +47,97 @@ load_dotenv()
 
 def fetch_gdelt_events():
     """
-    Fetches events from the GDELT 2.0 Event database for the last 24 hours.
-    Selects specific fields relevant for geopolitical risk analysis.
-    Uses dynamic dates, but may be affected by sandbox clock or GDELT rate limiting.
+    Fetches events from the GDELT 2.0 Event database via the 15-minute CSV dump.
+    Uses the lastupdate.txt index to find the latest export file and parses the
+    relevant columns (EventCode, EventBaseCode, QuadClass, ActionGeo coords,
+    AvgTone, SOURCEURL, Day) from the tab-delimited CSV.
+    Returns a list of dicts compatible with the downstream process_data() schema.
     """
-    print("Fetching GDELT events...")
-    gdelt_base_url = "https://api.gdeltproject.org/api/v2/events/events"
+    import csv
+    import io
+    import zipfile
 
-    end_datetime_api = datetime.utcnow()
-    start_datetime_api = end_datetime_api - timedelta(days=1)
+    print("Fetching GDELT events via v2 CSV dump...")
 
-    start_date_str = start_datetime_api.strftime("%Y%m%d%H%M%S")
-    end_date_str = end_datetime_api.strftime("%Y%m%d%H%M%S")
+    LASTUPDATE_URL = "http://data.gdeltproject.org/gdeltv2/lastupdate.txt"
 
-    print(f"INFO: GDELT attempting to fetch for timespan: {start_date_str} to {end_date_str}")
-
-    query_fields = [
-        "EventCode", "EventBaseCode", "IsRootEvent", "QuadClass", # Added QuadClass for potential categorization
-        "ActionGeo_Lat", "ActionGeo_Long", "ActionGeo_CountryCode",
-        "Actor1Geo_Lat", "Actor1Geo_Long",
-        "Actor2Geo_Lat", "Actor2Geo_Long",
-        "SOURCEURL", "AvgTone", "Day" # Day field contains YYYYMMDD
-    ]
-    fields_param = ",".join(query_fields)
-
-    params = {
-        "query": f"timespan:{start_date_str}-{end_date_str}",
-        "mode": "event",
-        "format": "json",
-        "fields": fields_param,
-        "maxrecords": 250
+    # GDELT v2 export CSV column indices (0-based, 61 columns total, no header row)
+    COL = {
+        "Day": 1,
+        "IsRootEvent": 25,
+        "EventCode": 26,
+        "EventBaseCode": 27,
+        "QuadClass": 29,
+        "AvgTone": 34,
+        "Actor1Geo_Lat": 40,
+        "Actor1Geo_Long": 41,
+        "Actor2Geo_Lat": 48,
+        "Actor2Geo_Long": 49,
+        "ActionGeo_CountryCode": 53,
+        "ActionGeo_Lat": 56,
+        "ActionGeo_Long": 57,
+        "SOURCEURL": 60,
     }
 
     all_events = []
     try:
-        prepared_request = requests.Request('GET', gdelt_base_url, params=params).prepare()
-        print(f"GDELT API Request URL: {prepared_request.url}")
+        # Step 1: Get the URL of the latest export CSV zip
+        resp = requests.get(LASTUPDATE_URL, timeout=30)
+        resp.raise_for_status()
+        export_url = None
+        for line in resp.text.strip().splitlines():
+            parts = line.strip().split()
+            if len(parts) >= 3 and "export.CSV.zip" in parts[2]:
+                export_url = parts[2]
+                break
+        if not export_url:
+            print("ERROR: Could not parse export URL from lastupdate.txt")
+            return all_events
 
-        response = requests.get(gdelt_base_url, params=params, timeout=60)
-        response.raise_for_status()
+        print(f"GDELT CSV URL: {export_url}")
 
-        data = response.json()
-        events = data.get("events", []) if isinstance(data, dict) else data
+        # Step 2: Download and unzip
+        resp2 = requests.get(export_url, timeout=60)
+        resp2.raise_for_status()
+        with zipfile.ZipFile(io.BytesIO(resp2.content)) as zf:
+            csv_filename = zf.namelist()[0]
+            with zf.open(csv_filename) as f:
+                text = f.read().decode("utf-8", errors="replace")
 
-        all_events.extend(events)
-        print(f"Successfully fetched {len(events)} initial events from GDELT.")
+        # Step 3: Parse TSV (no header row)
+        reader = csv.reader(io.StringIO(text), delimiter="\t")
+        row_count = 0
+        for row in reader:
+            if len(row) < 61:
+                continue
+            row_count += 1
+            event = {
+                "Day": row[COL["Day"]],
+                "IsRootEvent": row[COL["IsRootEvent"]],
+                "EventCode": row[COL["EventCode"]],
+                "EventBaseCode": row[COL["EventBaseCode"]],
+                "QuadClass": row[COL["QuadClass"]],
+                "AvgTone": row[COL["AvgTone"]],
+                "Actor1Geo_Lat": row[COL["Actor1Geo_Lat"]],
+                "Actor1Geo_Long": row[COL["Actor1Geo_Long"]],
+                "Actor2Geo_Lat": row[COL["Actor2Geo_Lat"]],
+                "Actor2Geo_Long": row[COL["Actor2Geo_Long"]],
+                "ActionGeo_CountryCode": row[COL["ActionGeo_CountryCode"]],
+                "ActionGeo_Lat": row[COL["ActionGeo_Lat"]],
+                "ActionGeo_Long": row[COL["ActionGeo_Long"]],
+                "SOURCEURL": row[COL["SOURCEURL"]],
+            }
+            all_events.append(event)
+
+        print(f"Successfully parsed {len(all_events)} events from GDELT CSV ({row_count} rows read).")
 
     except requests.exceptions.RequestException as e:
         print(f"Error fetching GDELT data: {e}")
-    except ValueError as e: # Includes JSONDecodeError
-        print(f"Error decoding GDELT JSON response: {e}")
-        print(f"Response text: {response.text if 'response' in locals() else 'No response object'}")
+    except zipfile.BadZipFile as e:
+        print(f"Error unzipping GDELT CSV: {e}")
+    except Exception as e:
+        print(f"Unexpected error in fetch_gdelt_events: {e}")
+
     return all_events
 
 def fetch_acled_data(api_key, country=None, days_limit=7):
@@ -424,7 +464,6 @@ if __name__ == "__main__":
     sample_rss_urls = [
         "http://rss.cnn.com/rss/cnn_world.rss",
         "https://feeds.bbci.co.uk/news/world/rss.xml",
-        # "http://feeds.aljazeera.net/utilities/alertsRssGenerator/AlertsRssDispatcher.aspx" # Known problematic
     ]
     rss_items_raw = fetch_rss_feeds(sample_rss_urls)
 
@@ -440,15 +479,17 @@ if __name__ == "__main__":
     if processed_unified_data:
         print(f"Sample of processed data (first item): {json.dumps(processed_unified_data[0], indent=2)}")
 
+    # Graceful fallback: if no new data was produced, preserve the previous latest.json
+    # and warn rather than overwriting with empty data or crashing the workflow.
+    if not processed_unified_data:
+        print("WARNING: No data produced by ETL this run. Keeping existing data files unchanged.")
+    else:
+        # 3. Save data
+        print("\n--- Saving Data ---")
+        save_data(processed_unified_data)
 
-    # 3. Save data
-    print("\n--- Saving Data ---")
-    # save_data now uses default "data" for archives and "static/data" for frontend's latest.json
-    save_data(processed_unified_data)
-
-    # 4. Cleanup old data
+    # 4. Cleanup old data (always runs regardless of fetch outcome)
     print("\n--- Cleaning Old Data ---")
-    # cleanup_old_data now defaults to "data" directory for archives
     cleanup_old_data(days_to_keep=90)
 
     print("\nETL script finished.")

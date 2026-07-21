@@ -89,10 +89,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # gh cli needs this
         run: |
           echo "Workflow failed. Creating an issue."
-          # Ensure gh CLI is installed and configured if using this directly.
-          # Ubuntu latest runners usually have gh pre-installed.
-          gh issue create --title "Daily Build Failed on $(date -u +'%Y-%m-%d')" --body "The daily build workflow failed. Please check the logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" --label "bug,workflow-failure"
-          # Fallback echo if gh cli fails for some reason
-          echo "Issue creation attempted. See workflow logs for details."
-          # Consider using a dedicated action for issue creation for more robustness if gh cli setup is an issue.
-          # e.g. JasonEtco/create-an-issue@v2 or similar.
+          gh issue create \
+            --title "Daily Build Failed on $(date -u +'%Y-%m-%d')" \
+            --body "The daily build workflow failed. Please check the logs: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            || echo "Issue creation failed (non-fatal). See workflow logs for details."
