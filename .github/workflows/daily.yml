@@ -2,7 +2,7 @@ name: Daily ETL, Build, and Deploy
 
 on:
   schedule:
-    - cron: '47 0 * * *' # 00:30 UTC daily (8:30 AM Taipei time)
+    - cron: '47 0 * * *' # 00:47 UTC daily (08:47 Taipei) — odd minute avoids GitHub cron congestion
   workflow_dispatch: # Allows manual triggering
 
 env:
