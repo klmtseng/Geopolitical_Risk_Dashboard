@@ -2,7 +2,7 @@ name: Daily ETL, Build, and Deploy
 
 on:
   schedule:
-    - cron: '30 0 * * *' # 00:30 UTC daily (8:30 AM Taipei time)
+    - cron: '47 0 * * *' # 00:30 UTC daily (8:30 AM Taipei time)
   workflow_dispatch: # Allows manual triggering
 
 env:
