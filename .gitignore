@@ -7,6 +7,7 @@ node_modules/
 
 # Vite
 dist/
+build/
 .env.local
 .env.*.local
 
@@ -19,3 +20,7 @@ dist/
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# Badminton app: vendored MediaPipe runtime + models (build artefact, ~25-60 MB)
+# Regenerate with: npm run badminton:assets
+public/badminton/vendor/

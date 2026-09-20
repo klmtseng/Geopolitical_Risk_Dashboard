@@ -9,6 +9,26 @@ Key Features:
 - **GitHub Pages Hosting:** The dashboard is designed to be easily deployable via GitHub Pages.
 - **Multiple Data Sources:** Integrates data from sources like GDELT, ACLED, and potentially others.
 
+## Apps in this repository
+
+This repository hosts two independent front-ends, both deployed to the same
+GitHub Pages site:
+
+| Path | What it is |
+| --- | --- |
+| `/` | **Geopolitical Risk Dashboard** — Svelte + Vite, fed by the daily Python ETL |
+| `/badminton/` | **羽球骨架追蹤** — browser-only real-time pose / racket / shuttlecock tracking with dual video recording. See [`public/badminton/README.md`](public/badminton/README.md) |
+
+The badminton app is plain ES modules under `public/`, so Vite copies it to the
+build output verbatim — it shares the deploy but has no build-time coupling to
+the dashboard.
+
+```bash
+npm run dev              # both apps: / and /badminton/
+npm run test:badminton   # tracker regression tests
+npm run badminton:assets # optional: vendor MediaPipe for offline use
+```
+
 ## Local Setup and Running
 
 ### Prerequisites

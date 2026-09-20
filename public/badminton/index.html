@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#0b1020" />
+<meta name="description" content="羽球即時骨架追蹤：人體骨架、球拍軌跡、羽球軌跡，並可同時錄製原始影像與骨架疊加影片。" />
+<title>羽球骨架追蹤</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏸</text></svg>" />
+<link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+<div id="app">
+
+  <header class="topbar">
+    <div class="brand"><span class="logo">🏸</span><span>羽球骨架追蹤</span></div>
+    <div class="meters">
+      <span class="meter" id="meterFps" title="畫面更新率">-- fps</span>
+      <span class="meter" id="meterInfer" title="單次姿態推論耗時">-- ms</span>
+      <span class="meter" id="meterPeople" title="偵測到的人數">0 人</span>
+    </div>
+    <button class="icon-btn" id="btnSettings" aria-label="設定">⚙︎</button>
+  </header>
+
+  <main class="stage" id="stage">
+    <canvas id="view"></canvas>
+    <video id="source" playsinline muted></video>
+
+    <div class="overlay-center" id="startPanel">
+      <div class="card">
+        <h1>開始追蹤</h1>
+        <p>選擇影像來源。全部運算都在你的裝置上完成，影像不會上傳到任何伺服器。</p>
+        <div class="row">
+          <button class="primary" id="btnStartCam">📷 開啟相機</button>
+          <button class="ghost" id="btnPickFile">🎞️ 載入影片檔</button>
+        </div>
+        <input type="file" id="fileInput" accept="video/*" hidden />
+        <p class="hint" id="startHint">相機需要 HTTPS 或 localhost 才能啟用。</p>
+      </div>
+    </div>
+
+    <div class="overlay-center hidden" id="loadingPanel">
+      <div class="card">
+        <div class="spinner"></div>
+        <p id="loadingText">載入姿態模型中…</p>
+      </div>
+    </div>
+
+    <div class="rec-badge hidden" id="recBadge"><span class="dot"></span><span id="recTime">00:00</span></div>
+
+    <div class="stage-controls" id="stageControls" hidden>
+      <button class="round" id="btnFlip" title="切換前後鏡頭">🔄</button>
+      <button class="round record" id="btnRecord" title="開始／停止錄影"><span class="rec-inner"></span></button>
+      <button class="round" id="btnSnap" title="擷取目前畫面">📸</button>
+    </div>
+  </main>
+
+  <aside class="sheet" id="sheet" aria-hidden="true">
+    <div class="sheet-head">
+      <h2>設定</h2>
+      <button class="icon-btn" id="btnCloseSheet" aria-label="關閉">✕</button>
+    </div>
+    <div class="sheet-body">
+
+      <section>
+        <h3>影像來源</h3>
+        <label class="field"><span>鏡頭</span>
+          <select id="optFacing">
+            <option value="environment">後鏡頭</option>
+            <option value="user">前鏡頭</option>
+          </select>
+        </label>
+        <label class="field"><span>解析度</span>
+          <select id="optRes">
+            <option value="640">640p（最順）</option>
+            <option value="960" selected>960p（平衡）</option>
+            <option value="1280">1280p</option>
+            <option value="1920">1920p（最清晰）</option>
+          </select>
+        </label>
+        <label class="field"><span>更新率</span>
+          <select id="optFps">
+            <option value="30" selected>30 fps</option>
+            <option value="60">60 fps（若裝置支援）</option>
+          </select>
+        </label>
+        <label class="field"><span>畫面旋轉</span>
+          <select id="optRotate">
+            <option value="0" selected>0°</option>
+            <option value="90">90°</option>
+            <option value="180">180°</option>
+            <option value="270">270°</option>
+          </select>
+        </label>
+        <label class="check"><input type="checkbox" id="optMirror" /><span>水平鏡像</span></label>
+        <p class="note">直向／橫向會自動依影像實際比例調整，通常不需要手動旋轉。</p>
+      </section>
+
+      <section>
+        <h3>骨架偵測</h3>
+        <label class="check"><input type="checkbox" id="optPose" checked /><span>顯示骨架</span></label>
+        <label class="field"><span>模型</span>
+          <select id="optModel">
+            <option value="lite">Lite（最快，手機建議）</option>
+            <option value="full" selected>Full（平衡）</option>
+            <option value="heavy">Heavy（最準，需較強裝置）</option>
+          </select>
+        </label>
+        <label class="field"><span>最多人數</span>
+          <select id="optPeople">
+            <option value="1">1 人</option>
+            <option value="2" selected>2 人（小孩＋教練）</option>
+            <option value="3">3 人</option>
+            <option value="4">4 人</option>
+          </select>
+        </label>
+        <label class="field"><span>推論頻率</span>
+          <select id="optStride">
+            <option value="1" selected>每一幀</option>
+            <option value="2">每 2 幀（省電）</option>
+            <option value="3">每 3 幀</option>
+          </select>
+        </label>
+        <label class="range"><span>平滑度 <b id="valSmooth">中</b></span>
+          <input type="range" id="optSmooth" min="0" max="4" step="1" value="2" />
+        </label>
+        <label class="range"><span>骨架線寬 <b id="valThick">4</b></span>
+          <input type="range" id="optThick" min="1" max="10" step="1" value="4" />
+        </label>
+        <label class="check"><input type="checkbox" id="optTraceBody" /><span>顯示重心移動軌跡</span></label>
+      </section>
+
+      <section>
+        <h3>球拍</h3>
+        <label class="check"><input type="checkbox" id="optRacket" checked /><span>估算球拍位置與軌跡</span></label>
+        <label class="range"><span>拍長係數 <b id="valRacketLen">1.7</b></span>
+          <input type="range" id="optRacketLen" min="0.8" max="3.0" step="0.1" value="1.7" />
+        </label>
+        <label class="range"><span>軌跡長度 <b id="valRacketTrail">0.8</b> 秒</span>
+          <input type="range" id="optRacketTrail" min="0.2" max="3" step="0.1" value="0.8" />
+        </label>
+        <p class="note">球拍是以「手肘→手腕」向量外推，再用影像中的高速運動區域修正，屬於估算而非物件偵測。</p>
+      </section>
+
+      <section>
+        <h3>羽球</h3>
+        <label class="check"><input type="checkbox" id="optShuttle" checked /><span>追蹤羽球飛行軌跡</span></label>
+        <label class="range"><span>靈敏度 <b id="valSens">18</b></span>
+          <input type="range" id="optSens" min="6" max="40" step="1" value="18" />
+        </label>
+        <label class="range"><span>軌跡長度 <b id="valShuttleTrail">1.5</b> 秒</span>
+          <input type="range" id="optShuttleTrail" min="0.3" max="5" step="0.1" value="1.5" />
+        </label>
+        <label class="check"><input type="checkbox" id="optShuttleDebug" /><span>顯示候選點（除錯用）</span></label>
+        <label class="check"><input type="checkbox" id="optSpeed" /><span>估算球速</span></label>
+        <label class="field" id="heightField" hidden><span>球員身高 (cm)</span>
+          <input type="number" id="optHeight" min="90" max="210" step="1" value="150" />
+        </label>
+        <p class="note">球速由「球員身高換算像素比例」概估，僅供參考，與實際測速槍數值會有落差。</p>
+      </section>
+
+      <section>
+        <h3>錄影</h3>
+        <label class="check"><input type="checkbox" id="optRecRaw" checked /><span>錄製原始影像（無標註）</span></label>
+        <label class="check"><input type="checkbox" id="optRecOverlay" checked /><span>錄製骨架疊加影像</span></label>
+        <label class="check"><input type="checkbox" id="optRecAudio" checked /><span>同時收音</span></label>
+        <label class="check"><input type="checkbox" id="optSkeletonOnly" /><span>純黑底模式（畫面與錄影同步只留骨架）</span></label>
+        <label class="field"><span>畫質</span>
+          <select id="optBitrate">
+            <option value="4000000">標準 4 Mbps</option>
+            <option value="8000000" selected>高 8 Mbps</option>
+            <option value="16000000">極高 16 Mbps</option>
+          </select>
+        </label>
+        <label class="check"><input type="checkbox" id="optRecJson" /><span>同時輸出動作資料 (JSON)</span></label>
+        <p class="note" id="codecNote"></p>
+      </section>
+
+      <section>
+        <h3>錄影檔案</h3>
+        <div id="clipList" class="clips"><p class="note">尚未有錄影。</p></div>
+      </section>
+
+      <section>
+        <h3>說明</h3>
+        <p class="note">
+          全部處理都在瀏覽器內完成（MediaPipe Pose Landmarker，WebGL/WASM），影像與錄影檔不會離開這台裝置。<br />
+          第一次開啟需要下載約 10–30 MB 的模型與執行環境，之後會由瀏覽器快取。<br />
+          註：MediaPipe 函式庫本身會送出一個不含影像的匿名使用統計請求給 Google。
+        </p>
+        <button class="ghost" id="btnReset">回復預設設定</button>
+      </section>
+
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" hidden></div>
+</div>
+
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>

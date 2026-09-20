@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:badminton": "node --test tests/badminton-trackers.test.mjs",
+    "badminton:assets": "node scripts/fetch-badminton-assets.mjs"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^3.1.2",
