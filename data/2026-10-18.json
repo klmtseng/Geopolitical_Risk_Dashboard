@@ -1,0 +1,3742 @@
+[
+  {
+    "timestamp": "2026-10-11T00:00:00Z",
+    "country": "RS",
+    "lat": 55.7522,
+    "lon": 37.6156,
+    "risk_score": 2,
+    "title": "GDELT Event: 020 in RS",
+    "source_url": "https://www.asiaone.com:443/world/trumps-decision-waive-russian-sanctions-outrages-congress-no-quick-counter-seen",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-17T00:00:00Z",
+    "country": "IN",
+    "lat": 22.5697,
+    "lon": 88.3697,
+    "risk_score": 2,
+    "title": "GDELT Event: 022 in IN",
+    "source_url": "https://timesofindia.indiatimes.com/city/kolkata/kolkata-stampede-sit-to-probe-security-lapses-question-puja-committee-members-after-19-deaths-14-detained/articleshow/135023658.cms",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "BR",
+    "lat": -3.11333,
+    "lon": -60.0253,
+    "risk_score": 6,
+    "title": "GDELT Event: 042 in BR",
+    "source_url": "https://www.thehindubusinessline.com/companies/bajaj-auto-owned-ktm-opens-new-motorcycle-assembly-plant-in-brazil/article71598985.ece",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 46.9048,
+    "lon": -110.326,
+    "risk_score": 7,
+    "title": "GDELT Event: 042 in US",
+    "source_url": "https://k96fm.com/ixp/1104/p/janicki-industries-great-falls-campus/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IN",
+    "lat": 23.6167,
+    "lon": 73.2833,
+    "risk_score": 8,
+    "title": "GDELT Event: 043 in IN",
+    "source_url": "https://timesofindia.indiatimes.com/life-style/food-news/we-didnt-have-masala-chai-but-what-did-rishi-sunak-eat-at-delhis-bengali-sweet-house-owner-reveals/articleshow/135023750.cms",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.7667,
+    "lon": 35.2333,
+    "risk_score": 2,
+    "title": "GDELT Event: 020 in IS",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.7667,
+    "lon": 35.2333,
+    "risk_score": 2,
+    "title": "GDELT Event: 020 in IS",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 43.0667,
+    "lon": -79.95,
+    "risk_score": 52,
+    "title": "GDELT Event: 190 in CA",
+    "source_url": "https://caledoniacourier.com/2026/10/17/fatalities-injuries-after-fire-at-canadian-forces-base-wainwright-in-alberta/",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 45.4167,
+    "lon": -75.7,
+    "risk_score": 5,
+    "title": "GDELT Event: 046 in CA",
+    "source_url": "http://www.bignewsnetwork.com/news/279382299/canada-several-dead-in-fire-at-military-base-in-alberta-pm-carney-says-working-with-local-authorities",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "BE",
+    "lat": 50.8333,
+    "lon": 4.33333,
+    "risk_score": 5,
+    "title": "GDELT Event: 051 in BE",
+    "source_url": "http://www.bignewsnetwork.com/news/279382317/belgium-clashes-break-out-between-protesters-police-amid-agitation-against-rising-cost-of-living-in-parts-of-europe",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "BE",
+    "lat": 50.8333,
+    "lon": 4.33333,
+    "risk_score": 5,
+    "title": "GDELT Event: 051 in BE",
+    "source_url": "http://www.bignewsnetwork.com/news/279382317/belgium-clashes-break-out-between-protesters-police-amid-agitation-against-rising-cost-of-living-in-parts-of-europe",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PK",
+    "lat": 31.5497,
+    "lon": 74.3436,
+    "risk_score": 9,
+    "title": "GDELT Event: 043 in PK",
+    "source_url": "https://pakobserver.net/lives-lost-dreams-buried-lessons-ignored/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 42.2373,
+    "lon": -71.5314,
+    "risk_score": 1,
+    "title": "GDELT Event: 020 in US",
+    "source_url": "https://www.wnd.com/2026/10/democrat-who-boasted-blocking-gas-pipelines-now-wants/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.4167,
+    "lon": 34.3333,
+    "risk_score": 6,
+    "title": "GDELT Event: 040 in IS",
+    "source_url": "https://www.wiltsglosstandard.co.uk/news/26627475.column-roz-savage-mp-south-cotswolds-wgs/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.4287,
+    "lon": -81.8693,
+    "risk_score": 7,
+    "title": "GDELT Event: 046 in US",
+    "source_url": "https://www.bryantimes.com/news/lazarus-joins-parkview-physicians-group/article_1bd61480-769c-4f7f-81eb-2b4f55d6312b.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 1,
+    "title": "GDELT Event: 036 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5263,
+    "lon": 98.3798,
+    "risk_score": 1,
+    "title": "GDELT Event: 036 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5263,
+    "lon": 98.3798,
+    "risk_score": 6,
+    "title": "GDELT Event: 042 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "EI",
+    "lat": 53.0,
+    "lon": -8.0,
+    "risk_score": 1,
+    "title": "GDELT Event: 057 in EI",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.7667,
+    "lon": 35.2333,
+    "risk_score": 17,
+    "title": "GDELT Event: 100 in IS",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "protest"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "KE",
+    "lat": 1.0,
+    "lon": 38.0,
+    "risk_score": 5,
+    "title": "GDELT Event: 043 in KE",
+    "source_url": "https://www.standardmedia.co.ke/politics/article/2001560324/running-mate-headache-inside-alleged-plot-to-split-mt-kenya-puncture-gachagua",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "TH",
+    "lat": 17.301,
+    "lon": 101.769,
+    "risk_score": 53,
+    "title": "GDELT Event: 190 in TH",
+    "source_url": "https://www.bangkokpost.com/thailand/general/3339214/probe-into-jumbos-death",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 45.4167,
+    "lon": -75.7,
+    "risk_score": 50,
+    "title": "GDELT Event: 190 in CA",
+    "source_url": "http://www.bignewsnetwork.com/news/279382299/canada-several-dead-in-fire-at-military-base-in-alberta-pm-carney-says-working-with-local-authorities",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "MP",
+    "lat": 16.0,
+    "lon": 146.0,
+    "risk_score": 8,
+    "title": "GDELT Event: 043 in MP",
+    "source_url": "https://pakobserver.net/high-commissioner-of-mauritius-visits-nazriya-pakistan-council-trust-lauds-efforts-for-preservation-of-pakistans-ideology-and-heritage/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PK",
+    "lat": 24.8541,
+    "lon": 67.0423,
+    "risk_score": 54,
+    "title": "GDELT Event: 190 in PK",
+    "source_url": "https://pakobserver.net/lives-lost-dreams-buried-lessons-ignored/",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.2586,
+    "lon": -95.9378,
+    "risk_score": 6,
+    "title": "GDELT Event: 046 in US",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.2586,
+    "lon": -95.9378,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in US",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "SA",
+    "lat": 24.6408,
+    "lon": 46.7728,
+    "risk_score": 51,
+    "title": "GDELT Event: 190 in SA",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5292,
+    "lon": 99.0184,
+    "risk_score": 51,
+    "title": "GDELT Event: 190 in ID",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "TH",
+    "lat": 17.4905,
+    "lon": 101.727,
+    "risk_score": 3,
+    "title": "GDELT Event: 060 in TH",
+    "source_url": "https://www.bangkokpost.com/thailand/general/3339214/probe-into-jumbos-death",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 42.3584,
+    "lon": -71.0598,
+    "risk_score": 6,
+    "title": "GDELT Event: 042 in US",
+    "source_url": "https://www.wnd.com/2026/10/democrat-who-boasted-blocking-gas-pipelines-now-wants/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 42.2373,
+    "lon": -71.5314,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in US",
+    "source_url": "https://www.wnd.com/2026/10/democrat-who-boasted-blocking-gas-pipelines-now-wants/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.4287,
+    "lon": -81.8693,
+    "risk_score": 7,
+    "title": "GDELT Event: 046 in US",
+    "source_url": "https://www.bryantimes.com/news/lazarus-joins-parkview-physicians-group/article_1bd61480-769c-4f7f-81eb-2b4f55d6312b.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.7667,
+    "lon": 35.2333,
+    "risk_score": 2,
+    "title": "GDELT Event: 112 in IS",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "SF",
+    "lat": -30.0,
+    "lon": 26.0,
+    "risk_score": 2,
+    "title": "GDELT Event: 112 in SF",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "AS",
+    "lat": -41.2333,
+    "lon": 147.783,
+    "risk_score": 1,
+    "title": "GDELT Event: 017 in AS",
+    "source_url": "https://www.wvgazettemail.com/outdoors/bridge-day-2026-hundreds-of-jumpers-brave-blustery-wind-cold-temps-to-take-the-leap/article_017730fc-c983-4b04-bbcb-c90d8564e858.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "AS",
+    "lat": -41.2333,
+    "lon": 147.783,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in AS",
+    "source_url": "https://www.wvgazettemail.com/outdoors/bridge-day-2026-hundreds-of-jumpers-brave-blustery-wind-cold-temps-to-take-the-leap/article_017730fc-c983-4b04-bbcb-c90d8564e858.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "BR",
+    "lat": -3.11333,
+    "lon": -60.0253,
+    "risk_score": 6,
+    "title": "GDELT Event: 042 in BR",
+    "source_url": "https://www.thehindubusinessline.com/companies/bajaj-auto-owned-ktm-opens-new-motorcycle-assembly-plant-in-brazil/article71598985.ece",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "AU",
+    "lat": 47.333333,
+    "lon": 13.333333,
+    "risk_score": 1,
+    "title": "GDELT Event: 111 in AU",
+    "source_url": "https://www.thehindubusinessline.com/companies/bajaj-auto-owned-ktm-opens-new-motorcycle-assembly-plant-in-brazil/article71598985.ece",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "BR",
+    "lat": -3.11333,
+    "lon": -60.0253,
+    "risk_score": 6,
+    "title": "GDELT Event: 043 in BR",
+    "source_url": "https://www.thehindubusinessline.com/companies/bajaj-auto-owned-ktm-opens-new-motorcycle-assembly-plant-in-brazil/article71598985.ece",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "BR",
+    "lat": -3.11333,
+    "lon": -60.0253,
+    "risk_score": 6,
+    "title": "GDELT Event: 042 in BR",
+    "source_url": "https://www.thehindubusinessline.com/companies/bajaj-auto-owned-ktm-opens-new-motorcycle-assembly-plant-in-brazil/article71598985.ece",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "AU",
+    "lat": 47.333333,
+    "lon": 13.333333,
+    "risk_score": 1,
+    "title": "GDELT Event: 111 in AU",
+    "source_url": "https://www.thehindubusinessline.com/companies/bajaj-auto-owned-ktm-opens-new-motorcycle-assembly-plant-in-brazil/article71598985.ece",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "BE",
+    "lat": 50.8333,
+    "lon": 4.33333,
+    "risk_score": 5,
+    "title": "GDELT Event: 010 in BE",
+    "source_url": "http://www.bignewsnetwork.com/news/279382317/belgium-clashes-break-out-between-protesters-police-amid-agitation-against-rising-cost-of-living-in-parts-of-europe",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IT",
+    "lat": 42.833333,
+    "lon": 12.833333,
+    "risk_score": 5,
+    "title": "GDELT Event: 010 in IT",
+    "source_url": "http://www.bignewsnetwork.com/news/279382317/belgium-clashes-break-out-between-protesters-police-amid-agitation-against-rising-cost-of-living-in-parts-of-europe",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "BE",
+    "lat": 50.8333,
+    "lon": 4.33333,
+    "risk_score": 5,
+    "title": "GDELT Event: 010 in BE",
+    "source_url": "http://www.bignewsnetwork.com/news/279382317/belgium-clashes-break-out-between-protesters-police-amid-agitation-against-rising-cost-of-living-in-parts-of-europe",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IT",
+    "lat": 42.833333,
+    "lon": 12.833333,
+    "risk_score": 5,
+    "title": "GDELT Event: 010 in IT",
+    "source_url": "http://www.bignewsnetwork.com/news/279382317/belgium-clashes-break-out-between-protesters-police-amid-agitation-against-rising-cost-of-living-in-parts-of-europe",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "BR",
+    "lat": -3.11333,
+    "lon": -60.0253,
+    "risk_score": 6,
+    "title": "GDELT Event: 043 in BR",
+    "source_url": "https://www.thehindubusinessline.com/companies/bajaj-auto-owned-ktm-opens-new-motorcycle-assembly-plant-in-brazil/article71598985.ece",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IN",
+    "lat": 23.6167,
+    "lon": 73.2833,
+    "risk_score": 8,
+    "title": "GDELT Event: 042 in IN",
+    "source_url": "https://timesofindia.indiatimes.com/life-style/food-news/we-didnt-have-masala-chai-but-what-did-rishi-sunak-eat-at-delhis-bengali-sweet-house-owner-reveals/articleshow/135023750.cms",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 47.5002,
+    "lon": -111.301,
+    "risk_score": 7,
+    "title": "GDELT Event: 043 in US",
+    "source_url": "https://k96fm.com/ixp/1104/p/janicki-industries-great-falls-campus/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 46.9048,
+    "lon": -110.326,
+    "risk_score": 7,
+    "title": "GDELT Event: 043 in US",
+    "source_url": "https://k96fm.com/ixp/1104/p/janicki-industries-great-falls-campus/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "BR",
+    "lat": -3.11333,
+    "lon": -60.0253,
+    "risk_score": 6,
+    "title": "GDELT Event: 043 in BR",
+    "source_url": "https://www.thehindubusinessline.com/companies/bajaj-auto-owned-ktm-opens-new-motorcycle-assembly-plant-in-brazil/article71598985.ece",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 43.0667,
+    "lon": -79.95,
+    "risk_score": 2,
+    "title": "GDELT Event: 090 in CA",
+    "source_url": "https://caledoniacourier.com/2026/10/17/fatalities-injuries-after-fire-at-canadian-forces-base-wainwright-in-alberta/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 45.0,
+    "lon": -85.0,
+    "risk_score": 0,
+    "title": "GDELT Event: 172 in CA",
+    "source_url": "https://www.greatlakesadvocate.com.au/story/9367423/canadas-caesar-cocktail-how-a-clam-juice-mix-won-a-nation/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 45.4167,
+    "lon": -75.7,
+    "risk_score": 0,
+    "title": "GDELT Event: 018 in CA",
+    "source_url": "http://www.bignewsnetwork.com/news/279382299/canada-several-dead-in-fire-at-military-base-in-alberta-pm-carney-says-working-with-local-authorities",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 45.4167,
+    "lon": -75.7,
+    "risk_score": 50,
+    "title": "GDELT Event: 190 in CA",
+    "source_url": "http://www.bignewsnetwork.com/news/279382299/canada-several-dead-in-fire-at-military-base-in-alberta-pm-carney-says-working-with-local-authorities",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 45.4167,
+    "lon": -75.7,
+    "risk_score": 2,
+    "title": "GDELT Event: 090 in CA",
+    "source_url": "https://www.rte.ie/news/world/2026/1018/1595810-canada-fire/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 45.0,
+    "lon": -85.0,
+    "risk_score": 0,
+    "title": "GDELT Event: 051 in CA",
+    "source_url": "https://www.greatlakesadvocate.com.au/story/9367423/canadas-caesar-cocktail-how-a-clam-juice-mix-won-a-nation/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 45.4167,
+    "lon": -75.7,
+    "risk_score": 0,
+    "title": "GDELT Event: 018 in CA",
+    "source_url": "http://www.bignewsnetwork.com/news/279382299/canada-several-dead-in-fire-at-military-base-in-alberta-pm-carney-says-working-with-local-authorities",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PL",
+    "lat": 54.4347,
+    "lon": 18.5708,
+    "risk_score": 2,
+    "title": "GDELT Event: 050 in PL",
+    "source_url": "http://www.bignewsnetwork.com/news/279382315/interview-polish-scholar-calls-for-closer-china-europe-dialogue-mutual-understanding",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CH",
+    "lat": 35.0,
+    "lon": 105.0,
+    "risk_score": 2,
+    "title": "GDELT Event: 050 in CH",
+    "source_url": "http://www.bignewsnetwork.com/news/279382315/interview-polish-scholar-calls-for-closer-china-europe-dialogue-mutual-understanding",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.2586,
+    "lon": -95.9378,
+    "risk_score": 1,
+    "title": "GDELT Event: 014 in US",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "UK",
+    "lat": 50.9833,
+    "lon": -1.5,
+    "risk_score": 0,
+    "title": "GDELT Event: 060 in UK",
+    "source_url": "https://www.hampshirechronicle.co.uk/news/26607332.remembering-romsey-1980s-eyes-local/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CO",
+    "lat": 4.0,
+    "lon": -72.0,
+    "risk_score": 0,
+    "title": "GDELT Event: 011 in CO",
+    "source_url": "https://timesofindia.indiatimes.com/city/hyderabad/baby-boy-hunt-takes-indians-to-foreign-shores/articleshow/135023380.cms",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CO",
+    "lat": 4.0,
+    "lon": -72.0,
+    "risk_score": 0,
+    "title": "GDELT Event: 011 in CO",
+    "source_url": "https://timesofindia.indiatimes.com/city/hyderabad/baby-boy-hunt-takes-indians-to-foreign-shores/articleshow/135023380.cms",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IN",
+    "lat": 30.9167,
+    "lon": 75.4167,
+    "risk_score": 0,
+    "title": "GDELT Event: 020 in IN",
+    "source_url": "https://timesofindia.indiatimes.com/city/hyderabad/baby-boy-hunt-takes-indians-to-foreign-shores/articleshow/135023380.cms",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IN",
+    "lat": 22.5697,
+    "lon": 88.3697,
+    "risk_score": 4,
+    "title": "GDELT Event: 018 in IN",
+    "source_url": "https://timesofindia.indiatimes.com/india/amit-shah-visits-injured-after-deadly-stampede-at-kolkata-durga-puja-pandal/articleshow/135023786.cms",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "AS",
+    "lat": -32.1167,
+    "lon": 116.017,
+    "risk_score": 4,
+    "title": "GDELT Event: 020 in AS",
+    "source_url": "https://www.abc.net.au/news/2026-10-18/kelmscott-agricultural-show-lockdown-youths-fighting/107280674",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "TH",
+    "lat": 13.75,
+    "lon": 100.517,
+    "risk_score": 5,
+    "title": "GDELT Event: 173 in TH",
+    "source_url": "https://www.bangkokpost.com/thailand/general/3339205/chinese-criminal-fugitive-arrested-in-bangkok",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CH",
+    "lat": 35.0,
+    "lon": 105.0,
+    "risk_score": 5,
+    "title": "GDELT Event: 173 in CH",
+    "source_url": "https://www.bangkokpost.com/thailand/general/3339205/chinese-criminal-fugitive-arrested-in-bangkok",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 1,
+    "title": "GDELT Event: 050 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 1,
+    "title": "GDELT Event: 050 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IN",
+    "lat": 22.5697,
+    "lon": 88.3697,
+    "risk_score": 3,
+    "title": "GDELT Event: 173 in IN",
+    "source_url": "http://www.bignewsnetwork.com/news/279382298/west-bengal-7-arrested-14-detained-after-kolkata-pandal-stampede-kills-19",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "NI",
+    "lat": 10.0,
+    "lon": 8.0,
+    "risk_score": 6,
+    "title": "GDELT Event: 173 in NI",
+    "source_url": "https://www.bangkokpost.com/thailand/general/3339210/nigerians-held-in-drug-sting",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IN",
+    "lat": 22.5697,
+    "lon": 88.3697,
+    "risk_score": 4,
+    "title": "GDELT Event: 018 in IN",
+    "source_url": "https://timesofindia.indiatimes.com/india/amit-shah-visits-injured-after-deadly-stampede-at-kolkata-durga-puja-pandal/articleshow/135023786.cms",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IT",
+    "lat": 42.833333,
+    "lon": 12.833333,
+    "risk_score": 5,
+    "title": "GDELT Event: 120 in IT",
+    "source_url": "http://www.bignewsnetwork.com/news/279382317/belgium-clashes-break-out-between-protesters-police-amid-agitation-against-rising-cost-of-living-in-parts-of-europe",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "FR",
+    "lat": 46.0,
+    "lon": 2.0,
+    "risk_score": 5,
+    "title": "GDELT Event: 171 in FR",
+    "source_url": "http://www.bignewsnetwork.com/news/279382317/belgium-clashes-break-out-between-protesters-police-amid-agitation-against-rising-cost-of-living-in-parts-of-europe",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "FR",
+    "lat": 46.0,
+    "lon": 2.0,
+    "risk_score": 5,
+    "title": "GDELT Event: 175 in FR",
+    "source_url": "http://www.bignewsnetwork.com/news/279382317/belgium-clashes-break-out-between-protesters-police-amid-agitation-against-rising-cost-of-living-in-parts-of-europe",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 36.17,
+    "lon": -119.746,
+    "risk_score": 1,
+    "title": "GDELT Event: 087 in US",
+    "source_url": "https://www.atvtoday.co.uk/319195-e4-hollyoaks/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IN",
+    "lat": 20.0,
+    "lon": 77.0,
+    "risk_score": 2,
+    "title": "GDELT Event: 060 in IN",
+    "source_url": "https://www.thehindubusinessline.com/economy/agri-business/beyond-monsoon-forecasts-how-ai-can-transform-climate-risk-management-for-farmers/article71593067.ece",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 38.8951,
+    "lon": -77.0364,
+    "risk_score": 1,
+    "title": "GDELT Event: 112 in US",
+    "source_url": "https://www.kten.com/news/politics/these-are-really-tough-times-house-republicans-confront-voter-fury-over-trump-s-washington-in/article_4932c62e-6ddb-5274-8282-9a32d321c168.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 46.9048,
+    "lon": -110.326,
+    "risk_score": 1,
+    "title": "GDELT Event: 112 in US",
+    "source_url": "https://www.kten.com/news/politics/these-are-really-tough-times-house-republicans-confront-voter-fury-over-trump-s-washington-in/article_4932c62e-6ddb-5274-8282-9a32d321c168.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PK",
+    "lat": 31.5497,
+    "lon": 74.3436,
+    "risk_score": 4,
+    "title": "GDELT Event: 012 in PK",
+    "source_url": "https://pakobserver.net/lives-lost-dreams-buried-lessons-ignored/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PK",
+    "lat": 31.5497,
+    "lon": 74.3436,
+    "risk_score": 9,
+    "title": "GDELT Event: 042 in PK",
+    "source_url": "https://pakobserver.net/lives-lost-dreams-buried-lessons-ignored/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CH",
+    "lat": 35.0,
+    "lon": 105.0,
+    "risk_score": 2,
+    "title": "GDELT Event: 020 in CH",
+    "source_url": "http://www.bignewsnetwork.com/news/279382315/interview-polish-scholar-calls-for-closer-china-europe-dialogue-mutual-understanding",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PL",
+    "lat": 52.25,
+    "lon": 21.0,
+    "risk_score": 2,
+    "title": "GDELT Event: 010 in PL",
+    "source_url": "http://www.bignewsnetwork.com/news/279382315/interview-polish-scholar-calls-for-closer-china-europe-dialogue-mutual-understanding",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 31.106,
+    "lon": -97.6475,
+    "risk_score": 6,
+    "title": "GDELT Event: 040 in US",
+    "source_url": "https://timesofindia.indiatimes.com/world/us/karmelo-anthonys-first-fundraiser-raised-nearly-634000-family-now-seeks-another-250000-for-murder-appeal-as-questions-remain-over-earlier-funds/articleshow/134996931.cms",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "EI",
+    "lat": 53.0,
+    "lon": -8.0,
+    "risk_score": 2,
+    "title": "GDELT Event: 010 in EI",
+    "source_url": "https://www.irishtimes.com/culture/2026/10/18/andrew-scott-could-be-unbeatable-at-the-oscars-unless-this-happens/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "UK",
+    "lat": 51.1833,
+    "lon": 0.75,
+    "risk_score": 51,
+    "title": "GDELT Event: 190 in UK",
+    "source_url": "https://www.atvtoday.co.uk/319173-travel-halloween/",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "UK",
+    "lat": 51.1833,
+    "lon": 0.75,
+    "risk_score": 51,
+    "title": "GDELT Event: 190 in UK",
+    "source_url": "https://www.atvtoday.co.uk/319173-travel-halloween/",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "SP",
+    "lat": 41.3833,
+    "lon": 2.18333,
+    "risk_score": 1,
+    "title": "GDELT Event: 010 in SP",
+    "source_url": "http://www.bgnes.com/entertainment/isabel-allende-wins-spain-s-premio-planeta-literary-award",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "SP",
+    "lat": 41.3833,
+    "lon": 2.18333,
+    "risk_score": 1,
+    "title": "GDELT Event: 020 in SP",
+    "source_url": "http://www.bgnes.com/entertainment/isabel-allende-wins-spain-s-premio-planeta-literary-award",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "SP",
+    "lat": 41.3833,
+    "lon": 2.18333,
+    "risk_score": 1,
+    "title": "GDELT Event: 020 in SP",
+    "source_url": "http://www.bgnes.com/entertainment/isabel-allende-wins-spain-s-premio-planeta-literary-award",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PL",
+    "lat": 54.4347,
+    "lon": 18.5708,
+    "risk_score": 2,
+    "title": "GDELT Event: 050 in PL",
+    "source_url": "http://www.bignewsnetwork.com/news/279382315/interview-polish-scholar-calls-for-closer-china-europe-dialogue-mutual-understanding",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CH",
+    "lat": 35.0,
+    "lon": 105.0,
+    "risk_score": 2,
+    "title": "GDELT Event: 110 in CH",
+    "source_url": "http://www.bignewsnetwork.com/news/279382315/interview-polish-scholar-calls-for-closer-china-europe-dialogue-mutual-understanding",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "FR",
+    "lat": 46.0,
+    "lon": 2.0,
+    "risk_score": 5,
+    "title": "GDELT Event: 110 in FR",
+    "source_url": "http://www.bignewsnetwork.com/news/279382317/belgium-clashes-break-out-between-protesters-police-amid-agitation-against-rising-cost-of-living-in-parts-of-europe",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "FR",
+    "lat": 46.0,
+    "lon": 2.0,
+    "risk_score": 5,
+    "title": "GDELT Event: 013 in FR",
+    "source_url": "http://www.bignewsnetwork.com/news/279382317/belgium-clashes-break-out-between-protesters-police-amid-agitation-against-rising-cost-of-living-in-parts-of-europe",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "FR",
+    "lat": 46.0,
+    "lon": 2.0,
+    "risk_score": 5,
+    "title": "GDELT Event: 051 in FR",
+    "source_url": "http://www.bignewsnetwork.com/news/279382317/belgium-clashes-break-out-between-protesters-police-amid-agitation-against-rising-cost-of-living-in-parts-of-europe",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "FR",
+    "lat": 46.0,
+    "lon": 2.0,
+    "risk_score": 5,
+    "title": "GDELT Event: 110 in FR",
+    "source_url": "http://www.bignewsnetwork.com/news/279382317/belgium-clashes-break-out-between-protesters-police-amid-agitation-against-rising-cost-of-living-in-parts-of-europe",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "UK",
+    "lat": 50.2122,
+    "lon": -5.29444,
+    "risk_score": 2,
+    "title": "GDELT Event: 020 in UK",
+    "source_url": "https://www.falmouthpacket.co.uk/news/26631265.cornwall-wetherspoon-pubs-rated-best-worst-google-reviews/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "UK",
+    "lat": 50.1136,
+    "lon": -5.54778,
+    "risk_score": 2,
+    "title": "GDELT Event: 020 in UK",
+    "source_url": "https://www.falmouthpacket.co.uk/news/26631265.cornwall-wetherspoon-pubs-rated-best-worst-google-reviews/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 38.3292,
+    "lon": -104.669,
+    "risk_score": 2,
+    "title": "GDELT Event: 051 in US",
+    "source_url": "https://www.irishtimes.com/culture/2026/10/18/andrew-scott-could-be-unbeatable-at-the-oscars-unless-this-happens/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 38.3292,
+    "lon": -104.669,
+    "risk_score": 2,
+    "title": "GDELT Event: 051 in US",
+    "source_url": "https://www.irishtimes.com/culture/2026/10/18/andrew-scott-could-be-unbeatable-at-the-oscars-unless-this-happens/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "UK",
+    "lat": 51.1833,
+    "lon": 0.75,
+    "risk_score": 51,
+    "title": "GDELT Event: 190 in UK",
+    "source_url": "https://www.atvtoday.co.uk/319173-travel-halloween/",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "BG",
+    "lat": 24.0,
+    "lon": 90.0,
+    "risk_score": 3,
+    "title": "GDELT Event: 012 in BG",
+    "source_url": "http://www.bignewsnetwork.com/news/279382322/west-bengal-stampede-a-big-tragedy-proper-probe-needed-to-fix-responsibility-telangana-bjp-chief",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 45.4167,
+    "lon": -75.7,
+    "risk_score": 2,
+    "title": "GDELT Event: 020 in CA",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 35.3187,
+    "lon": -82.461,
+    "risk_score": 0,
+    "title": "GDELT Event: 020 in US",
+    "source_url": "https://wlos.com/news/local/no-kings-asheville-march-early-voting-voters-wnc-photos-politics-community-trump-president-donald-martin-luther-king-jr-park",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 42.2373,
+    "lon": -71.5314,
+    "risk_score": 1,
+    "title": "GDELT Event: 020 in US",
+    "source_url": "https://www.wnd.com/2026/10/democrat-who-boasted-blocking-gas-pipelines-now-wants/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CH",
+    "lat": 31.8639,
+    "lon": 117.281,
+    "risk_score": 1,
+    "title": "GDELT Event: 010 in CH",
+    "source_url": "https://timesofindia.indiatimes.com/technology/tech-news/what-is-cxmts-chinese-chip-bomb-that-has-wiped-billions-off-the-us-stock-market/articleshow/135023858.cms",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 45.4167,
+    "lon": -75.7,
+    "risk_score": 2,
+    "title": "GDELT Event: 020 in CA",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 45.4167,
+    "lon": -75.7,
+    "risk_score": 17,
+    "title": "GDELT Event: 100 in CA",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "protest"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 1,
+    "title": "GDELT Event: 010 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 6,
+    "title": "GDELT Event: 040 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17806,
+    "lon": 106.63,
+    "risk_score": 6,
+    "title": "GDELT Event: 042 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17806,
+    "lon": 106.63,
+    "risk_score": 6,
+    "title": "GDELT Event: 042 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 6,
+    "title": "GDELT Event: 043 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5263,
+    "lon": 98.3798,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5263,
+    "lon": 98.3798,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "EI",
+    "lat": 53.0,
+    "lon": -8.0,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in EI",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.2586,
+    "lon": -95.9378,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in US",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "RS",
+    "lat": 55.7522,
+    "lon": 37.6156,
+    "risk_score": 2,
+    "title": "GDELT Event: 163 in RS",
+    "source_url": "https://www.rte.ie/news/world/2026/1018/1595809-russia-sanctions-rubio/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 42.2373,
+    "lon": -71.5314,
+    "risk_score": 1,
+    "title": "GDELT Event: 020 in US",
+    "source_url": "https://www.wnd.com/2026/10/democrat-who-boasted-blocking-gas-pipelines-now-wants/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 35.6411,
+    "lon": -79.8431,
+    "risk_score": 1,
+    "title": "GDELT Event: 036 in US",
+    "source_url": "https://www.kten.com/news/politics/these-are-really-tough-times-house-republicans-confront-voter-fury-over-trump-s-washington-in/article_4932c62e-6ddb-5274-8282-9a32d321c168.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 35.6411,
+    "lon": -79.8431,
+    "risk_score": 1,
+    "title": "GDELT Event: 036 in US",
+    "source_url": "https://www.kten.com/news/politics/these-are-really-tough-times-house-republicans-confront-voter-fury-over-trump-s-washington-in/article_4932c62e-6ddb-5274-8282-9a32d321c168.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 38.8951,
+    "lon": -77.0364,
+    "risk_score": 2,
+    "title": "GDELT Event: 051 in US",
+    "source_url": "https://www.rte.ie/news/world/2026/1018/1595809-russia-sanctions-rubio/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.2586,
+    "lon": -95.9378,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in US",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.2586,
+    "lon": -95.9378,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in US",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 45.7326,
+    "lon": -93.9196,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in US",
+    "source_url": "https://www.valleynewslive.com/2026/10/18/flanagan-talks-affordability-farm-policy-moorhead-campaign-stop/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.85,
+    "lon": -87.6501,
+    "risk_score": 1,
+    "title": "GDELT Event: 173 in US",
+    "source_url": "https://abc7chicago.com/post/justice-ball-highlights-second-chances-reentry-support-formerly-incarcerated-people-held-chicagos-kennedy-king-college/19949402/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.85,
+    "lon": -87.6501,
+    "risk_score": 1,
+    "title": "GDELT Event: 173 in US",
+    "source_url": "https://abc7chicago.com/post/justice-ball-highlights-second-chances-reentry-support-formerly-incarcerated-people-held-chicagos-kennedy-king-college/19949402/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "TH",
+    "lat": 17.1392,
+    "lon": 101.664,
+    "risk_score": 18,
+    "title": "GDELT Event: 101 in TH",
+    "source_url": "https://www.bangkokpost.com/thailand/general/3339214/probe-into-jumbos-death",
+    "tag": "protest"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "BG",
+    "lat": 24.0,
+    "lon": 90.0,
+    "risk_score": 3,
+    "title": "GDELT Event: 112 in BG",
+    "source_url": "http://www.bignewsnetwork.com/news/279382322/west-bengal-stampede-a-big-tragedy-proper-probe-needed-to-fix-responsibility-telangana-bjp-chief",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 43.1,
+    "lon": -79.05,
+    "risk_score": 2,
+    "title": "GDELT Event: 160 in CA",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.4287,
+    "lon": -81.8693,
+    "risk_score": 7,
+    "title": "GDELT Event: 046 in US",
+    "source_url": "https://www.bryantimes.com/news/lazarus-joins-parkview-physicians-group/article_1bd61480-769c-4f7f-81eb-2b4f55d6312b.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IN",
+    "lat": 30.9167,
+    "lon": 75.4167,
+    "risk_score": 15,
+    "title": "GDELT Event: 100 in IN",
+    "source_url": "https://timesofindia.indiatimes.com/city/hyderabad/baby-boy-hunt-takes-indians-to-foreign-shores/articleshow/135023380.cms",
+    "tag": "protest"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 1,
+    "title": "GDELT Event: 036 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5263,
+    "lon": 98.3798,
+    "risk_score": 1,
+    "title": "GDELT Event: 036 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5263,
+    "lon": 98.3798,
+    "risk_score": 6,
+    "title": "GDELT Event: 043 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 1,
+    "title": "GDELT Event: 050 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "SA",
+    "lat": 24.6408,
+    "lon": 46.7728,
+    "risk_score": 1,
+    "title": "GDELT Event: 020 in SA",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "SA",
+    "lat": 24.6408,
+    "lon": 46.7728,
+    "risk_score": 1,
+    "title": "GDELT Event: 020 in SA",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5292,
+    "lon": 99.0184,
+    "risk_score": 1,
+    "title": "GDELT Event: 020 in ID",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5292,
+    "lon": 99.0184,
+    "risk_score": 1,
+    "title": "GDELT Event: 020 in ID",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "SA",
+    "lat": 24.6408,
+    "lon": 46.7728,
+    "risk_score": 1,
+    "title": "GDELT Event: 020 in SA",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5292,
+    "lon": 99.0184,
+    "risk_score": 1,
+    "title": "GDELT Event: 020 in ID",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5292,
+    "lon": 99.0184,
+    "risk_score": 1,
+    "title": "GDELT Event: 020 in ID",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5292,
+    "lon": 99.0184,
+    "risk_score": 11,
+    "title": "GDELT Event: 130 in ID",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5292,
+    "lon": 99.0184,
+    "risk_score": 11,
+    "title": "GDELT Event: 130 in ID",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5292,
+    "lon": 99.0184,
+    "risk_score": 11,
+    "title": "GDELT Event: 130 in ID",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 1,
+    "title": "GDELT Event: 036 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 6,
+    "title": "GDELT Event: 040 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 6,
+    "title": "GDELT Event: 042 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17806,
+    "lon": 106.63,
+    "risk_score": 6,
+    "title": "GDELT Event: 043 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17806,
+    "lon": 106.63,
+    "risk_score": 6,
+    "title": "GDELT Event: 043 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5263,
+    "lon": 98.3798,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 1,
+    "title": "GDELT Event: 036 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17806,
+    "lon": 106.63,
+    "risk_score": 6,
+    "title": "GDELT Event: 043 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5263,
+    "lon": 98.3798,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 1,
+    "title": "GDELT Event: 036 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "SA",
+    "lat": 24.6408,
+    "lon": 46.7728,
+    "risk_score": 11,
+    "title": "GDELT Event: 138 in SA",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5292,
+    "lon": 99.0184,
+    "risk_score": 11,
+    "title": "GDELT Event: 138 in ID",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5292,
+    "lon": 99.0184,
+    "risk_score": 11,
+    "title": "GDELT Event: 138 in ID",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "SA",
+    "lat": 24.6408,
+    "lon": 46.7728,
+    "risk_score": 51,
+    "title": "GDELT Event: 195 in SA",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5292,
+    "lon": 99.0184,
+    "risk_score": 51,
+    "title": "GDELT Event: 195 in ID",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "SA",
+    "lat": 24.6408,
+    "lon": 46.7728,
+    "risk_score": 51,
+    "title": "GDELT Event: 195 in SA",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 6,
+    "title": "GDELT Event: 043 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5263,
+    "lon": 98.3798,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17806,
+    "lon": 106.63,
+    "risk_score": 6,
+    "title": "GDELT Event: 042 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5263,
+    "lon": 98.3798,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5263,
+    "lon": 98.3798,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "TH",
+    "lat": 13.75,
+    "lon": 100.517,
+    "risk_score": 5,
+    "title": "GDELT Event: 173 in TH",
+    "source_url": "https://www.bangkokpost.com/thailand/general/3339205/chinese-criminal-fugitive-arrested-in-bangkok",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 6,
+    "title": "GDELT Event: 046 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5263,
+    "lon": 98.3798,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 6,
+    "title": "GDELT Event: 046 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 1,
+    "title": "GDELT Event: 086 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IN",
+    "lat": 23.5,
+    "lon": 78.5,
+    "risk_score": 1,
+    "title": "GDELT Event: 010 in IN",
+    "source_url": "https://www.business-standard.com/industry/agriculture/soybean-output-may-dip-to-2-mp-rajasthan-to-cushion-maharashtra-losses-126101800080_1.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IN",
+    "lat": 22.5697,
+    "lon": 88.3697,
+    "risk_score": 43,
+    "title": "GDELT Event: 182 in IN",
+    "source_url": "http://www.bignewsnetwork.com/news/279382298/west-bengal-7-arrested-14-detained-after-kolkata-pandal-stampede-kills-19",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IN",
+    "lat": 22.5697,
+    "lon": 88.3697,
+    "risk_score": 3,
+    "title": "GDELT Event: 173 in IN",
+    "source_url": "http://www.bignewsnetwork.com/news/279382298/west-bengal-7-arrested-14-detained-after-kolkata-pandal-stampede-kills-19",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IN",
+    "lat": 18.0,
+    "lon": 79.5,
+    "risk_score": 3,
+    "title": "GDELT Event: 114 in IN",
+    "source_url": "http://www.bignewsnetwork.com/news/279382322/west-bengal-stampede-a-big-tragedy-proper-probe-needed-to-fix-responsibility-telangana-bjp-chief",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "BG",
+    "lat": 24.0,
+    "lon": 90.0,
+    "risk_score": 3,
+    "title": "GDELT Event: 114 in BG",
+    "source_url": "http://www.bignewsnetwork.com/news/279382322/west-bengal-stampede-a-big-tragedy-proper-probe-needed-to-fix-responsibility-telangana-bjp-chief",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "EI",
+    "lat": 53.0,
+    "lon": -8.0,
+    "risk_score": 1,
+    "title": "GDELT Event: 057 in EI",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.2586,
+    "lon": -95.9378,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in US",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "EI",
+    "lat": 53.0,
+    "lon": -8.0,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in EI",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.2586,
+    "lon": -95.9378,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in US",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 45.7326,
+    "lon": -93.9196,
+    "risk_score": 1,
+    "title": "GDELT Event: 010 in US",
+    "source_url": "https://www.valleynewslive.com/2026/10/18/flanagan-talks-affordability-farm-policy-moorhead-campaign-stop/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CH",
+    "lat": 39.9289,
+    "lon": 116.388,
+    "risk_score": 2,
+    "title": "GDELT Event: 010 in CH",
+    "source_url": "https://www.business-standard.com/world-news/zelenskyy-criticizes-trump-s-waiver-of-sanctions-on-russia-as-wrong-126101800071_1.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "RS",
+    "lat": 55.7522,
+    "lon": 37.6156,
+    "risk_score": 2,
+    "title": "GDELT Event: 085 in RS",
+    "source_url": "https://www.business-standard.com/world-news/zelenskyy-criticizes-trump-s-waiver-of-sanctions-on-russia-as-wrong-126101800071_1.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.7667,
+    "lon": 35.2333,
+    "risk_score": 2,
+    "title": "GDELT Event: 090 in IS",
+    "source_url": "https://www.al-monitor.com/originals/2026/10/us-wants-israel-crack-down-settler-violence-west-bank-rubio-says",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.7667,
+    "lon": 35.2333,
+    "risk_score": 52,
+    "title": "GDELT Event: 193 in IS",
+    "source_url": "https://www.al-monitor.com/originals/2026/10/us-wants-israel-crack-down-settler-violence-west-bank-rubio-says",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 38.8951,
+    "lon": -77.0364,
+    "risk_score": 52,
+    "title": "GDELT Event: 193 in US",
+    "source_url": "https://www.al-monitor.com/originals/2026/10/us-wants-israel-crack-down-settler-violence-west-bank-rubio-says",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.7667,
+    "lon": 35.2333,
+    "risk_score": 22,
+    "title": "GDELT Event: 141 in IS",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "protest"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.7667,
+    "lon": 35.2333,
+    "risk_score": 52,
+    "title": "GDELT Event: 193 in IS",
+    "source_url": "https://www.al-monitor.com/originals/2026/10/us-wants-israel-crack-down-settler-violence-west-bank-rubio-says",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 38.8951,
+    "lon": -77.0364,
+    "risk_score": 52,
+    "title": "GDELT Event: 193 in US",
+    "source_url": "https://www.al-monitor.com/originals/2026/10/us-wants-israel-crack-down-settler-violence-west-bank-rubio-says",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 38.8951,
+    "lon": -77.0364,
+    "risk_score": 52,
+    "title": "GDELT Event: 193 in US",
+    "source_url": "https://www.al-monitor.com/originals/2026/10/us-wants-israel-crack-down-settler-violence-west-bank-rubio-says",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.7667,
+    "lon": 35.2333,
+    "risk_score": 52,
+    "title": "GDELT Event: 193 in IS",
+    "source_url": "https://www.al-monitor.com/originals/2026/10/us-wants-israel-crack-down-settler-violence-west-bank-rubio-says",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.4167,
+    "lon": 34.3333,
+    "risk_score": 1,
+    "title": "GDELT Event: 020 in IS",
+    "source_url": "https://www.wiltsglosstandard.co.uk/news/26627475.column-roz-savage-mp-south-cotswolds-wgs/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.4167,
+    "lon": 34.3333,
+    "risk_score": 1,
+    "title": "GDELT Event: 120 in IS",
+    "source_url": "https://www.wiltsglosstandard.co.uk/news/26627475.column-roz-savage-mp-south-cotswolds-wgs/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.7667,
+    "lon": 35.2333,
+    "risk_score": 52,
+    "title": "GDELT Event: 190 in IS",
+    "source_url": "https://www.al-monitor.com/originals/2026/10/us-wants-israel-crack-down-settler-violence-west-bank-rubio-says",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 31.106,
+    "lon": -97.6475,
+    "risk_score": 1,
+    "title": "GDELT Event: 173 in US",
+    "source_url": "https://timesofindia.indiatimes.com/world/us/karmelo-anthonys-first-fundraiser-raised-nearly-634000-family-now-seeks-another-250000-for-murder-appeal-as-questions-remain-over-earlier-funds/articleshow/134996931.cms",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 31.106,
+    "lon": -97.6475,
+    "risk_score": 51,
+    "title": "GDELT Event: 190 in US",
+    "source_url": "https://timesofindia.indiatimes.com/world/us/karmelo-anthonys-first-fundraiser-raised-nearly-634000-family-now-seeks-another-250000-for-murder-appeal-as-questions-remain-over-earlier-funds/articleshow/134996931.cms",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "KE",
+    "lat": 1.0,
+    "lon": 38.0,
+    "risk_score": 5,
+    "title": "GDELT Event: 042 in KE",
+    "source_url": "https://www.standardmedia.co.ke/politics/article/2001560324/running-mate-headache-inside-alleged-plot-to-split-mt-kenya-puncture-gachagua",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PK",
+    "lat": 34.0078,
+    "lon": 71.5733,
+    "risk_score": 4,
+    "title": "GDELT Event: 090 in PK",
+    "source_url": "https://pakobserver.net/lives-lost-dreams-buried-lessons-ignored/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 32.5,
+    "lon": 35.5,
+    "risk_score": 2,
+    "title": "GDELT Event: 051 in IS",
+    "source_url": "https://www.jpost.com/israel-news/defense-news/article-912000",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "RS",
+    "lat": 60.0,
+    "lon": 100.0,
+    "risk_score": 2,
+    "title": "GDELT Event: 111 in RS",
+    "source_url": "http://www.bgnes.com/politics/rubio-us-suspension-of-sanctions-against-russia-to-last-60-days",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 38.8951,
+    "lon": -77.0364,
+    "risk_score": 2,
+    "title": "GDELT Event: 051 in US",
+    "source_url": "https://www.rte.ie/news/world/2026/1018/1595809-russia-sanctions-rubio/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 45.4167,
+    "lon": -75.7,
+    "risk_score": 52,
+    "title": "GDELT Event: 192 in CA",
+    "source_url": "https://www.rte.ie/news/world/2026/1018/1595810-canada-fire/",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 60.0,
+    "lon": -96.0,
+    "risk_score": 4,
+    "title": "GDELT Event: 070 in CA",
+    "source_url": "https://pakobserver.net/lives-lost-dreams-buried-lessons-ignored/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PK",
+    "lat": 33.7,
+    "lon": 73.1667,
+    "risk_score": 8,
+    "title": "GDELT Event: 042 in PK",
+    "source_url": "https://pakobserver.net/high-commissioner-of-mauritius-visits-nazriya-pakistan-council-trust-lauds-efforts-for-preservation-of-pakistans-ideology-and-heritage/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PK",
+    "lat": 33.7,
+    "lon": 73.1667,
+    "risk_score": 8,
+    "title": "GDELT Event: 042 in PK",
+    "source_url": "https://pakobserver.net/high-commissioner-of-mauritius-visits-nazriya-pakistan-council-trust-lauds-efforts-for-preservation-of-pakistans-ideology-and-heritage/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "MP",
+    "lat": 16.0,
+    "lon": 146.0,
+    "risk_score": 8,
+    "title": "GDELT Event: 042 in MP",
+    "source_url": "https://pakobserver.net/high-commissioner-of-mauritius-visits-nazriya-pakistan-council-trust-lauds-efforts-for-preservation-of-pakistans-ideology-and-heritage/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PK",
+    "lat": 33.7,
+    "lon": 73.1667,
+    "risk_score": 8,
+    "title": "GDELT Event: 042 in PK",
+    "source_url": "https://pakobserver.net/high-commissioner-of-mauritius-visits-nazriya-pakistan-council-trust-lauds-efforts-for-preservation-of-pakistans-ideology-and-heritage/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "MP",
+    "lat": 16.0,
+    "lon": 146.0,
+    "risk_score": 8,
+    "title": "GDELT Event: 043 in MP",
+    "source_url": "https://pakobserver.net/high-commissioner-of-mauritius-visits-nazriya-pakistan-council-trust-lauds-efforts-for-preservation-of-pakistans-ideology-and-heritage/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "MP",
+    "lat": 16.0,
+    "lon": 146.0,
+    "risk_score": 8,
+    "title": "GDELT Event: 042 in MP",
+    "source_url": "https://pakobserver.net/high-commissioner-of-mauritius-visits-nazriya-pakistan-council-trust-lauds-efforts-for-preservation-of-pakistans-ideology-and-heritage/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PK",
+    "lat": 33.7,
+    "lon": 73.1667,
+    "risk_score": 8,
+    "title": "GDELT Event: 042 in PK",
+    "source_url": "https://pakobserver.net/high-commissioner-of-mauritius-visits-nazriya-pakistan-council-trust-lauds-efforts-for-preservation-of-pakistans-ideology-and-heritage/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "MP",
+    "lat": 16.0,
+    "lon": 146.0,
+    "risk_score": 8,
+    "title": "GDELT Event: 042 in MP",
+    "source_url": "https://pakobserver.net/high-commissioner-of-mauritius-visits-nazriya-pakistan-council-trust-lauds-efforts-for-preservation-of-pakistans-ideology-and-heritage/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "MY",
+    "lat": 3.16667,
+    "lon": 101.7,
+    "risk_score": 4,
+    "title": "GDELT Event: 020 in MY",
+    "source_url": "https://www.asiaone.com:443/malaysia/after-another-downpour-selangor-resident-asks-minister-step-over-recurring-floods",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "FR",
+    "lat": 46.0,
+    "lon": 2.0,
+    "risk_score": 25,
+    "title": "GDELT Event: 140 in FR",
+    "source_url": "http://www.bignewsnetwork.com/news/279382317/belgium-clashes-break-out-between-protesters-police-amid-agitation-against-rising-cost-of-living-in-parts-of-europe",
+    "tag": "protest"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PK",
+    "lat": 32.965,
+    "lon": 71.557,
+    "risk_score": 0,
+    "title": "GDELT Event: 014 in PK",
+    "source_url": "https://pakobserver.net/kalabagh-dam/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PK",
+    "lat": 33.7,
+    "lon": 73.1667,
+    "risk_score": 8,
+    "title": "GDELT Event: 042 in PK",
+    "source_url": "https://pakobserver.net/high-commissioner-of-mauritius-visits-nazriya-pakistan-council-trust-lauds-efforts-for-preservation-of-pakistans-ideology-and-heritage/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CA",
+    "lat": 60.0,
+    "lon": -96.0,
+    "risk_score": 4,
+    "title": "GDELT Event: 080 in CA",
+    "source_url": "https://pakobserver.net/lives-lost-dreams-buried-lessons-ignored/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PK",
+    "lat": 32.965,
+    "lon": 71.557,
+    "risk_score": 0,
+    "title": "GDELT Event: 171 in PK",
+    "source_url": "https://pakobserver.net/kalabagh-dam/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PK",
+    "lat": 32.965,
+    "lon": 71.557,
+    "risk_score": 0,
+    "title": "GDELT Event: 171 in PK",
+    "source_url": "https://pakobserver.net/kalabagh-dam/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "MP",
+    "lat": 16.0,
+    "lon": 146.0,
+    "risk_score": 8,
+    "title": "GDELT Event: 042 in MP",
+    "source_url": "https://pakobserver.net/high-commissioner-of-mauritius-visits-nazriya-pakistan-council-trust-lauds-efforts-for-preservation-of-pakistans-ideology-and-heritage/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "MP",
+    "lat": 16.0,
+    "lon": 146.0,
+    "risk_score": 8,
+    "title": "GDELT Event: 043 in MP",
+    "source_url": "https://pakobserver.net/high-commissioner-of-mauritius-visits-nazriya-pakistan-council-trust-lauds-efforts-for-preservation-of-pakistans-ideology-and-heritage/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PK",
+    "lat": 33.7,
+    "lon": 73.1667,
+    "risk_score": 8,
+    "title": "GDELT Event: 043 in PK",
+    "source_url": "https://pakobserver.net/high-commissioner-of-mauritius-visits-nazriya-pakistan-council-trust-lauds-efforts-for-preservation-of-pakistans-ideology-and-heritage/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "PK",
+    "lat": 33.7,
+    "lon": 73.1667,
+    "risk_score": 8,
+    "title": "GDELT Event: 043 in PK",
+    "source_url": "https://pakobserver.net/high-commissioner-of-mauritius-visits-nazriya-pakistan-council-trust-lauds-efforts-for-preservation-of-pakistans-ideology-and-heritage/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "MP",
+    "lat": 16.0,
+    "lon": 146.0,
+    "risk_score": 8,
+    "title": "GDELT Event: 043 in MP",
+    "source_url": "https://pakobserver.net/high-commissioner-of-mauritius-visits-nazriya-pakistan-council-trust-lauds-efforts-for-preservation-of-pakistans-ideology-and-heritage/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "MP",
+    "lat": 16.0,
+    "lon": 146.0,
+    "risk_score": 8,
+    "title": "GDELT Event: 043 in MP",
+    "source_url": "https://pakobserver.net/high-commissioner-of-mauritius-visits-nazriya-pakistan-council-trust-lauds-efforts-for-preservation-of-pakistans-ideology-and-heritage/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CH",
+    "lat": 35.0,
+    "lon": 105.0,
+    "risk_score": 2,
+    "title": "GDELT Event: 026 in CH",
+    "source_url": "http://www.bignewsnetwork.com/news/279382315/interview-polish-scholar-calls-for-closer-china-europe-dialogue-mutual-understanding",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CH",
+    "lat": 35.0,
+    "lon": 105.0,
+    "risk_score": 2,
+    "title": "GDELT Event: 026 in CH",
+    "source_url": "http://www.bignewsnetwork.com/news/279382315/interview-polish-scholar-calls-for-closer-china-europe-dialogue-mutual-understanding",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.4167,
+    "lon": 34.3333,
+    "risk_score": 2,
+    "title": "GDELT Event: 010 in IS",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.7667,
+    "lon": 35.2333,
+    "risk_score": 22,
+    "title": "GDELT Event: 141 in IS",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "protest"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.7667,
+    "lon": 35.2333,
+    "risk_score": 22,
+    "title": "GDELT Event: 141 in IS",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "protest"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.4167,
+    "lon": 34.3333,
+    "risk_score": 2,
+    "title": "GDELT Event: 010 in IS",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.7667,
+    "lon": 35.2333,
+    "risk_score": 17,
+    "title": "GDELT Event: 100 in IS",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "protest"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.7667,
+    "lon": 35.2333,
+    "risk_score": 22,
+    "title": "GDELT Event: 141 in IS",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "protest"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.7667,
+    "lon": 35.2333,
+    "risk_score": 22,
+    "title": "GDELT Event: 141 in IS",
+    "source_url": "https://www.niagarafallsreview.ca/news/canada/n-l-faces-serious-liability-questions-over-ithaca-energy-s-entry-into-province-s-oil-sector-legal-expert-warns/article_422b3e18-c9aa-5c66-a7c5-f92f985e849e.html",
+    "tag": "protest"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.4167,
+    "lon": 34.3333,
+    "risk_score": 1,
+    "title": "GDELT Event: 020 in IS",
+    "source_url": "https://www.wiltsglosstandard.co.uk/news/26627475.column-roz-savage-mp-south-cotswolds-wgs/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IS",
+    "lat": 31.4167,
+    "lon": 34.3333,
+    "risk_score": 1,
+    "title": "GDELT Event: 120 in IS",
+    "source_url": "https://www.wiltsglosstandard.co.uk/news/26627475.column-roz-savage-mp-south-cotswolds-wgs/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "QA",
+    "lat": 25.2867,
+    "lon": 51.5333,
+    "risk_score": 1,
+    "title": "GDELT Event: 160 in QA",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "QA",
+    "lat": 25.2867,
+    "lon": 51.5333,
+    "risk_score": 1,
+    "title": "GDELT Event: 160 in QA",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "QA",
+    "lat": 25.2867,
+    "lon": 51.5333,
+    "risk_score": 1,
+    "title": "GDELT Event: 160 in QA",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 38.3292,
+    "lon": -104.669,
+    "risk_score": 2,
+    "title": "GDELT Event: 070 in US",
+    "source_url": "https://www.irishtimes.com/culture/2026/10/18/andrew-scott-could-be-unbeatable-at-the-oscars-unless-this-happens/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "EI",
+    "lat": 53.0,
+    "lon": -8.0,
+    "risk_score": 2,
+    "title": "GDELT Event: 070 in EI",
+    "source_url": "https://www.irishtimes.com/culture/2026/10/18/andrew-scott-could-be-unbeatable-at-the-oscars-unless-this-happens/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "YM",
+    "lat": 14.5333,
+    "lon": 44.975,
+    "risk_score": 2,
+    "title": "GDELT Event: 051 in YM",
+    "source_url": "https://www.khabaragency.net/news254489.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.2586,
+    "lon": -95.9378,
+    "risk_score": 6,
+    "title": "GDELT Event: 046 in US",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.2586,
+    "lon": -95.9378,
+    "risk_score": 6,
+    "title": "GDELT Event: 046 in US",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "RS",
+    "lat": 60.0,
+    "lon": 100.0,
+    "risk_score": 2,
+    "title": "GDELT Event: 071 in RS",
+    "source_url": "http://www.bgnes.com/politics/rubio-us-suspension-of-sanctions-against-russia-to-last-60-days",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "RS",
+    "lat": 55.7522,
+    "lon": 37.6156,
+    "risk_score": 2,
+    "title": "GDELT Event: 051 in RS",
+    "source_url": "https://www.business-standard.com/world-news/zelenskyy-criticizes-trump-s-waiver-of-sanctions-on-russia-as-wrong-126101800071_1.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "UP",
+    "lat": 50.4333,
+    "lon": 30.5167,
+    "risk_score": 2,
+    "title": "GDELT Event: 111 in UP",
+    "source_url": "https://www.business-standard.com/world-news/zelenskyy-criticizes-trump-s-waiver-of-sanctions-on-russia-as-wrong-126101800071_1.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "RS",
+    "lat": 55.7522,
+    "lon": 37.6156,
+    "risk_score": 2,
+    "title": "GDELT Event: 111 in RS",
+    "source_url": "https://www.business-standard.com/world-news/zelenskyy-criticizes-trump-s-waiver-of-sanctions-on-russia-as-wrong-126101800071_1.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5292,
+    "lon": 99.0184,
+    "risk_score": 51,
+    "title": "GDELT Event: 195 in ID",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "SA",
+    "lat": 24.6408,
+    "lon": 46.7728,
+    "risk_score": 51,
+    "title": "GDELT Event: 195 in SA",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": 3.5292,
+    "lon": 99.0184,
+    "risk_score": 51,
+    "title": "GDELT Event: 190 in ID",
+    "source_url": "https://en.antaranews.com/news/436225/indonesia-urges-airlines-to-aid-passengers-amid-riyadh-closure",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "FR",
+    "lat": 46.0,
+    "lon": 2.0,
+    "risk_score": 1,
+    "title": "GDELT Event: 010 in FR",
+    "source_url": "https://www.kten.com/news/politics/these-are-really-tough-times-house-republicans-confront-voter-fury-over-trump-s-washington-in/article_4932c62e-6ddb-5274-8282-9a32d321c168.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 35.6411,
+    "lon": -79.8431,
+    "risk_score": 1,
+    "title": "GDELT Event: 010 in US",
+    "source_url": "https://www.kten.com/news/politics/these-are-really-tough-times-house-republicans-confront-voter-fury-over-trump-s-washington-in/article_4932c62e-6ddb-5274-8282-9a32d321c168.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CH",
+    "lat": 35.0,
+    "lon": 105.0,
+    "risk_score": 5,
+    "title": "GDELT Event: 173 in CH",
+    "source_url": "https://www.bangkokpost.com/thailand/general/3339205/chinese-criminal-fugitive-arrested-in-bangkok",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "TH",
+    "lat": 13.75,
+    "lon": 100.517,
+    "risk_score": 5,
+    "title": "GDELT Event: 173 in TH",
+    "source_url": "https://www.bangkokpost.com/thailand/general/3339205/chinese-criminal-fugitive-arrested-in-bangkok",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "TH",
+    "lat": 17.301,
+    "lon": 101.769,
+    "risk_score": 43,
+    "title": "GDELT Event: 182 in TH",
+    "source_url": "https://www.bangkokpost.com/thailand/general/3339214/probe-into-jumbos-death",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "TH",
+    "lat": 17.1392,
+    "lon": 101.664,
+    "risk_score": 18,
+    "title": "GDELT Event: 101 in TH",
+    "source_url": "https://www.bangkokpost.com/thailand/general/3339214/probe-into-jumbos-death",
+    "tag": "protest"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 6,
+    "title": "GDELT Event: 042 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "ID",
+    "lat": -6.17444,
+    "lon": 106.829,
+    "risk_score": 1,
+    "title": "GDELT Event: 074 in ID",
+    "source_url": "https://en.antaranews.com/news/436221/guterres-visits-indonesia-to-strengthen-un-multilateral-cooperation",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "RS",
+    "lat": 60.0,
+    "lon": 100.0,
+    "risk_score": 2,
+    "title": "GDELT Event: 085 in RS",
+    "source_url": "http://www.bgnes.com/politics/rubio-us-suspension-of-sanctions-against-russia-to-last-60-days",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 31.106,
+    "lon": -97.6475,
+    "risk_score": 2,
+    "title": "GDELT Event: 085 in US",
+    "source_url": "http://www.bgnes.com/politics/rubio-us-suspension-of-sanctions-against-russia-to-last-60-days",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 31.106,
+    "lon": -97.6475,
+    "risk_score": 2,
+    "title": "GDELT Event: 085 in US",
+    "source_url": "http://www.bgnes.com/politics/rubio-us-suspension-of-sanctions-against-russia-to-last-60-days",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "UP",
+    "lat": 50.4333,
+    "lon": 30.5167,
+    "risk_score": 2,
+    "title": "GDELT Event: 013 in UP",
+    "source_url": "http://www.bignewsnetwork.com/news/279382262/no-one-at-white-house-ordered-starlink-slowdown-in-ukraine-marco-rubio",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "UP",
+    "lat": 50.4333,
+    "lon": 30.5167,
+    "risk_score": 2,
+    "title": "GDELT Event: 013 in UP",
+    "source_url": "http://www.bignewsnetwork.com/news/279382262/no-one-at-white-house-ordered-starlink-slowdown-in-ukraine-marco-rubio",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "UP",
+    "lat": 50.4333,
+    "lon": 30.5167,
+    "risk_score": 2,
+    "title": "GDELT Event: 010 in UP",
+    "source_url": "http://www.bignewsnetwork.com/news/279382262/no-one-at-white-house-ordered-starlink-slowdown-in-ukraine-marco-rubio",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "AS",
+    "lat": -41.2333,
+    "lon": 147.783,
+    "risk_score": 1,
+    "title": "GDELT Event: 017 in AS",
+    "source_url": "https://www.wvgazettemail.com/outdoors/bridge-day-2026-hundreds-of-jumpers-brave-blustery-wind-cold-temps-to-take-the-leap/article_017730fc-c983-4b04-bbcb-c90d8564e858.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 39.828175,
+    "lon": -98.5795,
+    "risk_score": 0,
+    "title": "GDELT Event: 036 in US",
+    "source_url": "https://www.thedailynewsonline.com/lifestyles/review-have-we-underestimated-yoko-ono-all-along/article_53902143-e2a5-49ef-b10b-f4e2523d48c4.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 42.3584,
+    "lon": -71.0598,
+    "risk_score": 6,
+    "title": "GDELT Event: 043 in US",
+    "source_url": "https://www.wnd.com/2026/10/democrat-who-boasted-blocking-gas-pipelines-now-wants/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "AS",
+    "lat": -41.2333,
+    "lon": 147.783,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in AS",
+    "source_url": "https://www.wvgazettemail.com/outdoors/bridge-day-2026-hundreds-of-jumpers-brave-blustery-wind-cold-temps-to-take-the-leap/article_017730fc-c983-4b04-bbcb-c90d8564e858.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.2586,
+    "lon": -95.9378,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in US",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 37.768,
+    "lon": -78.2057,
+    "risk_score": 3,
+    "title": "GDELT Event: 090 in US",
+    "source_url": "https://newcanaanite.com/new-canaan-event/lunch-learn-with-dr-scott-moore-on-the-history-of-witch-trials-in-ct-and-virginia",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 43.3504,
+    "lon": -84.5603,
+    "risk_score": 0,
+    "title": "GDELT Event: 120 in US",
+    "source_url": "https://www.kten.com/news/politics/abdul-el-sayed-disavows-muslim-brotherhood-and-criticizes-implications-that-he-has-dual-loyalty/article_4145e80b-9a6e-5395-a137-8ac975aa972d.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 45.7326,
+    "lon": -93.9196,
+    "risk_score": 1,
+    "title": "GDELT Event: 129 in US",
+    "source_url": "https://www.valleynewslive.com/2026/10/18/flanagan-talks-affordability-farm-policy-moorhead-campaign-stop/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "AS",
+    "lat": -41.2333,
+    "lon": 147.783,
+    "risk_score": 1,
+    "title": "GDELT Event: 017 in AS",
+    "source_url": "https://www.wvgazettemail.com/outdoors/bridge-day-2026-hundreds-of-jumpers-brave-blustery-wind-cold-temps-to-take-the-leap/article_017730fc-c983-4b04-bbcb-c90d8564e858.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "AS",
+    "lat": -41.2333,
+    "lon": 147.783,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in AS",
+    "source_url": "https://www.wvgazettemail.com/outdoors/bridge-day-2026-hundreds-of-jumpers-brave-blustery-wind-cold-temps-to-take-the-leap/article_017730fc-c983-4b04-bbcb-c90d8564e858.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 31.106,
+    "lon": -97.6475,
+    "risk_score": 1,
+    "title": "GDELT Event: 173 in US",
+    "source_url": "https://timesofindia.indiatimes.com/world/us/karmelo-anthonys-first-fundraiser-raised-nearly-634000-family-now-seeks-another-250000-for-murder-appeal-as-questions-remain-over-earlier-funds/articleshow/134996931.cms",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 31.106,
+    "lon": -97.6475,
+    "risk_score": 6,
+    "title": "GDELT Event: 040 in US",
+    "source_url": "https://timesofindia.indiatimes.com/world/us/karmelo-anthonys-first-fundraiser-raised-nearly-634000-family-now-seeks-another-250000-for-murder-appeal-as-questions-remain-over-earlier-funds/articleshow/134996931.cms",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 31.106,
+    "lon": -97.6475,
+    "risk_score": 51,
+    "title": "GDELT Event: 190 in US",
+    "source_url": "https://timesofindia.indiatimes.com/world/us/karmelo-anthonys-first-fundraiser-raised-nearly-634000-family-now-seeks-another-250000-for-murder-appeal-as-questions-remain-over-earlier-funds/articleshow/134996931.cms",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 40.3363,
+    "lon": -89.0022,
+    "risk_score": 51,
+    "title": "GDELT Event: 192 in US",
+    "source_url": "https://www.kten.com/news/politics/these-are-really-tough-times-house-republicans-confront-voter-fury-over-trump-s-washington-in/article_4932c62e-6ddb-5274-8282-9a32d321c168.html",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "FR",
+    "lat": 46.0,
+    "lon": 2.0,
+    "risk_score": 51,
+    "title": "GDELT Event: 192 in FR",
+    "source_url": "https://www.kten.com/news/politics/these-are-really-tough-times-house-republicans-confront-voter-fury-over-trump-s-washington-in/article_4932c62e-6ddb-5274-8282-9a32d321c168.html",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 35.3187,
+    "lon": -82.461,
+    "risk_score": 0,
+    "title": "GDELT Event: 020 in US",
+    "source_url": "https://wlos.com/news/local/no-kings-asheville-march-early-voting-voters-wnc-photos-politics-community-trump-president-donald-martin-luther-king-jr-park",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 42.2373,
+    "lon": -71.5314,
+    "risk_score": 1,
+    "title": "GDELT Event: 020 in US",
+    "source_url": "https://www.wnd.com/2026/10/democrat-who-boasted-blocking-gas-pipelines-now-wants/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 33.7712,
+    "lon": -111.388,
+    "risk_score": 1,
+    "title": "GDELT Event: 026 in US",
+    "source_url": "https://www.kten.com/news/politics/these-are-really-tough-times-house-republicans-confront-voter-fury-over-trump-s-washington-in/article_4932c62e-6ddb-5274-8282-9a32d321c168.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 35.6411,
+    "lon": -79.8431,
+    "risk_score": 1,
+    "title": "GDELT Event: 026 in US",
+    "source_url": "https://www.kten.com/news/politics/these-are-really-tough-times-house-republicans-confront-voter-fury-over-trump-s-washington-in/article_4932c62e-6ddb-5274-8282-9a32d321c168.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 35.6411,
+    "lon": -79.8431,
+    "risk_score": 1,
+    "title": "GDELT Event: 036 in US",
+    "source_url": "https://www.kten.com/news/politics/these-are-really-tough-times-house-republicans-confront-voter-fury-over-trump-s-washington-in/article_4932c62e-6ddb-5274-8282-9a32d321c168.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 35.6411,
+    "lon": -79.8431,
+    "risk_score": 1,
+    "title": "GDELT Event: 036 in US",
+    "source_url": "https://www.kten.com/news/politics/these-are-really-tough-times-house-republicans-confront-voter-fury-over-trump-s-washington-in/article_4932c62e-6ddb-5274-8282-9a32d321c168.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "RS",
+    "lat": 60.0,
+    "lon": 100.0,
+    "risk_score": 2,
+    "title": "GDELT Event: 090 in RS",
+    "source_url": "http://www.bgnes.com/politics/rubio-us-suspension-of-sanctions-against-russia-to-last-60-days",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IR",
+    "lat": 32.0,
+    "lon": 53.0,
+    "risk_score": 1,
+    "title": "GDELT Event: 010 in IR",
+    "source_url": "https://www.valleynewslive.com/2026/10/18/flanagan-talks-affordability-farm-policy-moorhead-campaign-stop/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 45.7326,
+    "lon": -93.9196,
+    "risk_score": 1,
+    "title": "GDELT Event: 010 in US",
+    "source_url": "https://www.valleynewslive.com/2026/10/18/flanagan-talks-affordability-farm-policy-moorhead-campaign-stop/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 43.3504,
+    "lon": -84.5603,
+    "risk_score": 0,
+    "title": "GDELT Event: 010 in US",
+    "source_url": "https://www.kten.com/news/politics/abdul-el-sayed-disavows-muslim-brotherhood-and-criticizes-implications-that-he-has-dual-loyalty/article_4145e80b-9a6e-5395-a137-8ac975aa972d.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 43.3504,
+    "lon": -84.5603,
+    "risk_score": 0,
+    "title": "GDELT Event: 020 in US",
+    "source_url": "https://www.kten.com/news/politics/abdul-el-sayed-disavows-muslim-brotherhood-and-criticizes-implications-that-he-has-dual-loyalty/article_4145e80b-9a6e-5395-a137-8ac975aa972d.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.2586,
+    "lon": -95.9378,
+    "risk_score": 6,
+    "title": "GDELT Event: 046 in US",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.2586,
+    "lon": -95.9378,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in US",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 31.106,
+    "lon": -97.6475,
+    "risk_score": 2,
+    "title": "GDELT Event: 090 in US",
+    "source_url": "http://www.bgnes.com/politics/rubio-us-suspension-of-sanctions-against-russia-to-last-60-days",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 27.8333,
+    "lon": -81.717,
+    "risk_score": 1,
+    "title": "GDELT Event: 030 in US",
+    "source_url": "https://www.hottalkradio.com/commentary/2026/10/20",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.4287,
+    "lon": -81.8693,
+    "risk_score": 7,
+    "title": "GDELT Event: 046 in US",
+    "source_url": "https://www.bryantimes.com/news/lazarus-joins-parkview-physicians-group/article_1bd61480-769c-4f7f-81eb-2b4f55d6312b.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.2586,
+    "lon": -95.9378,
+    "risk_score": 6,
+    "title": "GDELT Event: 046 in US",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.2586,
+    "lon": -95.9378,
+    "risk_score": 1,
+    "title": "GDELT Event: 051 in US",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 42.0046,
+    "lon": -93.214,
+    "risk_score": 5,
+    "title": "GDELT Event: 036 in US",
+    "source_url": "https://kiow.com/cc-event/%F0%9F%A5%9E-knights-of-columbus-breakfast-fundraiser/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "CH",
+    "lat": 31.8639,
+    "lon": 117.281,
+    "risk_score": 1,
+    "title": "GDELT Event: 010 in CH",
+    "source_url": "https://timesofindia.indiatimes.com/technology/tech-news/what-is-cxmts-chinese-chip-bomb-that-has-wiped-billions-off-the-us-stock-market/articleshow/135023858.cms",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 42.2373,
+    "lon": -71.5314,
+    "risk_score": 1,
+    "title": "GDELT Event: 020 in US",
+    "source_url": "https://www.wnd.com/2026/10/democrat-who-boasted-blocking-gas-pipelines-now-wants/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.4287,
+    "lon": -81.8693,
+    "risk_score": 7,
+    "title": "GDELT Event: 046 in US",
+    "source_url": "https://www.bryantimes.com/news/lazarus-joins-parkview-physicians-group/article_1bd61480-769c-4f7f-81eb-2b4f55d6312b.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.4287,
+    "lon": -81.8693,
+    "risk_score": 7,
+    "title": "GDELT Event: 046 in US",
+    "source_url": "https://www.bryantimes.com/news/lazarus-joins-parkview-physicians-group/article_1bd61480-769c-4f7f-81eb-2b4f55d6312b.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 42.1497,
+    "lon": -74.9384,
+    "risk_score": 1,
+    "title": "GDELT Event: 030 in US",
+    "source_url": "https://www.hottalkradio.com/commentary/2026/10/20",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 31.106,
+    "lon": -97.6475,
+    "risk_score": 2,
+    "title": "GDELT Event: 051 in US",
+    "source_url": "https://www.rte.ie/news/world/2026/1018/1595809-russia-sanctions-rubio/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 41.2586,
+    "lon": -95.9378,
+    "risk_score": 6,
+    "title": "GDELT Event: 046 in US",
+    "source_url": "https://www.irishcentral.com/news/politics/irish-american-catholic-evangelical-immigration-reform",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "YM",
+    "lat": 14.5333,
+    "lon": 44.975,
+    "risk_score": 2,
+    "title": "GDELT Event: 051 in YM",
+    "source_url": "https://www.khabaragency.net/news254489.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "IR",
+    "lat": 32.0,
+    "lon": 53.0,
+    "risk_score": 42,
+    "title": "GDELT Event: 180 in IR",
+    "source_url": "http://www.bgnes.com/politics/rubio-us-suspension-of-sanctions-against-russia-to-last-60-days",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "RS",
+    "lat": 60.0,
+    "lon": 100.0,
+    "risk_score": 42,
+    "title": "GDELT Event: 180 in RS",
+    "source_url": "http://www.bgnes.com/politics/rubio-us-suspension-of-sanctions-against-russia-to-last-60-days",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "YM",
+    "lat": 15.5,
+    "lon": 47.5,
+    "risk_score": 23,
+    "title": "GDELT Event: 141 in YM",
+    "source_url": "https://timesofindia.indiatimes.com/world/middle-east/besieged-cities-broken-supply-routes-can-yemen-hold-its-ground-against-houthis/articleshow/135023720.cms",
+    "tag": "protest"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "YM",
+    "lat": 14.5333,
+    "lon": 44.975,
+    "risk_score": 2,
+    "title": "GDELT Event: 051 in YM",
+    "source_url": "https://www.khabaragency.net/news254489.html",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-18T00:00:00Z",
+    "country": "US",
+    "lat": 42.0046,
+    "lon": -93.214,
+    "risk_score": 5,
+    "title": "GDELT Event: 036 in US",
+    "source_url": "https://kiow.com/cc-event/%F0%9F%A5%9E-knights-of-columbus-breakfast-fundraiser/",
+    "tag": "neutral"
+  },
+  {
+    "timestamp": "2026-10-14T00:00:00Z",
+    "country": "USA",
+    "lat": 40.7128,
+    "lon": -74.006,
+    "risk_score": 69,
+    "title": "ACLED Event: Protests",
+    "source_url": "ACLED Placeholder Data",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 46,
+    "title": "Markets digest bank earnings after recent turmoil",
+    "source_url": "https://www.cnn.com/business/live-news/stock-market-bank-earnings/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 45,
+    "title": "Still haven't filed your taxes? Here's what you need to know",
+    "source_url": "https://www.cnn.com/2023/04/13/success/tax-filing-tips/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 30,
+    "title": "Retail spending fell in March as consumers pull back",
+    "source_url": "https://www.cnn.com/2023/04/14/economy/march-retail-sales/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 46,
+    "title": "Analysis: Fox News is about to enter the true No Spin Zone",
+    "source_url": "https://www.cnn.com/2023/04/14/media/fox-news-dominion-hnk-intl/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 48,
+    "title": "Silicon Valley Bank collapse renews calls to address disparities impacting entrepreneurs of color",
+    "source_url": "https://www.cnn.com/2023/04/13/business/silicon-valley-bank-entrepreneurs-of-color-reaj/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 40,
+    "title": "Not only is Lake Powell's water level plummeting because of drought, its total capacity is shrinking, too",
+    "source_url": "https://www.cnn.com/2022/03/21/us/lake-powell-capacity-shrinking-drought-climate/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 20,
+    "title": "These were the best and worst places for air quality in 2021, new report shows",
+    "source_url": "https://www.cnn.com/2022/03/22/world/air-pollution-2021-iqair-report-climate/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 21,
+    "title": "Big-box stores could help slash emissions and save millions by putting solar panels on roofs. Why aren't more of them doing it?",
+    "source_url": "https://www.cnn.com/2022/03/20/us/solar-power-on-big-box-store-rooftops-climate/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 37,
+    "title": "Look of the Week: Blackpink headline Coachella in Korean hanboks",
+    "source_url": "https://www.cnn.com/style/article/blackpink-coachella-2023-hanboks-lotw/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 51,
+    "title": "Scientists identify secret ingredient in Leonardo da Vinci paintings",
+    "source_url": "https://www.cnn.com/style/article/old-masters-da-vinci-egg-yolk-painting-scn/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 26,
+    "title": "How Playboy cut ties with Hugh Hefner to create a post-MeToo brand",
+    "source_url": "https://www.cnn.com/style/article/playboy-the-conversation/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 23,
+    "title": "'A definitive backslide.' Inside fashion's worrying runway trend",
+    "source_url": "https://www.cnn.com/style/article/fashion-week-fall-winter-2023-size-diversity-skinny-wegovy/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 22,
+    "title": "Michael Jordan's 1998 NBA Finals sneakers sell for a record $2.2 million",
+    "source_url": "https://www.cnn.com/style/article/michael-jordan-sneakers-1998-finals-sothebys-auction-record/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 31,
+    "title": "The surreal facades of America's strip clubs",
+    "source_url": "https://www.cnn.com/style/article/francois-prost-gentlemens-club/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 38,
+    "title": "Here's the real reason to turn on airplane mode when you fly",
+    "source_url": "https://www.cnn.com/travel/article/airplane-mode-reasons-why/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 31,
+    "title": "'I was up to my waist down a hippo's throat.' He survived, and here's his advice",
+    "source_url": "https://www.cnn.com/travel/article/hippo-attack-avoid-survive-paul-templer/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 25,
+    "title": "They bought an abandoned 'ghost house' in the Japanese countryside",
+    "source_url": "https://www.cnn.com/travel/article/couple-turned-abandoned-japanese-home-into-guest-house/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 50,
+    "title": "Relaxed entry rules make it easier than ever to visit this stunning Asian nation",
+    "source_url": "https://www.cnn.com/travel/article/mongolia-reasons-to-visit-2023/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 23,
+    "title": "The most beautiful sections of China's Great Wall",
+    "source_url": "https://www.cnn.com/travel/article/china-beautiful-great-wall-sections-cmd/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 52,
+    "title": "Sign up to our newsletter for a weekly roundup of travel news",
+    "source_url": "https://www.cnn.com/specials/travel-newsletter",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 34,
+    "title": "Nelly Cheboi, who creates computer labs for Kenyan schoolchildren, is CNN's Hero of the Year",
+    "source_url": "https://www.cnn.com/2022/12/11/us/cnn-heroes-all-star-tribute-hero-of-the-year/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 45,
+    "title": "CNN Heroes: Sharing the Spotlight",
+    "source_url": "https://www.cnn.com/specials/cnn-heroes-salutes-special",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 49,
+    "title": "Donate now to a Top 10 CNN Hero",
+    "source_url": "https://www.cnn.com/videos/tv/2021/11/26/how-to-donate-matching-cnnheroes.cnn",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 36,
+    "title": "0% intro APR until 2024 is 100% insane",
+    "source_url": "https://www.fool.com/the-ascent/credit-cards/landing/wells-fargo-reflect-review/?utm_site=theascent&utm_campaign=ta-cc-co-cnn-welref2-ron-5-hp-sfpb&utm_medium=cpc&utm_source=cnn",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 34,
+    "title": "It's official: now avoid credit card interest into 2024",
+    "source_url": "https://www.fool.com/the-ascent/credit-cards/landing/citi-simplicity-review/?utm_site=theascent&utm_campaign=ta-cc-co-cnn-citisimp2-ron-5-hp-sfpb&utm_medium=cpc&utm_source=cnn",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 37,
+    "title": "Experts: this is the best cash back card of 2022",
+    "source_url": "https://www.fool.com/the-ascent/credit-cards/landing/wells-fargo-active-cash-card-review/?utm_site=theascent&utm_campaign=ta-cc-co-cnn-welac2-ron-5-hp-sfpb&utm_medium=cpc&utm_source=cnn",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 32,
+    "title": "Turn Your Rising Home Equity Into Cash You Can Use",
+    "source_url": "https://www.lendingtree.com/?splitterid=home-equity&cproduct=he&cchannel=content&csource=cnn&cmethod=heform&ccreative=risingequitycash_housemoneystack&placement_name=sectionfronts&ad_headline=risingequitycash&ad_image_name=housemoneystack&ctype=sectionfronts&bdst=revshare&mtaid=AC53E&esourceid=6348616",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 31,
+    "title": "Dream Big with a Home Equity Loan",
+    "source_url": "https://www.lendingtree.com/?splitterid=home-equity&cproduct=he&cchannel=content&csource=cnn&cmethod=heform&ccreative=dreambighomeequity_housemoneystack&placement_name=sectionfronts&ad_headline=dreambighomeequity&ad_image_name=housemoneystack&ctype=sectionfronts&bdst=revshare&mtaid=AC53E&esourceid=6348616",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 37,
+    "title": "Want Cash Out of Your Home? Here Are Your Best Options",
+    "source_url": "https://www.lendingtree.com/?splitterid=home-equity&cproduct=he&cchannel=content&csource=cnn&cmethod=heform&ccreative=cashoutoptions_housemoneystack&placement_name=sectionfronts&ad_headline=cashoutoptions&ad_image_name=housemoneystack&ctype=sectionfronts&bdst=revshare&mtaid=AC53E&esourceid=6348616",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 52,
+    "title": "Violent clashes, looting and buildings ablaze in France as over 1,000 arrested after protests",
+    "source_url": "https://www.bbc.co.uk/news/articles/c6d937wedj7jo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 18,
+    "title": "European diplomats attacked by Israeli settlers in West Bank",
+    "source_url": "https://www.bbc.co.uk/news/articles/c962ydpmjm3zo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 28,
+    "title": "Deaths confirmed in major fire at Canada military base",
+    "source_url": "https://www.bbc.co.uk/news/articles/cr86z0w4lxdxo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 21,
+    "title": "Trump waives several Russia sanctions as row with Zelensky intensifies",
+    "source_url": "https://www.bbc.co.uk/news/articles/cxr5yvzv7rp0o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 41,
+    "title": "Anti-government protesters battle with police in Albania",
+    "source_url": "https://www.bbc.co.uk/news/articles/crwydey50xeno?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 39,
+    "title": "At least 17 dead in crush at Hindu festival event in India",
+    "source_url": "https://www.bbc.co.uk/news/articles/c820vwq7qg2ko?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 34,
+    "title": "Photos show luxury boat with 50m pool and water slides near Kim Jong Un's summer retreat",
+    "source_url": "https://www.bbc.co.uk/news/articles/cmy4xnyyg1lyo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 39,
+    "title": "Teacher fought US school attacker before armed dad shot suspect 'multiple times'",
+    "source_url": "https://www.bbc.co.uk/news/articles/cv98zw1k8kp3o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 41,
+    "title": "Three men jailed for 158 years each for murdering Australian and US surfers in Mexico",
+    "source_url": "https://www.bbc.co.uk/news/articles/c3kgqjkzw29wo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 30,
+    "title": "Nursery owner in China jailed for life after hundreds of children poisoned",
+    "source_url": "https://www.bbc.co.uk/news/articles/cqe9lx54g7x9o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 20,
+    "title": "Brazil sees record fall in Amazon deforestation as key election looms",
+    "source_url": "https://www.bbc.co.uk/news/articles/cqe8rzg6zl00o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 42,
+    "title": "Rare pink diamond goes on display in France 100 years after amateur heist",
+    "source_url": "https://www.bbc.co.uk/news/articles/c61m4zkx47vlo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 39,
+    "title": "Pope discharged from hospital days after lung cancer surgery",
+    "source_url": "https://www.bbc.co.uk/news/articles/c5x2vkddrkrko?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 46,
+    "title": "Katie Zacharia leaving White House role less than five days into job",
+    "source_url": "https://www.bbc.co.uk/news/articles/c32l4ekpvzl8o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 51,
+    "title": "Actress Selma Blair says she 'did not intend to harm anyone' in plane altercation",
+    "source_url": "https://www.bbc.co.uk/news/articles/cwly3zd1r45ro?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 23,
+    "title": "Judge throws out child sex abuse charges against actor Timothy Busfield",
+    "source_url": "https://www.bbc.co.uk/news/articles/c8vgxwq4q5r2o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 33,
+    "title": "Trump 'completely wrong' to restrict support for Ukraine, Italian minister tells BBC",
+    "source_url": "https://www.bbc.co.uk/news/articles/c64g18ljjd8do?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 52,
+    "title": "The uncertain future of Canada's 30 rescued belugas",
+    "source_url": "https://www.bbc.co.uk/news/articles/c623dnn3xvpko?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 42,
+    "title": "Toxic algorithms wouldn't let them go - now Australia wants an off switch",
+    "source_url": "https://www.bbc.co.uk/news/articles/cwr7y8er1n8vo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 28,
+    "title": "A thousand slogans echoed here - but it could be the end for iconic Delhi protest site",
+    "source_url": "https://www.bbc.co.uk/news/articles/c6kgqjvdv4n2o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 35,
+    "title": "Trial of German steakhouse heiress that sparked a huge spy scandal",
+    "source_url": "https://www.bbc.co.uk/news/articles/cwvgdn3d656vo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 34,
+    "title": "What we learned from heated US midterm Senate debates",
+    "source_url": "https://www.bbc.co.uk/news/articles/cqly03y3zg7lo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 22,
+    "title": "Inside Ukrainian offensive pushing Russia back - with Starlink playing a key role",
+    "source_url": "https://www.bbc.co.uk/news/articles/cvx284w16z1po?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 45,
+    "title": "How day of protests unfolded as disorder breaks out across France",
+    "source_url": "https://www.bbc.co.uk/news/videos/cwz0vy770gpzo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 32,
+    "title": "Watch: Will Ukraine get the support needed as tensions with US rise?",
+    "source_url": "https://www.bbc.co.uk/news/videos/cm2ke1v8e4geo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 32,
+    "title": "Watch: Did Tesla really just unveil a flying car?",
+    "source_url": "https://www.bbc.co.uk/news/videos/ckly4mj1g3n9o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 20,
+    "title": "'It's really hard to believe' - How Oregon primary school shooting unfolded",
+    "source_url": "https://www.bbc.co.uk/news/videos/cwe8r29mjd05o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-18T05:11:33.528976Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 29,
+    "title": "Israeli settlers attack Palestinians in West Bank during olive harvest",
+    "source_url": "https://www.bbc.co.uk/news/videos/cqn06zx2r15jo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  }
+]
