@@ -1,0 +1,612 @@
+[
+  {
+    "timestamp": "2026-10-23T00:00:00Z",
+    "country": "USA",
+    "lat": 40.7128,
+    "lon": -74.006,
+    "risk_score": 48,
+    "title": "ACLED Event: Protests",
+    "source_url": "ACLED Placeholder Data",
+    "tag": "conflict"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 37,
+    "title": "Markets digest bank earnings after recent turmoil",
+    "source_url": "https://www.cnn.com/business/live-news/stock-market-bank-earnings/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 41,
+    "title": "Still haven't filed your taxes? Here's what you need to know",
+    "source_url": "https://www.cnn.com/2023/04/13/success/tax-filing-tips/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 24,
+    "title": "Retail spending fell in March as consumers pull back",
+    "source_url": "https://www.cnn.com/2023/04/14/economy/march-retail-sales/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 24,
+    "title": "Analysis: Fox News is about to enter the true No Spin Zone",
+    "source_url": "https://www.cnn.com/2023/04/14/media/fox-news-dominion-hnk-intl/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 35,
+    "title": "Silicon Valley Bank collapse renews calls to address disparities impacting entrepreneurs of color",
+    "source_url": "https://www.cnn.com/2023/04/13/business/silicon-valley-bank-entrepreneurs-of-color-reaj/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 24,
+    "title": "Not only is Lake Powell's water level plummeting because of drought, its total capacity is shrinking, too",
+    "source_url": "https://www.cnn.com/2022/03/21/us/lake-powell-capacity-shrinking-drought-climate/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 27,
+    "title": "These were the best and worst places for air quality in 2021, new report shows",
+    "source_url": "https://www.cnn.com/2022/03/22/world/air-pollution-2021-iqair-report-climate/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 37,
+    "title": "Big-box stores could help slash emissions and save millions by putting solar panels on roofs. Why aren't more of them doing it?",
+    "source_url": "https://www.cnn.com/2022/03/20/us/solar-power-on-big-box-store-rooftops-climate/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 21,
+    "title": "Look of the Week: Blackpink headline Coachella in Korean hanboks",
+    "source_url": "https://www.cnn.com/style/article/blackpink-coachella-2023-hanboks-lotw/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 29,
+    "title": "Scientists identify secret ingredient in Leonardo da Vinci paintings",
+    "source_url": "https://www.cnn.com/style/article/old-masters-da-vinci-egg-yolk-painting-scn/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 36,
+    "title": "How Playboy cut ties with Hugh Hefner to create a post-MeToo brand",
+    "source_url": "https://www.cnn.com/style/article/playboy-the-conversation/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 28,
+    "title": "'A definitive backslide.' Inside fashion's worrying runway trend",
+    "source_url": "https://www.cnn.com/style/article/fashion-week-fall-winter-2023-size-diversity-skinny-wegovy/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 46,
+    "title": "Michael Jordan's 1998 NBA Finals sneakers sell for a record $2.2 million",
+    "source_url": "https://www.cnn.com/style/article/michael-jordan-sneakers-1998-finals-sothebys-auction-record/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 30,
+    "title": "The surreal facades of America's strip clubs",
+    "source_url": "https://www.cnn.com/style/article/francois-prost-gentlemens-club/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 24,
+    "title": "Here's the real reason to turn on airplane mode when you fly",
+    "source_url": "https://www.cnn.com/travel/article/airplane-mode-reasons-why/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 33,
+    "title": "'I was up to my waist down a hippo's throat.' He survived, and here's his advice",
+    "source_url": "https://www.cnn.com/travel/article/hippo-attack-avoid-survive-paul-templer/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 29,
+    "title": "They bought an abandoned 'ghost house' in the Japanese countryside",
+    "source_url": "https://www.cnn.com/travel/article/couple-turned-abandoned-japanese-home-into-guest-house/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 34,
+    "title": "Relaxed entry rules make it easier than ever to visit this stunning Asian nation",
+    "source_url": "https://www.cnn.com/travel/article/mongolia-reasons-to-visit-2023/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 50,
+    "title": "The most beautiful sections of China's Great Wall",
+    "source_url": "https://www.cnn.com/travel/article/china-beautiful-great-wall-sections-cmd/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 37,
+    "title": "Sign up to our newsletter for a weekly roundup of travel news",
+    "source_url": "https://www.cnn.com/specials/travel-newsletter",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 23,
+    "title": "Nelly Cheboi, who creates computer labs for Kenyan schoolchildren, is CNN's Hero of the Year",
+    "source_url": "https://www.cnn.com/2022/12/11/us/cnn-heroes-all-star-tribute-hero-of-the-year/index.html",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 24,
+    "title": "CNN Heroes: Sharing the Spotlight",
+    "source_url": "https://www.cnn.com/specials/cnn-heroes-salutes-special",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 20,
+    "title": "Donate now to a Top 10 CNN Hero",
+    "source_url": "https://www.cnn.com/videos/tv/2021/11/26/how-to-donate-matching-cnnheroes.cnn",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 38,
+    "title": "0% intro APR until 2024 is 100% insane",
+    "source_url": "https://www.fool.com/the-ascent/credit-cards/landing/wells-fargo-reflect-review/?utm_site=theascent&utm_campaign=ta-cc-co-cnn-welref2-ron-5-hp-sfpb&utm_medium=cpc&utm_source=cnn",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 34,
+    "title": "It's official: now avoid credit card interest into 2024",
+    "source_url": "https://www.fool.com/the-ascent/credit-cards/landing/citi-simplicity-review/?utm_site=theascent&utm_campaign=ta-cc-co-cnn-citisimp2-ron-5-hp-sfpb&utm_medium=cpc&utm_source=cnn",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 26,
+    "title": "Experts: this is the best cash back card of 2022",
+    "source_url": "https://www.fool.com/the-ascent/credit-cards/landing/wells-fargo-active-cash-card-review/?utm_site=theascent&utm_campaign=ta-cc-co-cnn-welac2-ron-5-hp-sfpb&utm_medium=cpc&utm_source=cnn",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 27,
+    "title": "Turn Your Rising Home Equity Into Cash You Can Use",
+    "source_url": "https://www.lendingtree.com/?splitterid=home-equity&cproduct=he&cchannel=content&csource=cnn&cmethod=heform&ccreative=risingequitycash_housemoneystack&placement_name=sectionfronts&ad_headline=risingequitycash&ad_image_name=housemoneystack&ctype=sectionfronts&bdst=revshare&mtaid=AC53E&esourceid=6348616",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 43,
+    "title": "Dream Big with a Home Equity Loan",
+    "source_url": "https://www.lendingtree.com/?splitterid=home-equity&cproduct=he&cchannel=content&csource=cnn&cmethod=heform&ccreative=dreambighomeequity_housemoneystack&placement_name=sectionfronts&ad_headline=dreambighomeequity&ad_image_name=housemoneystack&ctype=sectionfronts&bdst=revshare&mtaid=AC53E&esourceid=6348616",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 42,
+    "title": "Want Cash Out of Your Home? Here Are Your Best Options",
+    "source_url": "https://www.lendingtree.com/?splitterid=home-equity&cproduct=he&cchannel=content&csource=cnn&cmethod=heform&ccreative=cashoutoptions_housemoneystack&placement_name=sectionfronts&ad_headline=cashoutoptions&ad_image_name=housemoneystack&ctype=sectionfronts&bdst=revshare&mtaid=AC53E&esourceid=6348616",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 50,
+    "title": "Lula wins fourth term in dramatic Brazil election comeback",
+    "source_url": "https://www.bbc.co.uk/news/articles/ckm23y3mg1yyo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 35,
+    "title": "Ex-FBI chief James Comey faces federal charges for third time",
+    "source_url": "https://www.bbc.co.uk/news/articles/ckly0xqjnlwvo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 38,
+    "title": "Jordan carries out deadly strike in Syria in retaliation for church attack",
+    "source_url": "https://www.bbc.co.uk/news/articles/cq8ezg6dy6xlo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 51,
+    "title": "Meghan to co-host Junior MasterChef Australia",
+    "source_url": "https://www.bbc.co.uk/news/articles/crgqwg3ll1v1o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 43,
+    "title": "Jay-Z to perform at Super Bowl half-time show",
+    "source_url": "https://www.bbc.co.uk/news/articles/cq8ezg4364epo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 51,
+    "title": "Opposition leader Mar\u00eda Machado returns from exile to a Venezuela reshaped by Trump",
+    "source_url": "https://www.bbc.co.uk/news/articles/c8vgx3pvdeq1o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 43,
+    "title": "Celebrations in Serbia after veteran ruler Vu\u010di\u0107 loses election to student-led protest movement",
+    "source_url": "https://www.bbc.co.uk/news/articles/cw5yn3xlprpmo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 45,
+    "title": "Trump administration illegally fired James Comey's daughter, judge rules",
+    "source_url": "https://www.bbc.co.uk/news/articles/ck78px6glw3lo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 22,
+    "title": "Anthropic warns of 'catastrophic risk' to humankind ahead of blockbuster share listing",
+    "source_url": "https://www.bbc.co.uk/news/articles/cq398p1wd1evo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 30,
+    "title": "Catholic bishops apologise for 'exploited' Trump meeting",
+    "source_url": "https://www.bbc.co.uk/news/articles/cw8rz1d286v3o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 22,
+    "title": "Pope's South American trip to go ahead as planned after lung cancer surgery",
+    "source_url": "https://www.bbc.co.uk/news/articles/cjr4y5rq46p2o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 44,
+    "title": "US Marine indicted for murder and robbery of woman in Japan",
+    "source_url": "https://www.bbc.co.uk/news/articles/c3vgxjex1z9wo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 50,
+    "title": "'Maxxing' selected as Dictionary.com word of the year",
+    "source_url": "https://www.bbc.co.uk/news/articles/cmy4xwp22xyqo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 46,
+    "title": "Algeria to send troops to Niger in first foreign deployment since 1973",
+    "source_url": "https://www.bbc.co.uk/news/articles/cm4g14n1e5wko?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 23,
+    "title": "Nurse killed in attack while responding to Ebola alert in DR Congo",
+    "source_url": "https://www.bbc.co.uk/news/articles/crx2dyd24188o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 51,
+    "title": "More than 60 Christians killed in Ethiopia 'massacre', church official says",
+    "source_url": "https://www.bbc.co.uk/news/articles/cm4g175dgdx2o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 40,
+    "title": "Chris Brown given suspended eight-month prison sentence over nightclub attack",
+    "source_url": "https://www.bbc.co.uk/news/articles/cq3dje4g4d5jo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 38,
+    "title": "Police arrest teenager after shooting that injured 12, including children, in Florida",
+    "source_url": "https://www.bbc.co.uk/news/articles/ckpdg8vnv171o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 45,
+    "title": "Australian murderer loses bid to eat Vegemite in prison",
+    "source_url": "https://www.bbc.co.uk/news/articles/cvwy7wz9x12go?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 27,
+    "title": "Sydney's new $5bn airport has one big problem: Getting there is tough",
+    "source_url": "https://www.bbc.co.uk/news/videos/c64g1wy4mdwmo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 37,
+    "title": "Watch: How President Lula turned it around to beat Fl\u00e1vio Bolsonaro",
+    "source_url": "https://www.bbc.co.uk/news/videos/cmp8g0x4l11yo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 24,
+    "title": "Crowds welcome Venezuela's Mar\u00eda Machado after months in exile",
+    "source_url": "https://www.bbc.co.uk/news/videos/cwgkv8kmly4zo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 32,
+    "title": "Why Israel's election is one of the most important in its history",
+    "source_url": "https://www.bbc.co.uk/news/videos/c64g1wje3jjwo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 50,
+    "title": "Fireworks and tear gas as protesters and riot police clash in Paris",
+    "source_url": "https://www.bbc.co.uk/news/videos/cm89zqw9lx1do?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 33,
+    "title": "Israel and the US are both going to the polls - the consequences will be global",
+    "source_url": "https://www.bbc.co.uk/news/articles/crlykey9jywqo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 42,
+    "title": "How 'Lula's Army' WhatsApp channel helped turn Brazil election around",
+    "source_url": "https://www.bbc.co.uk/news/articles/cwz0vg4v3ndeo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 22,
+    "title": "Who is Lula? From ex-worker and prisoner to Brazil's president again",
+    "source_url": "https://www.bbc.co.uk/news/articles/c35yn2ye1x85o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 31,
+    "title": "Five ways Trump has changed immigration in the US",
+    "source_url": "https://www.bbc.co.uk/news/articles/c9203k1jrmpvo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 36,
+    "title": "Stunning photos capture October's Hunter's Moon around the world",
+    "source_url": "https://www.bbc.co.uk/weather/articles/c6zjxgj83n80o?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 25,
+    "title": "Who should win the men's Ballon d'Or? BBC Sport pundits have their say",
+    "source_url": "https://www.bbc.co.uk/sport/football/articles/cqjdmn0ndxjxo?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  },
+  {
+    "timestamp": "2026-10-27T05:40:11.393848Z",
+    "country": "GL",
+    "lat": null,
+    "lon": null,
+    "risk_score": 27,
+    "title": "China's big political meeting could see Xi 'tighten discipline' in party",
+    "source_url": "https://www.bbc.co.uk/news/articles/c6n8djd1078ro?at_medium=RSS&at_campaign=rss",
+    "tag": "news"
+  }
+]
