@@ -171,6 +171,29 @@ def test_surge_for_a_new_hotspot_uses_a_floor_of_one_outlet():
     assert hotspot["surge"] == 4.0
 
 
+def test_min_outlets_drops_thinly_reported_hotspots():
+    hours = _hours({"2026111610": [row(url=f"https://o{i}.example/") for i in range(3)]
+                    + [row(place="US06", country="US", url="https://z.example/1"),
+                       row(place="US06", country="US", url="https://y.example/1")]})
+    assert [h["id"] for h in etl.rank_window(loader(hours), "2026111610", 1, 8, 50, min_outlets=3)["hotspots"]] == ["IR|19"]
+    assert etl.rank_window(loader(hours), "2026111610", 1, 8, 50, min_outlets=3)["total"] == 1
+    assert len(etl.rank_window(loader(hours), "2026111610", 1, 8, 50)["hotspots"]) == 2
+
+
+def test_international_share_counts_events_between_two_countries():
+    def with_countries(a, b, url):
+        r = row(url=url)
+        r[COL["Actor1CountryCode"]], r[COL["Actor2CountryCode"]] = a, b
+        return r
+    rows = [with_countries("IRN", "ISR", "https://a.example/1"), with_countries("IRN", "IRN", "https://b.example/1"),
+            with_countries("IRN", "", "https://c.example/1"), with_countries("", "", "https://d.example/1")]
+    hours = _hours({"2026111610": rows})
+    assert etl.rank_window(loader(hours), "2026111610", 1, 8, 50)["hotspots"][0]["international_share"] == 0.25
+    # hours stored before the field existed still merge
+    del hours["2026111610"]["IR26|19"]["international"]
+    assert etl.rank_window(loader(hours), "2026111610", 1, 8, 50)["hotspots"][0]["international_share"] == 0.0
+
+
 def test_grouping_by_country_or_region():
     hours = _hours({"2026111610": [
         row(place="IR26", name="Tehran, Tehran, Iran", url="https://a.example/1"),
@@ -191,7 +214,7 @@ def test_global_index():
 
 def test_build_history_covers_days_with_data():
     hours = _hours({"2026111523": [row(url=f"https://o{i}.example/") for i in range(30)],
-                    "2026111602": [row(url="https://a.example/1")]})
+                    "2026111602": [row(url=f"https://p{i}.example/") for i in range(3)]})
     history = etl.build_history(loader(hours), "2026111602", etl.DEFAULT_ETL_CONFIG, days=3)
     assert [h["date"] for h in history] == ["2026-11-14", "2026-11-15", "2026-11-16"]
     assert history[0]["avgRisk"] is None and history[0]["hours_covered"] == 0

@@ -67,6 +67,9 @@ export function buildBrief(hotspot) {
   if (typeof hotspot.strategic_share === 'number') {
     facts.push(['STATE/ARMED', `${Math.round(hotspot.strategic_share * 100)}% of events`]);
   }
+  if (typeof hotspot.international_share === 'number') {
+    facts.push(['CROSS-BORDER', `${Math.round(hotspot.international_share * 100)}% of events`]);
+  }
   if (typeof hotspot.tone === 'number') facts.push(['TONE', `${hotspot.tone.toFixed(1)} (${toneLabel(hotspot.tone)})`]);
   if (lead?.actors?.length) facts.push(['ACTORS', lead.actors.join(' → ')]);
   const domain = sourceDomain(hotspot.source_url);
