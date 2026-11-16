@@ -1,315 +1,414 @@
-import requests
+"""
+ETL for the Geopolitical Risk Dashboard.
+
+Every run catches up on all GDELT 2.0 event exports published since the last
+run (one file per 15 minutes), groups conflict events into hotspots by place
+and kind of activity, and ranks hotspots by how many distinct news outlets
+reported them. Single GDELT events are often miscoded; an event that many
+outlets report independently is far more likely to be real.
+
+State lives in a directory given by --state-dir (kept on a separate branch by
+the workflow) and the files the frontend reads are written to --out-dir.
+"""
+import argparse
+import csv
+import io
+import json
+import math
+import os
+import re
+import zipfile
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from html import unescape
 from html.parser import HTMLParser
-from urllib.parse import quote
+from urllib.parse import quote, urlparse
 from xml.etree import ElementTree
-import os
-import json
-import re
 
+import requests
 
-def previous_gdelt_export_url(export_url):
-    """
-    Returns the URL of the export published 15 minutes before `export_url`,
-    or None if the URL does not carry a YYYYMMDDHHMMSS timestamp.
-    """
-    match = re.search(r"(\d{14})(?=\.export\.CSV\.zip)", export_url)
-    if not match:
-        return None
-    previous = datetime.strptime(match.group(1), "%Y%m%d%H%M%S") - timedelta(minutes=15)
-    return export_url[:match.start()] + previous.strftime("%Y%m%d%H%M%S") + export_url[match.end():]
+GDELT_BASE = "http://data.gdeltproject.org/gdeltv2/"
+EXPORT_INTERVAL = timedelta(minutes=15)
+TS_FORMAT = "%Y%m%d%H%M%S"
+HOUR_FORMAT = "%Y%m%d%H"
 
+# GDELT 2.0 event export columns (0-based, 61 columns, tab-delimited, no header)
+COL = {
+    "Actor1Code": 5, "Actor1Name": 6, "Actor1Type1Code": 12, "Actor1Type2Code": 13, "Actor1Type3Code": 14,
+    "Actor2Code": 15, "Actor2Name": 16, "Actor2Type1Code": 22, "Actor2Type2Code": 23, "Actor2Type3Code": 24,
+    "EventCode": 26, "EventBaseCode": 27, "EventRootCode": 28, "GoldsteinScale": 30,
+    "NumArticles": 33, "AvgTone": 34,
+    "ActionGeo_FullName": 52, "ActionGeo_CountryCode": 53, "ActionGeo_ADM1Code": 54,
+    "ActionGeo_Lat": 56, "ActionGeo_Long": 57, "SOURCEURL": 60,
+}
 
-def download_gdelt_export(export_url, max_fallbacks=3):
-    """
-    Downloads a GDELT export zip. lastupdate.txt can list a file a moment before
-    it is actually published, which gives a 404; in that case fall back to the
-    preceding 15-minute exports instead of ending the run with no data.
-    """
-    url = export_url
-    for attempt in range(max_fallbacks + 1):
-        resp = requests.get(url, timeout=60)
-        previous_url = previous_gdelt_export_url(url)
-        if resp.status_code == 404 and attempt < max_fallbacks and previous_url:
-            print(f"GDELT export not published yet ({url}); trying {previous_url}")
-            url = previous_url
-            continue
-        resp.raise_for_status()
-        return resp
+# CAMEO root codes kept as hotspot activity: threats (13) and material conflict (14-20).
+CONFLICT_ROOTS = {"13", "14", "15", "16", "17", "18", "19", "20"}
+TAG_BY_ROOT = {"13": "threat", "14": "protest", "15": "posture", "16": "sanction",
+               "17": "coercion", "18": "conflict", "19": "conflict", "20": "conflict"}
 
-
-def fetch_gdelt_events():
-    """
-    Fetches events from the GDELT 2.0 Event database via the 15-minute CSV dump.
-    Uses the lastupdate.txt index to find the latest export file and parses the
-    relevant columns (EventCode, EventBaseCode, QuadClass, ActionGeo coords,
-    AvgTone, SOURCEURL, Day) from the tab-delimited CSV.
-    Returns a list of dicts compatible with the downstream process_data() schema.
-    """
-    import csv
-    import io
-    import zipfile
-
-    print("Fetching GDELT events via v2 CSV dump...")
-
-    LASTUPDATE_URL = "http://data.gdeltproject.org/gdeltv2/lastupdate.txt"
-
-    # GDELT v2 export CSV column indices (0-based, 61 columns total, no header row)
-    COL = {
-        "Day": 1,
-        "Actor1Code": 5,
-        "Actor1Name": 6,
-        "Actor1CountryCode": 7,
-        "Actor1Type1Code": 12,
-        "Actor1Type2Code": 13,
-        "Actor1Type3Code": 14,
-        "Actor2Code": 15,
-        "Actor2Name": 16,
-        "Actor2CountryCode": 17,
-        "Actor2Type1Code": 22,
-        "Actor2Type2Code": 23,
-        "Actor2Type3Code": 24,
-        "NumArticles": 33,
-        "ActionGeo_FullName": 52,
-        "IsRootEvent": 25,
-        "EventCode": 26,
-        "EventBaseCode": 27,
-        "QuadClass": 29,
-        "AvgTone": 34,
-        "Actor1Geo_Lat": 40,
-        "Actor1Geo_Long": 41,
-        "Actor2Geo_Lat": 48,
-        "Actor2Geo_Long": 49,
-        "ActionGeo_CountryCode": 53,
-        "ActionGeo_Lat": 56,
-        "ActionGeo_Long": 57,
-        "SOURCEURL": 60,
-    }
-
-    all_events = []
-    try:
-        # Step 1: Get the URL of the latest export CSV zip
-        resp = requests.get(LASTUPDATE_URL, timeout=30)
-        resp.raise_for_status()
-        export_url = None
-        for line in resp.text.strip().splitlines():
-            parts = line.strip().split()
-            if len(parts) >= 3 and "export.CSV.zip" in parts[2]:
-                export_url = parts[2]
-                break
-        if not export_url:
-            print("ERROR: Could not parse export URL from lastupdate.txt")
-            return all_events
-
-        print(f"GDELT CSV URL: {export_url}")
-
-        # Step 2: Download and unzip
-        resp2 = download_gdelt_export(export_url)
-        with zipfile.ZipFile(io.BytesIO(resp2.content)) as zf:
-            csv_filename = zf.namelist()[0]
-            with zf.open(csv_filename) as f:
-                text = f.read().decode("utf-8", errors="replace")
-
-        # Step 3: Parse TSV (no header row)
-        reader = csv.reader(io.StringIO(text), delimiter="\t")
-        row_count = 0
-        for row in reader:
-            if len(row) < 61:
-                continue
-            row_count += 1
-            event = {
-                "Day": row[COL["Day"]],
-                "Actor1Name": row[COL["Actor1Name"]],
-                "Actor2Name": row[COL["Actor2Name"]],
-                **{
-                    key: row[COL[key]]
-                    for key in (
-                        "Actor1Code", "Actor1CountryCode", "Actor1Type1Code", "Actor1Type2Code", "Actor1Type3Code",
-                        "Actor2Code", "Actor2CountryCode", "Actor2Type1Code", "Actor2Type2Code", "Actor2Type3Code",
-                    )
-                },
-                "NumArticles": row[COL["NumArticles"]],
-                "ActionGeo_FullName": row[COL["ActionGeo_FullName"]],
-                "IsRootEvent": row[COL["IsRootEvent"]],
-                "EventCode": row[COL["EventCode"]],
-                "EventBaseCode": row[COL["EventBaseCode"]],
-                "QuadClass": row[COL["QuadClass"]],
-                "AvgTone": row[COL["AvgTone"]],
-                "Actor1Geo_Lat": row[COL["Actor1Geo_Lat"]],
-                "Actor1Geo_Long": row[COL["Actor1Geo_Long"]],
-                "Actor2Geo_Lat": row[COL["Actor2Geo_Lat"]],
-                "Actor2Geo_Long": row[COL["Actor2Geo_Long"]],
-                "ActionGeo_CountryCode": row[COL["ActionGeo_CountryCode"]],
-                "ActionGeo_Lat": row[COL["ActionGeo_Lat"]],
-                "ActionGeo_Long": row[COL["ActionGeo_Long"]],
-                "SOURCEURL": row[COL["SOURCEURL"]],
-            }
-            all_events.append(event)
-
-        print(f"Successfully parsed {len(all_events)} events from GDELT CSV ({row_count} rows read).")
-
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching GDELT data: {e}")
-    except zipfile.BadZipFile as e:
-        print(f"Error unzipping GDELT CSV: {e}")
-    except Exception as e:
-        print(f"Unexpected error in fetch_gdelt_events: {e}")
-
-    return all_events
-
-# CAMEO actor types that make an event geopolitical rather than local:
-# government, military, rebels, insurgents, separatists, state intelligence,
-# unaligned armed forces and intergovernmental organisations.
+# CAMEO actor types that make an event geopolitical rather than local: government,
+# military, rebels, insurgents, separatists, state intelligence, unaligned armed
+# forces and intergovernmental organisations.
 STRATEGIC_ACTOR_TYPES = {"GOV", "MIL", "REB", "INS", "SEP", "SPY", "UAF", "IGO"}
 
-LOCAL_ACTOR_FACTOR = 0.4   # weight kept for events with no state or armed actor
-CROSS_BORDER_BONUS = 15    # added when state/armed actors of two countries are involved
+DEFAULT_ETL_CONFIG = {
+    # Hours of exports to fetch when there is no state yet, and the most to catch up on in one run.
+    "max_catchup_hours": 24,
+    # How long hourly state is kept (the longest window plus room for a baseline).
+    "retention_hours": 24 * 9,
+    # Ranking windows in hours.
+    "windows": {"1h": 1, "6h": 6, "24h": 24, "7d": 168},
+    # Outlets at which coverage reaches about 63% of its maximum, per window.
+    "coverage_scale": {"1h": 4, "6h": 8, "24h": 15, "7d": 40},
+    # Hotspots written per window.
+    "max_hotspots": 250,
+}
 
 
-def _actor_kind(event, n):
-    """Classifies actor `n` (1 or 2) of a raw GDELT event as 'strategic', 'local' or None."""
-    if not event.get(f"Actor{n}Code"):
+# --- GDELT download ---------------------------------------------------------
+
+def parse_ts(ts):
+    return datetime.strptime(ts, TS_FORMAT)
+
+
+def latest_export_timestamp(timeout=30):
+    """Reads lastupdate.txt and returns the newest export timestamp (YYYYMMDDHHMMSS)."""
+    resp = requests.get(GDELT_BASE + "lastupdate.txt", timeout=timeout)
+    resp.raise_for_status()
+    match = re.search(r"/(\d{14})\.export\.CSV\.zip", resp.text)
+    if not match:
+        raise ValueError("no export file listed in lastupdate.txt")
+    return match.group(1)
+
+
+def timestamps_to_fetch(last_ts, latest_ts, max_hours):
+    """
+    Export timestamps after `last_ts` up to `latest_ts`, oldest first, limited
+    to the most recent `max_hours`. With no `last_ts` the whole limit is fetched.
+    """
+    latest = parse_ts(latest_ts)
+    start = latest - timedelta(hours=max_hours) + EXPORT_INTERVAL
+    if last_ts:
+        start = max(start, parse_ts(last_ts) + EXPORT_INTERVAL)
+    # exports are published on quarter hours
+    start -= timedelta(minutes=start.minute % 15, seconds=start.second)
+    out = []
+    current = start
+    while current <= latest:
+        out.append(current.strftime(TS_FORMAT))
+        current += EXPORT_INTERVAL
+    return out
+
+
+def download_export(ts, timeout=60):
+    """
+    Downloads one export and returns its rows, or None when the file is not
+    there (GDELT skips an interval now and then, and lastupdate.txt can list a
+    file a moment before it is published).
+    """
+    resp = requests.get(f"{GDELT_BASE}{ts}.export.CSV.zip", timeout=timeout)
+    if resp.status_code == 404:
         return None
-    types = {event.get(f"Actor{n}Type{i}Code") for i in (1, 2, 3)} - {None, ""}
-    if types & STRATEGIC_ACTOR_TYPES:
-        return "strategic"
-    if not types and event.get(f"Actor{n}CountryCode"):
-        return "strategic"  # a bare country code is how GDELT records a state acting
-    return "local"
+    resp.raise_for_status()
+    with zipfile.ZipFile(io.BytesIO(resp.content)) as zf:
+        with zf.open(zf.namelist()[0]) as f:
+            text = f.read().decode("utf-8", errors="replace")
+    return [row for row in csv.reader(io.StringIO(text), delimiter="\t") if len(row) >= 61]
 
 
-def actor_profile(event):
+# --- Hourly aggregation -----------------------------------------------------
+
+def source_domain(url):
+    try:
+        host = urlparse(url).netloc.lower()
+    except ValueError:
+        return ""
+    return host[4:] if host.startswith("www.") else host
+
+
+def _is_strategic(row, n):
+    types = {row[COL[f"Actor{n}Type{i}Code"]] for i in (1, 2, 3)}
+    return bool(types & STRATEGIC_ACTOR_TYPES)
+
+
+def aggregate_rows(rows, into=None):
     """
-    Returns (weight_factor, bonus, label) describing who is involved.
-
-    The event code alone cannot tell a border clash from a police shootout, so
-    the conflict weight is reduced when no state or armed actor takes part and
-    a bonus is added when such actors of two different countries are involved.
-    Events without any actor codes (older data, tests) are scored as before.
+    Groups conflict rows into hotspots keyed by "<ADM1 code>|<CAMEO root>" and
+    merges them into `into` (the state of one hour). Each hotspot keeps the
+    distinct outlet domains, article and event counts, the Goldstein sum, how
+    many events involve a state or armed actor, place-name counts and the
+    best-covered source URLs.
     """
-    kinds = [_actor_kind(event, 1), _actor_kind(event, 2)]
-    if kinds == [None, None]:
-        return 1.0, 0, None
-    if "strategic" not in kinds:
-        return LOCAL_ACTOR_FACTOR, 0, "local"
-    countries = {event.get("Actor1CountryCode"), event.get("Actor2CountryCode")} - {None, ""}
-    if len(countries) == 2:
-        return 1.0, CROSS_BORDER_BONUS, "cross-border"
-    return 1.0, 0, "state or armed"
+    hour = into if into is not None else {}
+    for row in rows:
+        root = row[COL["EventRootCode"]]
+        place = row[COL["ActionGeo_ADM1Code"]]
+        lat, lon = _to_float(row[COL["ActionGeo_Lat"]]), _to_float(row[COL["ActionGeo_Long"]])
+        if root not in CONFLICT_ROOTS or not place or lat is None or lon is None:
+            continue
+        url = row[COL["SOURCEURL"]]
+        domain = source_domain(url)
+        articles = int(_to_float(row[COL["NumArticles"]]) or 1)
+        cluster = hour.setdefault(f"{place}|{root}", {
+            "country": row[COL["ActionGeo_CountryCode"]], "domains": [], "events": 0, "articles": 0,
+            "goldstein": 0.0, "tone": 0.0, "strategic": 0, "places": {}, "urls": {},
+        })
+        cluster["events"] += 1
+        cluster["articles"] += articles
+        cluster["goldstein"] += _to_float(row[COL["GoldsteinScale"]]) or 0.0
+        cluster["tone"] += _to_float(row[COL["AvgTone"]]) or 0.0
+        if _is_strategic(row, 1) or _is_strategic(row, 2):
+            cluster["strategic"] += 1
+        if domain and domain not in cluster["domains"]:
+            cluster["domains"].append(domain)
+        name = row[COL["ActionGeo_FullName"]]
+        if name:
+            entry = cluster["places"].setdefault(name, [0, lat, lon])
+            entry[0] += 1
+        if url.startswith(("http://", "https://")):
+            entry = cluster["urls"].setdefault(url, {
+                "articles": 0, "code": row[COL["EventBaseCode"]],
+                "actors": [a.title() for a in (row[COL["Actor1Name"]], row[COL["Actor2Name"]]) if a],
+            })
+            entry["articles"] += articles
+    # keep hour files small: only the best-covered URLs and most common place names
+    for cluster in hour.values():
+        cluster["urls"] = dict(sorted(cluster["urls"].items(), key=lambda kv: -kv[1]["articles"])[:5])
+        cluster["places"] = dict(sorted(cluster["places"].items(), key=lambda kv: -kv[1][0])[:5])
+    return hour
 
 
-def calculate_risk_score(tone, event_base_code, weight_factor=1.0, bonus=0):
+# --- State on disk ----------------------------------------------------------
+
+def _read_json(path, default):
+    try:
+        with open(path) as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return default
+
+
+def _write_json(path, payload):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w") as f:
+        json.dump(payload, f, ensure_ascii=False, separators=(",", ":"))
+
+
+def hour_path(state_dir, hour_id):
+    return os.path.join(state_dir, "hours", f"{hour_id}.json")
+
+
+def stored_hours(state_dir):
+    try:
+        names = os.listdir(os.path.join(state_dir, "hours"))
+    except OSError:
+        return []
+    return sorted(name[:-5] for name in names if re.fullmatch(r"\d{10}\.json", name))
+
+
+def prune_hours(state_dir, newest_hour, retention_hours):
+    cutoff = (datetime.strptime(newest_hour, HOUR_FORMAT) - timedelta(hours=retention_hours)).strftime(HOUR_FORMAT)
+    removed = 0
+    for hour_id in stored_hours(state_dir):
+        if hour_id < cutoff:
+            os.remove(hour_path(state_dir, hour_id))
+            removed += 1
+    return removed
+
+
+def ingest(state_dir, etl_config):
     """
-    Calculates a risk score based on GDELT tone and event base code.
-    `weight_factor` scales the event-code weight and `bonus` is added on top
-    (see actor_profile). Score is capped at 100.
+    Fetches every export published since the last run into the hourly state.
+    Returns the newest export timestamp, or None when nothing could be fetched
+    (the state is then left untouched so the next run retries).
     """
-    normalized_tone_score = 0
-    if tone is not None:
+    meta_path = os.path.join(state_dir, "meta.json")
+    meta = _read_json(meta_path, {})
+    latest = latest_export_timestamp()
+    todo = timestamps_to_fetch(meta.get("last_export"), latest, etl_config["max_catchup_hours"])
+    print(f"GDELT: latest export {latest}, {len(todo)} file(s) to fetch.")
+
+    hours = {}
+    fetched = missing = failed = 0
+    for ts in todo:
         try:
-            # AvgTone range is typically -100 to +100.
-            # Abs(Tone) makes it 0 to 100.
-            # Scale this to 0-50 for its contribution to the risk score.
-            normalized_tone_score = abs(float(tone)) / 2.0
-        except ValueError:
-            normalized_tone_score = 0 # Default if tone is not a valid number
+            rows = download_export(ts)
+        except Exception as e:
+            print(f"Error fetching export {ts}: {e}")
+            failed += 1
+            continue
+        if rows is None:
+            missing += 1
+            continue
+        fetched += 1
+        hour_id = ts[:10]
+        if hour_id not in hours:
+            hours[hour_id] = _read_json(hour_path(state_dir, hour_id), {})
+        aggregate_rows(rows, hours[hour_id])
+    print(f"GDELT: {fetched} fetched, {missing} not published, {failed} failed.")
 
-    conflict_weights = {
-        # Violent events (higher weights)
-        '18': 40, # Assault (includes various forms of physical attack)
-        '19': 50, # Fight (armed conflict, clashes)
-        '20': 50, # Mass violence (genocide, mass killings) - very high impact
-        # Protests (moderate weights)
-        '14': 20, # Protest (demonstrations, riots)
-        # Other potentially relevant categories (lower weights)
-        '10': 15, # Demand (ultimatums, threats)
-        '13': 10, # Appeal (requests for aid, resources, not inherently conflict but can indicate instability)
-        '04': 5,  # Consult (diplomatic meetings, could be positive or negative context)
+    if todo and fetched == 0:
+        return None
+    for hour_id, clusters in hours.items():
+        _write_json(hour_path(state_dir, hour_id), clusters)
+    meta["last_export"] = latest
+    _write_json(meta_path, meta)
+    removed = prune_hours(state_dir, latest[:10], etl_config["retention_hours"])
+    print(f"State: {len(stored_hours(state_dir))} hour(s) kept, {removed} pruned.")
+    return latest
+
+
+# --- Windows, scoring, surge ------------------------------------------------
+
+def hour_range(end_hour, length):
+    """The `length` hour ids ending with `end_hour`, oldest first."""
+    end = datetime.strptime(end_hour, HOUR_FORMAT)
+    return [(end - timedelta(hours=i)).strftime(HOUR_FORMAT) for i in range(length - 1, -1, -1)]
+
+
+def merge_hours(hour_states):
+    """Merges several hours of hotspots into one set (domains become sets)."""
+    merged = {}
+    for state in hour_states:
+        for key, cluster in state.items():
+            target = merged.setdefault(key, {
+                "country": cluster["country"], "domains": set(), "events": 0, "articles": 0,
+                "goldstein": 0.0, "tone": 0.0, "strategic": 0, "places": {}, "urls": {},
+            })
+            target["domains"].update(cluster["domains"])
+            for field in ("events", "articles", "goldstein", "tone", "strategic"):
+                target[field] += cluster[field]
+            for name, (count, lat, lon) in cluster["places"].items():
+                entry = target["places"].setdefault(name, [0, lat, lon])
+                entry[0] += count
+            for url, info in cluster["urls"].items():
+                entry = target["urls"].setdefault(url, {**info, "articles": 0})
+                entry["articles"] += info["articles"]
+    return merged
+
+
+def score_cluster(cluster, coverage_scale):
+    """
+    0-100: severity x coverage x actor factor.
+      severity  how conflictual the events are (mean Goldstein scale, 0 to -10)
+      coverage  1 - exp(-outlets / scale): one outlet counts for little, many saturate
+      actors    0.5 when no event involves a state or armed actor, up to 1.0 when all do
+    """
+    events = max(cluster["events"], 1)
+    severity = min(max(-cluster["goldstein"] / events, 0.0), 10.0) / 10.0
+    coverage = 1.0 - math.exp(-len(cluster["domains"]) / coverage_scale)
+    actors = 0.5 + 0.5 * (cluster["strategic"] / events)
+    return round(100 * severity * coverage * actors)
+
+
+def rank_window(load_hour, end_hour, length, coverage_scale, max_hotspots, baseline_windows=6):
+    """
+    Ranks the hotspots of the `length` hours ending at `end_hour`.
+
+    "surge" compares the outlet count with the mean of up to `baseline_windows`
+    preceding windows of the same length; it is None until at least three such
+    windows are fully covered by stored data.
+    """
+    hours = hour_range(end_hour, length)
+    states = [load_hour(h) for h in hours]
+    covered = sum(1 for state in states if state is not None)
+    merged = merge_hours([state for state in states if state])
+
+    previous = []
+    for i in range(1, baseline_windows + 1):
+        end = (datetime.strptime(end_hour, HOUR_FORMAT) - timedelta(hours=i * length)).strftime(HOUR_FORMAT)
+        prev_states = [load_hour(h) for h in hour_range(end, length)]
+        if any(state is None for state in prev_states):
+            break
+        previous.append(merge_hours(prev_states))
+
+    hotspots = []
+    for key, cluster in merged.items():
+        place_code, root = key.split("|")
+        name, (_, lat, lon) = max(cluster["places"].items(), key=lambda kv: kv[1][0]) if cluster["places"] \
+            else (cluster["country"], (0, None, None))
+        outlets = len(cluster["domains"])
+        surge = None
+        if len(previous) >= 3:
+            baseline = sum(len(p[key]["domains"]) if key in p else 0 for p in previous) / len(previous)
+            surge = round(outlets / max(baseline, 1.0), 1)
+        links = [
+            {"url": url, "domain": source_domain(url), "code": info["code"], "actors": info["actors"]}
+            for url, info in sorted(cluster["urls"].items(), key=lambda kv: -kv[1]["articles"])[:3]
+        ]
+        events = max(cluster["events"], 1)
+        hotspots.append({
+            "id": key,
+            "risk_score": score_cluster(cluster, coverage_scale),
+            "country": cluster["country"],
+            "location": name,
+            "lat": lat,
+            "lon": lon,
+            "event_code": root,
+            "tag": TAG_BY_ROOT.get(root, "conflict"),
+            "outlets": outlets,
+            "articles": cluster["articles"],
+            "events": cluster["events"],
+            "severity": round(min(max(-cluster["goldstein"] / events, 0.0), 10.0), 1),
+            "tone": round(cluster["tone"] / events, 1),
+            "strategic_share": round(cluster["strategic"] / events, 2),
+            "surge": surge,
+            "links": links,
+            "source_url": links[0]["url"] if links else "",
+        })
+    hotspots.sort(key=lambda h: (-h["risk_score"], -h["outlets"], h["id"]))
+    return {
+        "from": hours[0], "to": hours[-1], "hours": length, "hours_covered": covered,
+        "total": len(hotspots), "hotspots": hotspots[:max_hotspots],
     }
 
-    conflict_weight_score = 0
-    if event_base_code:
-        # Check first two digits for broader categories, or full code if specific
-        code_prefix = str(event_base_code)[:2]
-        conflict_weight_score = conflict_weights.get(code_prefix, 0)
 
-    # The bonus only applies to events that carry a conflict weight at all.
-    actor_part = conflict_weight_score * weight_factor + (bonus if conflict_weight_score else 0)
-    risk_score = min(normalized_tone_score + actor_part, 100) # Cap at 100
-    return round(risk_score)
+def global_index(hotspots, top=20):
+    """One number for a window: the mean score of its `top` highest hotspots."""
+    scores = sorted((h["risk_score"] for h in hotspots), reverse=True)[:top]
+    return round(sum(scores) / len(scores)) if scores else None
 
 
-def process_data(gdelt_data):
-    """
-    Normalizes GDELT events into the schema the frontend expects.
-    """
-    unified_data = []
-    current_time_iso = datetime.utcnow().isoformat() + "Z"
+def build_history(load_hour, end_hour, etl_config, days=14):
+    """Daily global index for the UTC days that have stored data, oldest first."""
+    end = datetime.strptime(end_hour, HOUR_FORMAT)
+    history = []
+    for offset in range(days - 1, -1, -1):
+        day = (end - timedelta(days=offset)).replace(hour=23)
+        last_hour = min(day, end).strftime(HOUR_FORMAT)
+        length = int(last_hour[8:]) + 1
+        window = rank_window(load_hour, last_hour, length, etl_config["coverage_scale"]["24h"],
+                             etl_config["max_hotspots"], baseline_windows=0)
+        history.append({
+            "date": day.strftime("%Y-%m-%d"),
+            "avgRisk": global_index(window["hotspots"]) if window["hours_covered"] else None,
+            "hours_covered": window["hours_covered"],
+        })
+    return history
 
-    # Process GDELT Data
-    for event in gdelt_data:
-        lat = event.get("ActionGeo_Lat") or event.get("Actor1Geo_Lat") or event.get("Actor2Geo_Lat")
-        lon = event.get("ActionGeo_Long") or event.get("Actor1Geo_Long") or event.get("Actor2Geo_Long")
 
-        # GDELT 'Day' is YYYYMMDD, SOURCEURL often has more precise time if needed, but less reliable to parse
-        # For now, using the 'Day' and setting time to midnight.
-        # A more robust solution would be to parse GDELT's 15-min interval timestamp if available.
-        timestamp_str = str(event.get("Day", ""))
-        timestamp = current_time_iso # Default
-        if timestamp_str:
-            try:
-                # Assuming Day is YYYYMMDD, create datetime and then ISO format
-                dt_obj = datetime.strptime(timestamp_str, "%Y%m%d")
-                timestamp = dt_obj.isoformat() + "Z"
-            except ValueError:
-                pass # Keep default if parsing fails
+def build_outputs(state_dir, end_hour, etl_config):
+    """Returns (hotspots payload, history) from the stored hours."""
+    cache = {}
+    available = set(stored_hours(state_dir))
 
-        weight_factor, bonus, actor_class = actor_profile(event)
-        risk_score = calculate_risk_score(event.get("AvgTone"), event.get("EventBaseCode"), weight_factor, bonus)
+    def load_hour(hour_id):
+        if hour_id not in available:
+            return None
+        if hour_id not in cache:
+            cache[hour_id] = _read_json(hour_path(state_dir, hour_id), {})
+        return cache[hour_id]
 
-        tag = "neutral" # Default tag
-        event_base_code_prefix = str(event.get("EventBaseCode",""))[:2]
-        if event_base_code_prefix in ['18', '19', '20']:
-            tag = "conflict"
-        elif event_base_code_prefix in ['14', '10']:
-            tag = "protest"
-
-        # GDELT uses FIPS country codes. For simplicity, we'll use it directly.
-        # Mapping to ISO3 would require a conversion table.
-        country_code = event.get("ActionGeo_CountryCode", "Unknown")
-
-        if lat and lon: # Only include if we have geo-coordinates
-            item = {
-                "timestamp": timestamp,
-                "country": country_code,
-                "lat": float(lat),
-                "lon": float(lon),
-                "risk_score": risk_score,
-                "title": f"GDELT Event: {event.get('EventBaseCode', 'N/A')} in {country_code}", # More descriptive title
-                "source_url": event.get("SOURCEURL", ""),
-                "tag": tag
-            }
-            # Optional context for the frontend's hover brief
-            if event.get("EventBaseCode"):
-                item["event_code"] = str(event["EventBaseCode"])
-            if event.get("ActionGeo_FullName"):
-                item["location"] = event["ActionGeo_FullName"]
-            actors = [a.title() for a in (event.get("Actor1Name"), event.get("Actor2Name")) if a]
-            if actors:
-                item["actors"] = actors
-            if actor_class:
-                item["actor_class"] = actor_class
-            tone = _to_float(event.get("AvgTone"))
-            if tone is not None:
-                item["tone"] = round(tone, 1)
-            articles = _to_float(event.get("NumArticles"))
-            if articles is not None:
-                item["articles"] = int(articles)
-            unified_data.append(item)
-
-    return unified_data
+    windows = {}
+    for name, length in etl_config["windows"].items():
+        window = rank_window(load_hour, end_hour, length, etl_config["coverage_scale"][name],
+                             etl_config["max_hotspots"])
+        window["index"] = global_index(window["hotspots"])
+        windows[name] = window
+        print(f"Window {name}: {window['total']} hotspots, {window['hours_covered']}/{length}h covered, "
+              f"index {window['index']}")
+    return windows, build_history(load_hour, end_hour, etl_config)
 
 
 def _to_float(value):
@@ -376,39 +475,38 @@ def extract_article_meta(html):
     return _clean_text(headline, MAX_HEADLINE_CHARS), _clean_text(summary, MAX_SUMMARY_CHARS)
 
 
-def enrich_top_events(data_items, limit=20, timeout=8):
+def enrich_hotspots(windows, per_window=10, limit=30, timeout=8):
     """
-    Adds "headline" and "summary" to the highest-risk events by reading the
-    title/description metadata of their source articles. Each distinct URL is
+    Adds "headline" and "summary" to the top hotspots of every window from the
+    title/description metadata of their best-covered article. Each URL is
     fetched once; failures are skipped so a slow or blocked site never fails the run.
     """
     fetched = {}
-    ranked = sorted(data_items, key=lambda item: item.get("risk_score") or 0, reverse=True)
-    for item in ranked:
-        url = item.get("source_url") or ""
-        if not url.startswith(("http://", "https://")):
-            continue
-        if url not in fetched:
-            if len(fetched) >= limit:
-                break
-            try:
-                resp = requests.get(url, timeout=timeout, headers={"User-Agent": USER_AGENT}, stream=True)
-                resp.raise_for_status()
-                # metadata lives in <head>; no need for the whole page
-                body = resp.raw.read(200_000, decode_content=True)
-                resp.close()
-                fetched[url] = extract_article_meta(body.decode(resp.encoding or "utf-8", errors="replace"))
-            except Exception as e:
-                print(f"Could not read article metadata from {url}: {e}")
-                fetched[url] = ("", "")
-        headline, summary = fetched[url]
-        if headline:
-            item["headline"] = headline
-        if summary:
-            item["summary"] = summary
+    for window in windows.values():
+        for hotspot in window["hotspots"][:per_window]:
+            url = hotspot.get("source_url") or ""
+            if not url:
+                continue
+            if url not in fetched:
+                if len(fetched) >= limit:
+                    continue
+                try:
+                    resp = requests.get(url, timeout=timeout, headers={"User-Agent": USER_AGENT}, stream=True)
+                    resp.raise_for_status()
+                    # metadata lives in <head>; no need for the whole page
+                    body = resp.raw.read(200_000, decode_content=True)
+                    resp.close()
+                    fetched[url] = extract_article_meta(body.decode(resp.encoding or "utf-8", errors="replace"))
+                except Exception as e:
+                    print(f"Could not read article metadata from {url}: {e}")
+                    fetched[url] = ("", "")
+            headline, summary = fetched[url]
+            if headline:
+                hotspot["headline"] = headline
+            if summary:
+                hotspot["summary"] = summary
     found = sum(1 for headline, _ in fetched.values() if headline)
     print(f"Article metadata: {found} of {len(fetched)} pages gave a headline.")
-    return data_items
 
 
 # --- Ticker data: news headlines and market indices ---
@@ -528,152 +626,59 @@ def fetch_markets(markets, timeout=20):
     return items
 
 
-def save_json(payload, filename, static_data_dir="static/data"):
+def save_json(payload, filename, static_data_dir="static/data", indent=2):
     os.makedirs(static_data_dir, exist_ok=True)
     path = os.path.join(static_data_dir, filename)
     with open(path, "w") as f:
-        json.dump(payload, f, indent=2, ensure_ascii=False)
+        json.dump(payload, f, indent=indent, ensure_ascii=False)
     print(f"Saved {path}")
 
 
-def save_data(data_items, archive_data_dir="data", static_data_dir="static/data"):
-    """
-    Saves the processed data to JSON files:
-    - A date-stamped archive file in `archive_data_dir`.
-    - `latest.json` in `static_data_dir` for the frontend.
-    """
-    # Ensure directories exist
-    if not os.path.exists(archive_data_dir):
-        os.makedirs(archive_data_dir)
-        print(f"Created archive data directory: {archive_data_dir}")
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument("--state-dir", default="_state/state", help="where hourly state is kept between runs")
+    parser.add_argument("--out-dir", default="static/data", help="where the frontend's data files are written")
+    parser.add_argument("--config", default="config.json")
+    args = parser.parse_args(argv)
 
-    if not os.path.exists(static_data_dir):
-        os.makedirs(static_data_dir)
-        print(f"Created static data directory: {static_data_dir}")
-
-    today_date_str = datetime.utcnow().strftime("%Y-%m-%d")
-
-    # Define filenames
-    dated_filename = os.path.join(archive_data_dir, f"{today_date_str}.json")
-    latest_filename_for_frontend = os.path.join(static_data_dir, "latest.json")
-
-    try:
-        # Save the dated archive file
-        with open(dated_filename, 'w') as f:
-            json.dump(data_items, f, indent=2)
-        print(f"Archival data saved to {dated_filename}")
-
-        # Save/overwrite latest.json for the frontend
-        with open(latest_filename_for_frontend, 'w') as f:
-            json.dump(data_items, f, indent=2)
-        print(f"Frontend data saved to {latest_filename_for_frontend}")
-    except IOError as e:
-        print(f"Error saving data: {e}")
-
-
-def build_history(archive_data_dir="data", static_data_dir="static/data", days=14):
-    """
-    Writes `history.json` to `static_data_dir`: one {"date", "avgRisk"} entry per
-    day for the last `days` days, averaged from the daily archive snapshots.
-    Days without a usable snapshot get avgRisk None so the chart shows a gap.
-    """
-    today = datetime.utcnow().date()
-    history = []
-    for offset in range(days - 1, -1, -1):
-        day_str = (today - timedelta(days=offset)).strftime("%Y-%m-%d")
-        avg_risk = None
-        try:
-            with open(os.path.join(archive_data_dir, f"{day_str}.json")) as f:
-                scores = [
-                    item["risk_score"] for item in json.load(f)
-                    if isinstance(item, dict) and isinstance(item.get("risk_score"), (int, float))
-                ]
-            if scores:
-                avg_risk = round(sum(scores) / len(scores))
-        except (OSError, ValueError) as e:
-            print(f"No usable archive snapshot for {day_str}: {e}")
-        history.append({"date": day_str, "avgRisk": avg_risk})
-
-    os.makedirs(static_data_dir, exist_ok=True)
-    history_filename = os.path.join(static_data_dir, "history.json")
-    with open(history_filename, 'w') as f:
-        json.dump(history, f, indent=2)
-    print(f"History data saved to {history_filename}")
-    return history
-
-
-def cleanup_old_data(archive_data_dir="data", days_to_keep=90):
-    """Deletes JSON files in archive_data_dir older than days_to_keep."""
-    print(f"Cleaning up old data files from {archive_data_dir} older than {days_to_keep} days...")
-    if not os.path.isdir(archive_data_dir):
-        print(f"Archive data directory {archive_data_dir} not found. Skipping cleanup.")
-        return
-
-    cutoff_date = datetime.utcnow() - timedelta(days=days_to_keep)
-    cleaned_count = 0
-    # Only clean up dated files, not 'latest.json' which might be in 'data' if paths were misconfigured.
-    # The primary 'latest.json' for the frontend is now in 'static/data/'.
-    for filename in os.listdir(archive_data_dir):
-        if filename.endswith(".json") and filename != "latest.json": # Explicitly avoid deleting a root 'latest.json' if it exists
-            try:
-                # Assumes YYYY-MM-DD.json format for archived files
-                file_date_str = filename.split('.')[0]
-                file_date = datetime.strptime(file_date_str, "%Y-%m-%d")
-                if file_date < cutoff_date:
-                    os.remove(os.path.join(archive_data_dir, filename))
-                    print(f"Deleted old data file: {filename}")
-                    cleaned_count +=1
-            except ValueError: # If filename is not in YYYY-MM-DD format
-                print(f"Skipping file with unexpected name format: {filename}")
-            except OSError as e:
-                print(f"Error deleting file {filename}: {e}")
-    print(f"Cleanup finished. Deleted {cleaned_count} old files.")
-
-
-if __name__ == "__main__":
     print("Starting ETL script...")
+    config = load_config(args.config)
+    etl_config = {**DEFAULT_ETL_CONFIG, **config.get("etl", {})}
+    fetched_at = datetime.utcnow().isoformat(timespec="seconds") + "Z"
 
-    # 1. Fetch data
-    print("\n--- Fetching Data ---")
-    gdelt_events_raw = fetch_gdelt_events()
+    print("\n--- Fetching GDELT ---")
+    try:
+        latest = ingest(args.state_dir, etl_config)
+    except Exception as e:
+        print(f"GDELT ingest failed: {e}")
+        latest = None
+    if latest is None:
+        # Nothing new could be fetched; rebuild from what is stored, if anything.
+        hours = stored_hours(args.state_dir)
+        latest = hours[-1] + "0000" if hours else None
 
-    # 2. Process data
-    print("\n--- Processing Data ---")
-    processed_unified_data = process_data(gdelt_events_raw)
-    print(f"Total unified items processed: {len(processed_unified_data)}")
-    if processed_unified_data:
-        print(f"Sample of processed data (first item): {json.dumps(processed_unified_data[0], indent=2)}")
-
-    # Graceful fallback: if no new data was produced, preserve the previous latest.json
-    # and warn rather than overwriting with empty data or crashing the workflow.
-    if not processed_unified_data:
-        print("WARNING: No data produced by ETL this run. Keeping existing data files unchanged.")
-    else:
+    if latest:
+        print("\n--- Ranking Hotspots ---")
+        windows, history = build_outputs(args.state_dir, latest[:10], etl_config)
         print("\n--- Reading Article Metadata ---")
-        enrich_top_events(processed_unified_data)
-
-        # 3. Save data
-        print("\n--- Saving Data ---")
-        save_data(processed_unified_data)
+        enrich_hotspots(windows)
+        save_json({"updated": fetched_at, "data_through": latest, "windows": windows}, "hotspots.json", args.out_dir, indent=None)
+        save_json(history, "history.json", args.out_dir)
+    else:
+        print("WARNING: no GDELT data stored or fetched; hotspot files left unchanged.")
 
     # Ticker feeds. Each file is only replaced when its fetch returned something,
     # so a failed source leaves the previous data in place.
     print("\n--- Fetching Ticker Data ---")
-    config = load_config()
-    fetched_at = datetime.utcnow().isoformat(timespec="seconds") + "Z"
     news_items = fetch_news(config.get("news_feeds", []))
     if news_items:
-        save_json({"updated": fetched_at, "items": news_items}, "news.json")
+        save_json({"updated": fetched_at, "items": news_items}, "news.json", args.out_dir)
     market_items = fetch_markets(config.get("markets", []))
     if market_items:
-        save_json({"updated": fetched_at, "items": market_items}, "markets.json")
-
-    # 4. Rebuild the 14-day trend for the frontend from the archive
-    print("\n--- Building History ---")
-    build_history()
-
-    # 5. Cleanup old data (always runs regardless of fetch outcome)
-    print("\n--- Cleaning Old Data ---")
-    cleanup_old_data(days_to_keep=90)
+        save_json({"updated": fetched_at, "items": market_items}, "markets.json", args.out_dir)
 
     print("\nETL script finished.")
+
+
+if __name__ == "__main__":
+    main()

@@ -40,14 +40,17 @@
   function briefNode(event, withLink) {
     const root = document.createElement('div');
     root.className = 'hud-popup';
-    new Brief({ target: root, props: { event } });
-    if (withLink && /^https?:\/\//.test(event.source_url || '')) {
-      const link = document.createElement('a');
-      link.href = event.source_url;
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      link.textContent = 'OPEN SOURCE ▸';
-      root.appendChild(link);
+    new Brief({ target: root, props: { event, compact: withLink } });
+    if (withLink) {
+      for (const item of event.links || []) {
+        if (!/^https?:\/\//.test(item.url || '')) continue;
+        const link = document.createElement('a');
+        link.href = item.url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = `▸ ${item.domain || 'source'}`;
+        root.appendChild(link);
+      }
     }
     return root;
   }
@@ -156,7 +159,8 @@
       const color = riskColor(risk);
       attachBrief(
         L.circleMarker(position, {
-          radius: Math.max(2, Math.min(2 + risk / 12, 9)),
+          // area grows with the number of outlets reporting
+          radius: Math.max(2.5, Math.min(2 + 2.2 * Math.sqrt(event.outlets || 1), 16)),
           color,
           weight: 1,
           fillColor: color,

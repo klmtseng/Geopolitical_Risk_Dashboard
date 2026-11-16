@@ -19,3 +19,8 @@ dist/
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# ETL output and state (produced by the workflow, kept on the etl-state branch)
+static/data/
+_state/
+build/

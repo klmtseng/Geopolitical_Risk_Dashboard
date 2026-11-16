@@ -7,142 +7,86 @@
   import Ticker from './components/Ticker.svelte';
   import SevenSeg from './components/SevenSeg.svelte';
 
-  let allEvents = [];
+  // Ranking windows offered by the ETL, shortest first.
+  const WINDOWS = [
+    { id: '1h', label: '1H' },
+    { id: '6h', label: '6H' },
+    { id: '24h', label: '24H' },
+    { id: '7d', label: '7D' }
+  ];
+  const WINDOW_KEY = 'grd.window';
+
+  let payload = null; // hotspots.json: { updated, data_through, windows }
+  let windowId = '24h';
   let dailyAverageRiskData = []; // For Timeseries: array of {date: 'YYYY-MM-DD', avgRisk: X}
-  let top10Events = [];
-  let focusEvent = null; // event selected in the target list; the map locks onto it
+  let focusEvent = null; // hotspot selected in the target list; the map locks onto it
   let loadState = 'loading'; // 'loading' | 'ready' | 'error'
   let now = new Date();
-  let dataUpdatedAt = null; // Last-Modified of latest.json, when the server reports it
 
   // Data files live next to index.html; resolve them relative to the page so
   // the app also works under a GitHub Pages project path.
   const dataUrl = (name) => `${import.meta.env.BASE_URL}data/${name}`;
 
-  async function fetchHistory() {
-    try {
-      const response = await fetch(dataUrl('history.json'));
-      if (!response.ok) return null;
-      const history = await response.json();
-      return Array.isArray(history) && history.length > 0 ? history : null;
-    } catch (error) {
-      return null;
-    }
-  }
-
   const pad = (n, width = 2) => String(n).padStart(width, '0');
   const utcClock = (d) => `${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())}`;
-  const utcStamp = (d) =>
-    `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}Z`;
+  // "20261116104500" -> "2026-11-16 10:45Z"
+  const exportStamp = (ts) =>
+    ts ? `${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)} ${ts.slice(8, 10)}:${ts.slice(10, 12)}Z` : null;
 
-  $: maxRisk = allEvents.reduce((max, e) => Math.max(max, e.risk_score || 0), 0);
-  $: hostileCount = allEvents.filter((e) => e.tag === 'conflict').length;
-  // Most recent day that has an average
-  $: latestAverage = [...dailyAverageRiskData].reverse().find((d) => d.avgRisk != null)?.avgRisk ?? null;
+  $: current = payload?.windows?.[windowId] ?? null;
+  $: hotspots = current?.hotspots ?? [];
+  $: top10 = hotspots.slice(0, 10); // the ETL already ranks them
+  $: maxRisk = hotspots.reduce((max, h) => Math.max(max, h.risk_score || 0), 0);
+  $: surging = hotspots.filter((h) => h.surge != null && h.surge >= 3 && h.outlets >= 5).length;
   $: threatColor =
     maxRisk > 70 ? 'var(--hud-red)' : maxRisk > 40 ? 'var(--hud-amber)' : 'var(--hud-green)';
   $: threatLabel = maxRisk > 70 ? 'CONDITION RED' : maxRisk > 40 ? 'CONDITION AMBER' : 'CONDITION GREEN';
+  $: partial = current && current.hours_covered < current.hours;
 
   onMount(() => {
+    try {
+      const saved = localStorage.getItem(WINDOW_KEY);
+      if (WINDOWS.some((w) => w.id === saved)) windowId = saved;
+    } catch {
+      // storage unavailable: keep the default
+    }
     const timer = setInterval(() => (now = new Date()), 1000);
     loadData();
     return () => clearInterval(timer);
   });
 
+  function setWindow(id) {
+    windowId = id;
+    focusEvent = null;
+    try {
+      localStorage.setItem(WINDOW_KEY, id);
+    } catch {
+      // ignore
+    }
+  }
+
+  async function loadJson(name) {
+    const response = await fetch(dataUrl(name));
+    if (!response.ok) throw new Error(`${name}: HTTP ${response.status}`);
+    return response.json();
+  }
+
   async function loadData() {
     try {
-      const response = await fetch(dataUrl('latest.json'));
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      allEvents = data;
-      processEventData(data);
-
-      const lastModified = response.headers.get('last-modified');
-      if (lastModified && !isNaN(Date.parse(lastModified))) {
-        dataUpdatedAt = new Date(lastModified);
-      }
-
-      // Prefer the per-day history built by the ETL from the archive; the
-      // latest snapshot alone only covers about one day.
-      const history = await fetchHistory();
-      if (history) {
-        dailyAverageRiskData = history;
-      }
+      payload = await loadJson('hotspots.json');
       loadState = 'ready';
     } catch (error) {
-      console.error("Failed to fetch or process event data:", error);
-      allEvents = []; // Ensure it's an array even on error
+      console.error('Failed to load hotspot data:', error);
       loadState = 'error';
+      return;
+    }
+    try {
+      const history = await loadJson('history.json');
+      if (Array.isArray(history)) dailyAverageRiskData = history;
+    } catch {
+      // the trend chart simply stays empty
     }
   }
-
-  function processEventData(events) {
-    if (!events || events.length === 0) {
-        dailyAverageRiskData = [];
-        top10Events = [];
-        return;
-    }
-
-    // Calculate Top 10 Events by risk_score
-    // Target list: one entry per source article (GDELT records one article as
-    // several events), highest risk first. Events GDELT saw in fewer than
-    // MIN_ARTICLES articles are the most often miscoded, so they only fill the
-    // list when there are not enough better-covered ones. Data files without
-    // an article count are not filtered.
-    const MIN_ARTICLES = 3;
-    const seen = new Set();
-    const ranked = [...events]
-      .sort((a, b) => b.risk_score - a.risk_score)
-      .filter((event) => {
-        const key = event.source_url || `${event.title}|${event.lat}|${event.lon}`;
-        if (seen.has(key)) return false;
-        seen.add(key);
-        return true;
-      });
-    const wellCovered = ranked.filter((event) => event.articles == null || event.articles >= MIN_ARTICLES);
-    const thinlyCovered = ranked.filter((event) => event.articles != null && event.articles < MIN_ARTICLES);
-    top10Events = [...wellCovered, ...thinlyCovered].slice(0, 10);
-
-    // Calculate Global Average Risk for the last 14 days
-    const riskByDay = {}; // Store sum of risks and count for each day
-    const today = new Date();
-    const fourteenDaysAgo = new Date(today);
-    fourteenDaysAgo.setDate(today.getDate() - 14);
-
-    events.forEach(event => {
-      const eventDate = new Date(event.timestamp);
-      if (eventDate >= fourteenDaysAgo && eventDate <= today) {
-        const dayStr = eventDate.toISOString().split('T')[0]; // YYYY-MM-DD
-        if (!riskByDay[dayStr]) {
-          riskByDay[dayStr] = { totalRisk: 0, count: 0 };
-        }
-        riskByDay[dayStr].totalRisk += event.risk_score;
-        riskByDay[dayStr].count += 1;
-      }
-    });
-
-    const calculatedDailyAverages = [];
-    for (let i = 0; i < 14; i++) {
-        const date = new Date(today);
-        date.setDate(today.getDate() - i);
-        const dayStr = date.toISOString().split('T')[0];
-
-        if (riskByDay[dayStr] && riskByDay[dayStr].count > 0) {
-            calculatedDailyAverages.push({
-                date: dayStr,
-                avgRisk: Math.round(riskByDay[dayStr].totalRisk / riskByDay[dayStr].count)
-            });
-        } else {
-            // No events for that day: leave a gap rather than a misleading 0
-            calculatedDailyAverages.push({ date: dayStr, avgRisk: null });
-        }
-    }
-    // Data for chart should be in chronological order
-    dailyAverageRiskData = calculatedDailyAverages.sort((a,b) => new Date(a.date) - new Date(b.date));
-  }
-
 </script>
 
 <main>
@@ -152,8 +96,8 @@
       <h1>Geopolitical Risk <span>Tactical Display</span></h1>
     </div>
     <dl class="readouts">
-      <div><dt>Contacts</dt><dd>{pad(allEvents.length, 4)}</dd></div>
-      <div><dt>Hostile</dt><dd class="amber">{pad(hostileCount, 3)}</dd></div>
+      <div><dt>Hotspots</dt><dd>{pad(current?.total ?? 0, 4)}</dd></div>
+      <div><dt>Surging</dt><dd class="amber">{pad(surging, 3)}</dd></div>
       <div><dt>Peak</dt><dd style="color: {threatColor}">{pad(maxRisk, 3)}</dd></div>
       <div><dt>UTC</dt><dd>{utcClock(now)}</dd></div>
     </dl>
@@ -170,18 +114,38 @@
 
   <Ticker {dataUrl} />
 
+  <div class="windowbar">
+    <span class="lbl">WINDOW</span>
+    <div class="windows" role="group" aria-label="Time window">
+      {#each WINDOWS as w}
+        <button type="button" class:on={windowId === w.id} aria-pressed={windowId === w.id} on:click={() => setWindow(w.id)}>
+          {w.label}
+        </button>
+      {/each}
+    </div>
+    <span class="note">
+      {#if current}
+        RANKED BY DISTINCT OUTLETS REPORTING IN THE LAST {current.hours} H
+        {#if partial}
+          <b title="Hours of this window for which data has been collected so far">
+            · DATA FOR {current.hours_covered} OF {current.hours} H</b>
+        {/if}
+      {/if}
+    </span>
+  </div>
+
   <div class="dashboard-layout">
     <div class="map-container">
       <Panel title="Tactical Radar" code="SCN-A">
-        <Map events={allEvents} highlight={top10Events} focus={focusEvent} />
+        <Map events={hotspots} highlight={top10} focus={focusEvent} />
       </Panel>
     </div>
     <aside class="sidebar">
-      <Panel title="Threat Index" code="AVG/24H">
+      <Panel title="Threat Index" code="TOP 20 / {windowId.toUpperCase()}">
         <div class="threat">
-          <SevenSeg value={latestAverage == null ? '---' : pad(latestAverage, 3)} color={threatColor} height={56} />
+          <SevenSeg value={current?.index == null ? '---' : pad(current.index, 3)} color={threatColor} height={56} />
           <div class="threat-meta">
-            <span>MEAN RISK</span>
+            <span>MEAN OF TOP 20</span>
             <span>SCALE 000–100</span>
             <span class="amber">PEAK {pad(maxRisk, 3)}</span>
           </div>
@@ -189,14 +153,14 @@
         <Timeseries {dailyAverageRiskData} />
       </Panel>
       <Panel title="Target List" code="TOP 10">
-        <Hotlist events={top10Events} selected={focusEvent} on:select={(e) => (focusEvent = e.detail)} />
+        <Hotlist events={top10} selected={focusEvent} on:select={(e) => (focusEvent = e.detail)} />
       </Panel>
     </aside>
   </div>
 
   <footer>
     <span>SRC: GDELT 2.0 EVENT EXPORT</span>
-    <span>{dataUpdatedAt ? `DATA ${utcStamp(dataUpdatedAt)}` : 'DATA TIME UNKNOWN'}</span>
+    <span>{payload?.data_through ? `DATA THROUGH ${exportStamp(payload.data_through)}` : 'DATA TIME UNKNOWN'}</span>
     <span>NOT FOR OPERATIONAL USE</span>
   </footer>
 </main>
@@ -293,6 +257,56 @@
   .blink {
     color: var(--c, var(--hud-green));
     animation: hud-blink 1.1s steps(1) infinite;
+  }
+
+  .windowbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    margin-top: 12px;
+    font-size: 0.75rem;
+  }
+
+  .windowbar .lbl {
+    color: var(--hud-green-dim);
+  }
+
+  .windows {
+    display: flex;
+    border: 1px solid var(--hud-green-dim);
+  }
+
+  .windows button {
+    padding: 5px 12px;
+    background: none;
+    border: 0;
+    border-right: 1px solid var(--hud-green-dim);
+    color: var(--hud-green-dim);
+    font: inherit;
+    letter-spacing: inherit;
+    cursor: pointer;
+  }
+  .windows button:last-child {
+    border-right: 0;
+  }
+  .windows button:hover,
+  .windows button:focus-visible {
+    color: var(--hud-green);
+    background: var(--hud-green-faint);
+    outline: none;
+  }
+  .windows button.on {
+    background: var(--hud-green);
+    color: #000;
+  }
+
+  .note {
+    color: var(--hud-green-dim);
+  }
+  .note b {
+    font-weight: normal;
+    color: var(--hud-amber);
   }
 
   .dashboard-layout {
