@@ -69,7 +69,7 @@ Prices are as of the last ETL run, not live quotes: the close of each market's m
 
 ## Event briefs
 
-Hovering an entry in the target list or a marker on the map shows a brief: what happened (the CAMEO action for the event code, from `src/cameo.json`), where, who, when, tone and source. For the 20 highest-risk source articles the ETL also reads the page's title and description metadata and stores them as `headline` and `summary`.
+Hovering an entry in the target list or a marker on the map shows a brief: what happened (the CAMEO action for the event code, from `src/cameo.json`), where, who, when, tone and source. The target list shows one entry per source article and prefers events GDELT found in at least three articles, since thinly covered events are the ones most often miscoded. For the 20 highest-risk source articles the ETL also reads the page's title and description metadata and stores them as `headline` and `summary`.
 
 ## Adding New Data Sources
 
