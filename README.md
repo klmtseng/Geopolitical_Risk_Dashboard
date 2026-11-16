@@ -116,7 +116,6 @@ The data update is managed by a GitHub Actions workflow defined in `.github/work
 .
 ├── .github/workflows/
 │   └── daily.yml        # GitHub Actions workflow: hourly ETL, build and deployment
-├── data/                # Old daily snapshots from the previous pipeline (no longer written)
 ├── static/data/         # ETL output read by the frontend (git-ignored; produced by the workflow)
 │   ├── hotspots.json    # Ranked hotspots for each time window
 │   ├── history.json     # Threat index per UTC day
