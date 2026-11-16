@@ -396,3 +396,56 @@ def test_fetch_markets_skips_symbols_that_fail(monkeypatch):
     items = etl.fetch_markets([{"name": "Good", "symbol": "^GOOD"}, {"name": "Bad", "symbol": "BAD"}])
     assert [i["name"] for i in items] == ["Good"]
     assert "%5EGOOD" not in items[0]["symbol"]
+
+
+# --- actor-aware scoring ---
+
+def _raw(a1=None, a2=None, code="190", tone="-10"):
+    """a1/a2: (actor code, country code, [type codes]) or None."""
+    event = {"EventBaseCode": code, "AvgTone": tone}
+    for n, actor in ((1, a1), (2, a2)):
+        if actor:
+            actor_code, country, types = actor
+            event[f"Actor{n}Code"] = actor_code
+            event[f"Actor{n}CountryCode"] = country
+            for i, type_code in enumerate(types, start=1):
+                event[f"Actor{n}Type{i}Code"] = type_code
+    return event
+
+
+@pytest.mark.parametrize("event, expected", [
+    (_raw(), (1.0, 0, None)),                                                      # no actor codes: unchanged
+    (_raw(("CRM", "", ["CRM"]), ("COP", "", ["COP"])), (0.4, 0, "local")),          # robbers vs police
+    (_raw(("PAKCOP", "PAK", ["COP"])), (0.4, 0, "local")),                          # country-tagged police is still local
+    (_raw(("CVL", "", ["CVL"]), None), (0.4, 0, "local")),
+    (_raw(("PAKMIL", "PAK", ["MIL"])), (1.0, 0, "state or armed")),
+    (_raw(("REB", "", ["REB"]), ("CVL", "", ["CVL"])), (1.0, 0, "state or armed")),
+    (_raw(("IRN", "IRN", []), ("ISR", "ISR", [])), (1.0, 15, "cross-border")),      # bare countries = states
+    (_raw(("USAGOV", "USA", ["GOV"]), ("USAMIL", "USA", ["MIL"])), (1.0, 0, "state or armed")),
+    (_raw(("RUSMIL", "RUS", ["MIL"]), ("UKRCVL", "UKR", ["CVL"])), (1.0, 15, "cross-border")),
+    (_raw(("BUS", "", ["BUS"]), ("MED", "", ["MED"])), (0.4, 0, "local")),
+])
+def test_actor_profile(event, expected):
+    assert etl.actor_profile(event) == expected
+
+
+def test_risk_score_with_actor_adjustments():
+    # tone -10 -> 5; fight weight 50
+    assert calculate_risk_score(-10, "190") == 55
+    assert calculate_risk_score(-10, "190", 0.4, 0) == 25
+    assert calculate_risk_score(-10, "190", 1.0, 15) == 70
+    assert calculate_risk_score(-10, "020", 1.0, 15) == 5      # no conflict weight: no bonus either
+    assert calculate_risk_score(-90, "200", 1.0, 15) == 100    # capped
+
+
+def test_process_data_scores_by_actors():
+    common = {"Day": "20261116", "ActionGeo_Lat": "1", "ActionGeo_Long": "2", "ActionGeo_CountryCode": "XX"}
+    rows = [
+        {**_raw(("CRM", "", ["CRM"]), ("COP", "", ["COP"])), **common},
+        {**_raw(("IRN", "IRN", []), ("ISR", "ISR", [])), **common},
+        {**_raw(), **common},
+    ]
+    local, interstate, legacy = etl.process_data(rows)
+    assert (local["risk_score"], local["actor_class"]) == (25, "local")
+    assert (interstate["risk_score"], interstate["actor_class"]) == (70, "cross-border")
+    assert legacy["risk_score"] == 55 and "actor_class" not in legacy

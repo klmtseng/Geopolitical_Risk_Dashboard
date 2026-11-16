@@ -59,8 +59,18 @@ def fetch_gdelt_events():
     # GDELT v2 export CSV column indices (0-based, 61 columns total, no header row)
     COL = {
         "Day": 1,
+        "Actor1Code": 5,
         "Actor1Name": 6,
+        "Actor1CountryCode": 7,
+        "Actor1Type1Code": 12,
+        "Actor1Type2Code": 13,
+        "Actor1Type3Code": 14,
+        "Actor2Code": 15,
         "Actor2Name": 16,
+        "Actor2CountryCode": 17,
+        "Actor2Type1Code": 22,
+        "Actor2Type2Code": 23,
+        "Actor2Type3Code": 24,
         "NumArticles": 33,
         "ActionGeo_FullName": 52,
         "IsRootEvent": 25,
@@ -113,6 +123,13 @@ def fetch_gdelt_events():
                 "Day": row[COL["Day"]],
                 "Actor1Name": row[COL["Actor1Name"]],
                 "Actor2Name": row[COL["Actor2Name"]],
+                **{
+                    key: row[COL[key]]
+                    for key in (
+                        "Actor1Code", "Actor1CountryCode", "Actor1Type1Code", "Actor1Type2Code", "Actor1Type3Code",
+                        "Actor2Code", "Actor2CountryCode", "Actor2Type1Code", "Actor2Type2Code", "Actor2Type3Code",
+                    )
+                },
                 "NumArticles": row[COL["NumArticles"]],
                 "ActionGeo_FullName": row[COL["ActionGeo_FullName"]],
                 "IsRootEvent": row[COL["IsRootEvent"]],
@@ -142,10 +159,52 @@ def fetch_gdelt_events():
 
     return all_events
 
-def calculate_risk_score(tone, event_base_code):
+# CAMEO actor types that make an event geopolitical rather than local:
+# government, military, rebels, insurgents, separatists, state intelligence,
+# unaligned armed forces and intergovernmental organisations.
+STRATEGIC_ACTOR_TYPES = {"GOV", "MIL", "REB", "INS", "SEP", "SPY", "UAF", "IGO"}
+
+LOCAL_ACTOR_FACTOR = 0.4   # weight kept for events with no state or armed actor
+CROSS_BORDER_BONUS = 15    # added when state/armed actors of two countries are involved
+
+
+def _actor_kind(event, n):
+    """Classifies actor `n` (1 or 2) of a raw GDELT event as 'strategic', 'local' or None."""
+    if not event.get(f"Actor{n}Code"):
+        return None
+    types = {event.get(f"Actor{n}Type{i}Code") for i in (1, 2, 3)} - {None, ""}
+    if types & STRATEGIC_ACTOR_TYPES:
+        return "strategic"
+    if not types and event.get(f"Actor{n}CountryCode"):
+        return "strategic"  # a bare country code is how GDELT records a state acting
+    return "local"
+
+
+def actor_profile(event):
+    """
+    Returns (weight_factor, bonus, label) describing who is involved.
+
+    The event code alone cannot tell a border clash from a police shootout, so
+    the conflict weight is reduced when no state or armed actor takes part and
+    a bonus is added when such actors of two different countries are involved.
+    Events without any actor codes (older data, tests) are scored as before.
+    """
+    kinds = [_actor_kind(event, 1), _actor_kind(event, 2)]
+    if kinds == [None, None]:
+        return 1.0, 0, None
+    if "strategic" not in kinds:
+        return LOCAL_ACTOR_FACTOR, 0, "local"
+    countries = {event.get("Actor1CountryCode"), event.get("Actor2CountryCode")} - {None, ""}
+    if len(countries) == 2:
+        return 1.0, CROSS_BORDER_BONUS, "cross-border"
+    return 1.0, 0, "state or armed"
+
+
+def calculate_risk_score(tone, event_base_code, weight_factor=1.0, bonus=0):
     """
     Calculates a risk score based on GDELT tone and event base code.
-    Score is capped at 100.
+    `weight_factor` scales the event-code weight and `bonus` is added on top
+    (see actor_profile). Score is capped at 100.
     """
     normalized_tone_score = 0
     if tone is not None:
@@ -176,7 +235,9 @@ def calculate_risk_score(tone, event_base_code):
         code_prefix = str(event_base_code)[:2]
         conflict_weight_score = conflict_weights.get(code_prefix, 0)
 
-    risk_score = min(normalized_tone_score + conflict_weight_score, 100) # Cap at 100
+    # The bonus only applies to events that carry a conflict weight at all.
+    actor_part = conflict_weight_score * weight_factor + (bonus if conflict_weight_score else 0)
+    risk_score = min(normalized_tone_score + actor_part, 100) # Cap at 100
     return round(risk_score)
 
 
@@ -205,7 +266,8 @@ def process_data(gdelt_data):
             except ValueError:
                 pass # Keep default if parsing fails
 
-        risk_score = calculate_risk_score(event.get("AvgTone"), event.get("EventBaseCode"))
+        weight_factor, bonus, actor_class = actor_profile(event)
+        risk_score = calculate_risk_score(event.get("AvgTone"), event.get("EventBaseCode"), weight_factor, bonus)
 
         tag = "neutral" # Default tag
         event_base_code_prefix = str(event.get("EventBaseCode",""))[:2]
@@ -237,6 +299,8 @@ def process_data(gdelt_data):
             actors = [a.title() for a in (event.get("Actor1Name"), event.get("Actor2Name")) if a]
             if actors:
                 item["actors"] = actors
+            if actor_class:
+                item["actor_class"] = actor_class
             tone = _to_float(event.get("AvgTone"))
             if tone is not None:
                 item["tone"] = round(tone, 1)
