@@ -1,8 +1,9 @@
 import pytest
+import json
 import os
 from datetime import datetime, timedelta
 import shutil
-from etl import calculate_risk_score, cleanup_old_data # Assuming etl.py is in the same directory or PYTHONPATH
+from etl import build_history, calculate_risk_score, cleanup_old_data
 
 # Test cases for calculate_risk_score
 # Each tuple: (tone, event_base_code, expected_score, description)
@@ -169,3 +170,26 @@ def test_cleanup_old_data():
     finally:
         if os.path.exists(test_archive_dir):
             shutil.rmtree(test_archive_dir)
+
+
+def test_build_history(tmp_path):
+    archive_dir = tmp_path / "data"
+    static_dir = tmp_path / "static"
+    archive_dir.mkdir()
+    today = datetime.utcnow().date()
+
+    def write(day, payload):
+        (archive_dir / f"{day.strftime('%Y-%m-%d')}.json").write_text(payload)
+
+    write(today, json.dumps([{"risk_score": 10}, {"risk_score": 21}, {"title": "no score"}]))
+    write(today - timedelta(days=1), "not json")
+    write(today - timedelta(days=30), json.dumps([{"risk_score": 99}]))  # outside window
+
+    history = build_history(str(archive_dir), str(static_dir), days=3)
+
+    assert history == [
+        {"date": (today - timedelta(days=2)).strftime("%Y-%m-%d"), "avgRisk": None},
+        {"date": (today - timedelta(days=1)).strftime("%Y-%m-%d"), "avgRisk": None},
+        {"date": today.strftime("%Y-%m-%d"), "avgRisk": 16},
+    ]
+    assert json.loads((static_dir / "history.json").read_text()) == history

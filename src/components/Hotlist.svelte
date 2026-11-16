@@ -7,13 +7,18 @@
   <h2>Top 10 Hotspots</h2>
   {#if events && events.length > 0}
     <ol class="hotlist">
-      {#each events as event, i (event.source_url || event.title + i)}
+      {#each events as event, i}
         <li class="hotlist-item">
           <a href={event.source_url || '#'} target="_blank" rel="noopener noreferrer" title={event.title}>
             {i + 1}. {event.title || 'Event title not available'}
           </a>
           {#if event.risk_score != null}
-            <span class="risk-score-badge" title="Risk Score: {event.risk_score}">
+            <span
+              class="risk-score-badge"
+              class:high={event.risk_score > 70}
+              class:medium={event.risk_score > 40 && event.risk_score <= 70}
+              title="Risk Score: {event.risk_score}"
+            >
               {event.risk_score}
             </span>
           {/if}
@@ -87,24 +92,16 @@
     text-align: center;
   }
 
-  /* Optional: Color coding for risk score badges */
-  /* These thresholds should ideally match those used in Map.svelte for consistency */
-  .hotlist-item .risk-score-badge[title*="Risk Score: 7"], /* For scores 70-100 */
-  .hotlist-item .risk-score-badge[title*="Risk Score: 8"],
-  .hotlist-item .risk-score-badge[title*="Risk Score: 9"],
-  .hotlist-item .risk-score-badge[title*="Risk Score: 100"] {
+  /* Same thresholds as the marker colours in Map.svelte */
+  .risk-score-badge.high {
     background-color: #dc3545; /* Red */
     color: white;
   }
 
-  .hotlist-item .risk-score-badge[title*="Risk Score: 4"], /* For scores 40-69 */
-  .hotlist-item .risk-score-badge[title*="Risk Score: 5"],
-  .hotlist-item .risk-score-badge[title*="Risk Score: 6"] {
+  .risk-score-badge.medium {
     background-color: #ffc107; /* Orange/Yellow */
     color: #212529;
   }
-  /* Add more rules for yellow/green if desired */
-
 
   .no-hotspots-message {
     text-align: center;
