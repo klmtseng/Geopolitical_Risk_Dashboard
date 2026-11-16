@@ -2,6 +2,37 @@ import requests
 from datetime import datetime, timedelta
 import os
 import json
+import re
+
+
+def previous_gdelt_export_url(export_url):
+    """
+    Returns the URL of the export published 15 minutes before `export_url`,
+    or None if the URL does not carry a YYYYMMDDHHMMSS timestamp.
+    """
+    match = re.search(r"(\d{14})(?=\.export\.CSV\.zip)", export_url)
+    if not match:
+        return None
+    previous = datetime.strptime(match.group(1), "%Y%m%d%H%M%S") - timedelta(minutes=15)
+    return export_url[:match.start()] + previous.strftime("%Y%m%d%H%M%S") + export_url[match.end():]
+
+
+def download_gdelt_export(export_url, max_fallbacks=3):
+    """
+    Downloads a GDELT export zip. lastupdate.txt can list a file a moment before
+    it is actually published, which gives a 404; in that case fall back to the
+    preceding 15-minute exports instead of ending the run with no data.
+    """
+    url = export_url
+    for attempt in range(max_fallbacks + 1):
+        resp = requests.get(url, timeout=60)
+        previous_url = previous_gdelt_export_url(url)
+        if resp.status_code == 404 and attempt < max_fallbacks and previous_url:
+            print(f"GDELT export not published yet ({url}); trying {previous_url}")
+            url = previous_url
+            continue
+        resp.raise_for_status()
+        return resp
 
 
 def fetch_gdelt_events():
@@ -56,8 +87,7 @@ def fetch_gdelt_events():
         print(f"GDELT CSV URL: {export_url}")
 
         # Step 2: Download and unzip
-        resp2 = requests.get(export_url, timeout=60)
-        resp2.raise_for_status()
+        resp2 = download_gdelt_export(export_url)
         with zipfile.ZipFile(io.BytesIO(resp2.content)) as zf:
             csv_filename = zf.namelist()[0]
             with zf.open(csv_filename) as f:

@@ -3,6 +3,7 @@ import json
 import os
 from datetime import datetime, timedelta
 import shutil
+import etl
 from etl import build_history, calculate_risk_score, cleanup_old_data
 
 # Test cases for calculate_risk_score
@@ -193,3 +194,64 @@ def test_build_history(tmp_path):
         {"date": today.strftime("%Y-%m-%d"), "avgRisk": 16},
     ]
     assert json.loads((static_dir / "history.json").read_text()) == history
+
+
+class _FakeResponse:
+    def __init__(self, status_code):
+        self.status_code = status_code
+
+    def raise_for_status(self):
+        if self.status_code >= 400:
+            raise etl.requests.exceptions.HTTPError(f"{self.status_code} error")
+
+
+BASE = "http://data.gdeltproject.org/gdeltv2/"
+
+
+def test_previous_gdelt_export_url():
+    assert etl.previous_gdelt_export_url(BASE + "20261116000000.export.CSV.zip") == \
+        BASE + "20261115234500.export.CSV.zip"
+    assert etl.previous_gdelt_export_url("http://example.com/file.zip") is None
+
+
+def test_download_gdelt_export_falls_back_on_404(monkeypatch):
+    statuses = {
+        BASE + "20261116054500.export.CSV.zip": 404,
+        BASE + "20261116053000.export.CSV.zip": 200,
+    }
+    requested = []
+
+    def fake_get(url, timeout):
+        requested.append(url)
+        return _FakeResponse(statuses[url])
+
+    monkeypatch.setattr(etl.requests, "get", fake_get)
+    resp = etl.download_gdelt_export(BASE + "20261116054500.export.CSV.zip")
+    assert resp.status_code == 200
+    assert requested == list(statuses)
+
+
+def test_download_gdelt_export_gives_up(monkeypatch):
+    requested = []
+
+    def fake_get(url, timeout):
+        requested.append(url)
+        return _FakeResponse(404)
+
+    monkeypatch.setattr(etl.requests, "get", fake_get)
+    with pytest.raises(etl.requests.exceptions.HTTPError):
+        etl.download_gdelt_export(BASE + "20261116054500.export.CSV.zip", max_fallbacks=2)
+    assert len(requested) == 3
+
+
+def test_download_gdelt_export_other_errors_do_not_fall_back(monkeypatch):
+    requested = []
+
+    def fake_get(url, timeout):
+        requested.append(url)
+        return _FakeResponse(500)
+
+    monkeypatch.setattr(etl.requests, "get", fake_get)
+    with pytest.raises(etl.requests.exceptions.HTTPError):
+        etl.download_gdelt_export(BASE + "20261116054500.export.CSV.zip")
+    assert len(requested) == 1
