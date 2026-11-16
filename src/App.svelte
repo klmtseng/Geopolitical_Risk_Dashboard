@@ -86,8 +86,17 @@
     }
 
     // Calculate Top 10 Events by risk_score
+    // GDELT often records one article as several identical events (one per
+    // actor pairing); list each article/place/action once.
+    const seen = new Set();
     top10Events = [...events] // Create a new array to sort
       .sort((a, b) => b.risk_score - a.risk_score)
+      .filter((event) => {
+        const key = [event.source_url, event.event_code || event.title, event.location || event.country].join('|');
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      })
       .slice(0, 10);
 
     // Calculate Global Average Risk for the last 14 days
