@@ -67,7 +67,7 @@
 
     const option = {
       title: {
-        text: 'Global Average Risk Trend (Last 14 Days)',
+        text: 'Average Risk, Last 14 Days',
         left: 'center',
         textStyle: {
           fontSize: 16,
@@ -78,7 +78,7 @@
         trigger: 'axis',
         formatter: function (params) {
           const param = params[0];
-          return `Date: ${param.axisValueLabel}<br/>Average Risk: ${param.value}`;
+          return `Date: ${param.axisValueLabel}<br/>Average Risk: ${param.value ?? 'no data'}`;
         }
       },
       grid: {
@@ -113,6 +113,7 @@
           name: 'Average Risk',
           type: 'line',
           smooth: true,
+          connectNulls: true,
           data: data.map(item => item.avgRisk),
           itemStyle: {
             color: '#2980b9' // Example line color

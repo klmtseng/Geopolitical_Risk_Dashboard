@@ -44,9 +44,10 @@ jobs:
         run: |
           git config --global user.name 'GitHub Actions Bot'
           git config --global user.email 'actions-bot@github.com'
-          # Add the frontend data file and the archival data files
-          git add static/data/latest.json
-          git add data/*.json
+          # Stage the frontend data and the archive, including the old archive
+          # files the ETL deleted (a plain `git add data/*.json` skips deletions,
+          # so the 90-day retention never took effect in the repository).
+          git add -A static/data data
           # Check if there are changes to commit to avoid error if no data changed
           if ! git diff --staged --quiet; then
             git commit -m "Update data: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"

@@ -61,7 +61,7 @@ Key Features:
     ```
 
 8.  **Build the frontend for production:**
-    This command compiles the Svelte app into static files (typically into a `build` directory if using SvelteKit with `adapter-static`), ready for deployment.
+    This command compiles the Svelte app into static files in the `build` directory (including a copy of `static/`), ready for deployment.
     ```bash
     npm run build
     ```
@@ -96,6 +96,7 @@ The daily data update is managed by a GitHub Actions workflow defined in `.githu
 ├── static/              # Files served statically by the frontend
 │   └── data/
 │       └── latest.json  # The latest processed data, fetched by the frontend
+│       └── history.json # 14-day average risk per day, built from data/ by the ETL
 ├── src/
 │   ├── components/      # Svelte components (Map, Timeseries, Hotlist)
 │   │   ├── Hotlist.svelte
@@ -105,8 +106,7 @@ The daily data update is managed by a GitHub Actions workflow defined in `.githu
 ├── .env.example         # Example environment variables file
 ├── etl.py               # Python script for Extract, Transform, Load processes
 ├── package.json         # Node.js project metadata and dependencies
-├── svelte.config.js     # SvelteKit configuration (handles adapters like adapter-static)
-├── vite.config.js       # Vite configuration for the SvelteKit frontend
+├── vite.config.js       # Vite configuration (serves static/ and builds into build/)
 ├── README.md            # This file: project overview and instructions
 ├── requirements.txt     # Python dependencies for the ETL script
 └── test_etl.py          # Pytest unit tests for etl.py

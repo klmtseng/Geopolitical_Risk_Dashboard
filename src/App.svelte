@@ -7,16 +7,44 @@
   let allEvents = [];
   let dailyAverageRiskData = []; // For Timeseries: array of {date: 'YYYY-MM-DD', avgRisk: X}
   let top10Events = [];
+  let dataUpdatedAt = null; // Last-Modified of latest.json, when the server reports it
+
+  // Data files live next to index.html; resolve them relative to the page so
+  // the app also works under a GitHub Pages project path.
+  const dataUrl = (name) => `${import.meta.env.BASE_URL}data/${name}`;
+
+  async function fetchHistory() {
+    try {
+      const response = await fetch(dataUrl('history.json'));
+      if (!response.ok) return null;
+      const history = await response.json();
+      return Array.isArray(history) && history.length > 0 ? history : null;
+    } catch (error) {
+      return null;
+    }
+  }
 
   onMount(async () => {
     try {
-      const response = await fetch('/data/latest.json'); // Fetches from the static folder
+      const response = await fetch(dataUrl('latest.json'));
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
       allEvents = data;
       processEventData(data);
+
+      const lastModified = response.headers.get('last-modified');
+      if (lastModified && !isNaN(Date.parse(lastModified))) {
+        dataUpdatedAt = new Date(lastModified);
+      }
+
+      // Prefer the per-day history built by the ETL from the archive; the
+      // latest snapshot alone only covers about one day.
+      const history = await fetchHistory();
+      if (history) {
+        dailyAverageRiskData = history;
+      }
     } catch (error) {
       console.error("Failed to fetch or process event data:", error);
       allEvents = []; // Ensure it's an array even on error
@@ -65,8 +93,8 @@
                 avgRisk: Math.round(riskByDay[dayStr].totalRisk / riskByDay[dayStr].count)
             });
         } else {
-            // If no events for a day in the last 14 days, record 0 avg risk
-             calculatedDailyAverages.push({ date: dayStr, avgRisk: 0 });
+            // No events for that day: leave a gap rather than a misleading 0
+            calculatedDailyAverages.push({ date: dayStr, avgRisk: null });
         }
     }
     // Data for chart should be in chronological order
@@ -86,7 +114,7 @@
     </div>
     <aside class="sidebar">
       <div class="timeseries-container">
-        <Timeseries dailyGlobalAverageRisk={dailyAverageRiskData} />
+        <Timeseries {dailyAverageRiskData} />
       </div>
       <div class="hotlist-container">
         <Hotlist events={top10Events} />
@@ -95,7 +123,9 @@
   </div>
 
   <footer>
-    <p>Data processed on: {new Date().toLocaleDateString()} {new Date().toLocaleTimeString()}</p>
+    {#if dataUpdatedAt}
+      <p>Data updated: {dataUpdatedAt.toLocaleString()}</p>
+    {/if}
   </footer>
 </main>
 

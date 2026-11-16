@@ -181,16 +181,14 @@ def fetch_rss_feeds(rss_urls):
                     "published": entry.get("published") or entry.get("pubDate") or entry.get("updated"),
                     "source_feed": feed.feed.get("title", url)
                 }
+                # feedparser already parses the date into a UTC struct_time.
                 item["published_parsed"] = None
-                if item["published"]:
+                parsed_date_struct = entry.get("published_parsed") or entry.get("updated_parsed")
+                if parsed_date_struct:
                     try:
-                        parsed_date_struct = feedparser.parse_date(item["published"])
-                        if parsed_date_struct:
-                           dt_obj = datetime(*parsed_date_struct[:6])
-                           item["published_parsed"] = dt_obj.isoformat() + "Z"
+                        dt_obj = datetime(*parsed_date_struct[:6])
+                        item["published_parsed"] = dt_obj.isoformat() + "Z"
                     except (TypeError, ValueError):
-                        pass
-                    except Exception:
                         pass
 
                 all_feed_items.append(item)
@@ -418,6 +416,37 @@ def save_data(data_items, archive_data_dir="data", static_data_dir="static/data"
         print(f"Error saving data: {e}")
 
 
+def build_history(archive_data_dir="data", static_data_dir="static/data", days=14):
+    """
+    Writes `history.json` to `static_data_dir`: one {"date", "avgRisk"} entry per
+    day for the last `days` days, averaged from the daily archive snapshots.
+    Days without a usable snapshot get avgRisk None so the chart shows a gap.
+    """
+    today = datetime.utcnow().date()
+    history = []
+    for offset in range(days - 1, -1, -1):
+        day_str = (today - timedelta(days=offset)).strftime("%Y-%m-%d")
+        avg_risk = None
+        try:
+            with open(os.path.join(archive_data_dir, f"{day_str}.json")) as f:
+                scores = [
+                    item["risk_score"] for item in json.load(f)
+                    if isinstance(item, dict) and isinstance(item.get("risk_score"), (int, float))
+                ]
+            if scores:
+                avg_risk = round(sum(scores) / len(scores))
+        except (OSError, ValueError) as e:
+            print(f"No usable archive snapshot for {day_str}: {e}")
+        history.append({"date": day_str, "avgRisk": avg_risk})
+
+    os.makedirs(static_data_dir, exist_ok=True)
+    history_filename = os.path.join(static_data_dir, "history.json")
+    with open(history_filename, 'w') as f:
+        json.dump(history, f, indent=2)
+    print(f"History data saved to {history_filename}")
+    return history
+
+
 def cleanup_old_data(archive_data_dir="data", days_to_keep=90):
     """Deletes JSON files in archive_data_dir older than days_to_keep."""
     print(f"Cleaning up old data files from {archive_data_dir} older than {days_to_keep} days...")
@@ -488,7 +517,11 @@ if __name__ == "__main__":
         print("\n--- Saving Data ---")
         save_data(processed_unified_data)
 
-    # 4. Cleanup old data (always runs regardless of fetch outcome)
+    # 4. Rebuild the 14-day trend for the frontend from the archive
+    print("\n--- Building History ---")
+    build_history()
+
+    # 5. Cleanup old data (always runs regardless of fetch outcome)
     print("\n--- Cleaning Old Data ---")
     cleanup_old_data(days_to_keep=90)
 
