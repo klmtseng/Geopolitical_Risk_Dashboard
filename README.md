@@ -79,6 +79,8 @@ GDELT's machine coding is noisy: a single event row is frequently wrong about wh
 - **coverage**: `1 − exp(−outlets / scale)`, where `outlets` is the number of distinct news domains reporting in the window. One outlet counts for little; many saturate. `scale` grows with the window length.
 - **actors**: 0.2 when none of the events involves a state or armed actor (government, military, rebels, insurgents, separatists, intelligence, unaligned armed forces, intergovernmental bodies), rising to 1.0 once half of them do. Crime and culture-war stories are widely covered too, but rarely involve such actors.
 
+Hotspots reported by fewer than three distinct outlets are left out: with so little coverage a real event cannot be told from a miscoded story.
+
 **Surge** is the outlet count divided by the mean outlet count of up to six preceding windows of the same length. It is shown once at least three such windows have data.
 
 The **threat index** is the mean score of the 20 highest hotspots; the trend chart shows it per UTC day.

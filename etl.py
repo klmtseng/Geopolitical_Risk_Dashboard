@@ -34,8 +34,8 @@ HOUR_FORMAT = "%Y%m%d%H"
 
 # GDELT 2.0 event export columns (0-based, 61 columns, tab-delimited, no header)
 COL = {
-    "Actor1Code": 5, "Actor1Name": 6, "Actor1Type1Code": 12, "Actor1Type2Code": 13, "Actor1Type3Code": 14,
-    "Actor2Code": 15, "Actor2Name": 16, "Actor2Type1Code": 22, "Actor2Type2Code": 23, "Actor2Type3Code": 24,
+    "Actor1Code": 5, "Actor1Name": 6, "Actor1CountryCode": 7, "Actor1Type1Code": 12, "Actor1Type2Code": 13, "Actor1Type3Code": 14,
+    "Actor2Code": 15, "Actor2Name": 16, "Actor2CountryCode": 17, "Actor2Type1Code": 22, "Actor2Type2Code": 23, "Actor2Type3Code": 24,
     "EventCode": 26, "EventBaseCode": 27, "EventRootCode": 28, "GoldsteinScale": 30,
     "NumArticles": 33, "AvgTone": 34,
     "ActionGeo_FullName": 52, "ActionGeo_CountryCode": 53, "ActionGeo_ADM1Code": 54,
@@ -63,6 +63,8 @@ DEFAULT_ETL_CONFIG = {
     "coverage_scale": {"1h": 8, "6h": 15, "24h": 30, "7d": 80},
     # "country": one hotspot per country and kind of activity; "region": per first-level region.
     "group_by": "country",
+    # Hotspots reported by fewer distinct outlets than this are left out.
+    "min_outlets": 3,
     # Hotspots written per window.
     "max_hotspots": 250,
 }
@@ -154,7 +156,7 @@ def aggregate_rows(rows, into=None):
         articles = int(_to_float(row[COL["NumArticles"]]) or 1)
         cluster = hour.setdefault(f"{place}|{root}", {
             "country": row[COL["ActionGeo_CountryCode"]], "domains": [], "events": 0, "articles": 0,
-            "goldstein": 0.0, "tone": 0.0, "strategic": 0, "places": {}, "urls": {},
+            "goldstein": 0.0, "tone": 0.0, "strategic": 0, "international": 0, "places": {}, "urls": {},
         })
         cluster["events"] += 1
         cluster["articles"] += articles
@@ -162,6 +164,10 @@ def aggregate_rows(rows, into=None):
         cluster["tone"] += _to_float(row[COL["AvgTone"]]) or 0.0
         if _is_strategic(row, 1) or _is_strategic(row, 2):
             cluster["strategic"] += 1
+        countries = {row[COL["Actor1CountryCode"]], row[COL["Actor2CountryCode"]]} - {""}
+        if len(countries) == 2:
+            # actors of two different countries; kept for the brief, not part of the score
+            cluster["international"] = cluster.get("international", 0) + 1
         if domain and domain not in cluster["domains"]:
             cluster["domains"].append(domain)
         name = row[COL["ActionGeo_FullName"]]
@@ -292,11 +298,11 @@ def merge_hours(hour_states, group_by="region"):
             key = group_key(raw_key, cluster, group_by)
             target = merged.setdefault(key, {
                 "country": cluster["country"], "domains": set(), "events": 0, "articles": 0,
-                "goldstein": 0.0, "tone": 0.0, "strategic": 0, "places": {}, "urls": {},
+                "goldstein": 0.0, "tone": 0.0, "strategic": 0, "international": 0, "places": {}, "urls": {},
             })
             target["domains"].update(cluster["domains"])
-            for field in ("events", "articles", "goldstein", "tone", "strategic"):
-                target[field] += cluster[field]
+            for field in ("events", "articles", "goldstein", "tone", "strategic", "international"):
+                target[field] += cluster.get(field, 0)  # hours stored before a field existed lack it
             for name, (count, lat, lon) in cluster["places"].items():
                 entry = target["places"].setdefault(name, [0, lat, lon])
                 entry[0] += count
@@ -322,7 +328,8 @@ def score_cluster(cluster, coverage_scale):
     return round(100 * severity * coverage * actors)
 
 
-def rank_window(load_hour, end_hour, length, coverage_scale, max_hotspots, baseline_windows=6, group_by="country"):
+def rank_window(load_hour, end_hour, length, coverage_scale, max_hotspots, baseline_windows=6, group_by="country",
+                min_outlets=1):
     """
     Ranks the hotspots of the `length` hours ending at `end_hour`.
 
@@ -349,6 +356,8 @@ def rank_window(load_hour, end_hour, length, coverage_scale, max_hotspots, basel
         name, (_, lat, lon) = max(cluster["places"].items(), key=lambda kv: kv[1][0]) if cluster["places"] \
             else (cluster["country"], (0, None, None))
         outlets = len(cluster["domains"])
+        if outlets < min_outlets:
+            continue  # reported by too few outlets to tell a real event from a miscoded story
         surge = None
         if len(previous) >= 3:
             baseline = sum(len(p[key]["domains"]) if key in p else 0 for p in previous) / len(previous)
@@ -373,6 +382,7 @@ def rank_window(load_hour, end_hour, length, coverage_scale, max_hotspots, basel
             "severity": round(min(max(-cluster["goldstein"] / events, 0.0), 10.0), 1),
             "tone": round(cluster["tone"] / events, 1),
             "strategic_share": round(cluster["strategic"] / events, 2),
+            "international_share": round(cluster["international"] / events, 2),
             "surge": surge,
             "links": links,
             "source_url": links[0]["url"] if links else "",
@@ -399,7 +409,8 @@ def build_history(load_hour, end_hour, etl_config, days=14):
         last_hour = min(day, end).strftime(HOUR_FORMAT)
         length = int(last_hour[8:]) + 1
         window = rank_window(load_hour, last_hour, length, etl_config["coverage_scale"]["24h"],
-                             etl_config["max_hotspots"], baseline_windows=0, group_by=etl_config["group_by"])
+                             etl_config["max_hotspots"], baseline_windows=0, group_by=etl_config["group_by"],
+                             min_outlets=etl_config["min_outlets"])
         history.append({
             "date": day.strftime("%Y-%m-%d"),
             "avgRisk": global_index(window["hotspots"]) if window["hours_covered"] else None,
@@ -423,7 +434,8 @@ def build_outputs(state_dir, end_hour, etl_config):
     windows = {}
     for name, length in etl_config["windows"].items():
         window = rank_window(load_hour, end_hour, length, etl_config["coverage_scale"][name],
-                             etl_config["max_hotspots"], group_by=etl_config["group_by"])
+                             etl_config["max_hotspots"], group_by=etl_config["group_by"],
+                             min_outlets=etl_config["min_outlets"])
         window["index"] = global_index(window["hotspots"])
         windows[name] = window
         print(f"Window {name}: {window['total']} hotspots, {window['hours_covered']}/{length}h covered, "
