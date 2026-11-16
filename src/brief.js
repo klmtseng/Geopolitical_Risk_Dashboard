@@ -1,6 +1,13 @@
 // Builds the short description shown when hovering an event.
 import cameo from './cameo.json';
 
+// How the ETL classified who is involved; it scales the risk score.
+const ACTOR_CLASS = {
+  'cross-border': 'State or armed actors of two countries (score raised)',
+  'state or armed': 'State or armed actors',
+  local: 'Local actors only (score reduced)'
+};
+
 const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
 // Older data files only carry the code inside the title ("GDELT Event: 192 in TU").
@@ -68,6 +75,7 @@ export function buildBrief(event) {
   if (action) facts.push(['ACTION', `${action}${code ? ` (CAMEO ${code})` : ''}`]);
   facts.push(['LOCATION', event.location || event.country || 'Unknown']);
   if (event.actors?.length) facts.push(['ACTORS', event.actors.join(' → ')]);
+  if (event.actor_class) facts.push(['INVOLVES', ACTOR_CLASS[event.actor_class] || event.actor_class]);
   const date = formatDate(event.timestamp);
   if (date) facts.push(['DATE', date]);
   if (typeof event.tone === 'number') facts.push(['TONE', `${event.tone.toFixed(1)} (${toneLabel(event.tone)})`]);

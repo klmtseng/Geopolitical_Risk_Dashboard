@@ -67,6 +67,20 @@ The bar under the header scrolls either the latest headlines or market index per
 
 Prices are as of the last ETL run, not live quotes: the close of each market's most recent session, or the price at fetch time for a market that was still trading. Market data comes from Yahoo Finance's unofficial chart endpoint, which has no service guarantee; when a source fails the previous file is kept.
 
+## Risk score
+
+Each event's score (0–100) is the sum of two parts:
+
+- **Tone**: half the absolute GDELT tone of the coverage.
+- **Event weight**: by CAMEO root code — 50 for fighting and mass violence, 40 for assault, 20 for protest, 15 for demands, 10 for threats, 5 for consultations.
+
+GDELT codes a police shootout and a border clash the same way, so the event weight is adjusted by who is involved (`actor_profile` in `etl.py`):
+
+- No state or armed actor (government, military, rebels, insurgents, separatists, intelligence, unaligned armed forces, intergovernmental bodies, or a bare country): the weight is multiplied by 0.4.
+- State or armed actors from two different countries: 15 points are added.
+
+GDELT's machine coding is noisy, so individual events can still be misclassified; the hover brief shows the classification that was used.
+
 ## Event briefs
 
 Hovering an entry in the target list or a marker on the map shows a brief: what happened (the CAMEO action for the event code, from `src/cameo.json`), where, who, when, tone and source. The target list shows one entry per source article and prefers events GDELT found in at least three articles, since thinly covered events are the ones most often miscoded. For the 20 highest-risk source articles the ETL also reads the page's title and description metadata and stores them as `headline` and `summary`.
