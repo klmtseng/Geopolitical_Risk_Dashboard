@@ -65,105 +65,81 @@
       return;
     }
 
+    const GREEN = '#3dff9a';
+    const DIM = '#1f7a53';
+    const FONT = "'Share Tech Mono', Consolas, Menlo, monospace";
+    const peak = Math.max(0, ...data.map(item => item.avgRisk ?? 0));
+
     const option = {
-      title: {
-        text: 'Average Risk, Last 14 Days',
-        left: 'center',
-        textStyle: {
-          fontSize: 16,
-          fontWeight: 'normal'
-        }
-      },
+      backgroundColor: 'transparent',
+      textStyle: { fontFamily: FONT, color: GREEN },
       tooltip: {
         trigger: 'axis',
+        backgroundColor: 'rgba(4, 9, 7, 0.95)',
+        borderColor: GREEN,
+        textStyle: { color: GREEN, fontFamily: FONT, fontSize: 11 },
+        axisPointer: { lineStyle: { color: '#ffb000', type: 'dashed' } },
         formatter: function (params) {
           const param = params[0];
-          return `Date: ${param.axisValueLabel}<br/>Average Risk: ${param.value ?? 'no data'}`;
+          return `${param.axisValueLabel}<br/>MEAN RISK ${param.value ?? '---'}`;
         }
       },
-      grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%', // Adjusted if dataZoom is used
-        containLabel: true
-      },
+      grid: { left: 4, right: 12, top: 14, bottom: 4, containLabel: true },
       xAxis: {
         type: 'category',
-        boundaryGap: false, // For line charts, often better to not have gaps
-        data: data.map(item => item.date),
-        axisLabel: {
-          fontSize: 10
-        }
+        boundaryGap: false,
+        data: data.map(item => item.date.slice(5)),
+        axisLine: { lineStyle: { color: DIM } },
+        axisTick: { lineStyle: { color: DIM } },
+        axisLabel: { fontSize: 10, color: DIM }
       },
       yAxis: {
         type: 'value',
-        name: 'Avg. Risk Score',
-        nameTextStyle: {
-            fontSize: 12,
-            padding: [0, 0, 0, 50] // Adjust padding to prevent overlap if name is long
-        },
         min: 0,
-        max: 100,
-        axisLabel: {
-          fontSize: 10
-        }
+        // Scores run 0-100 but daily means sit low; keep the trace readable.
+        max: Math.max(20, Math.ceil(peak / 10) * 10 + 10),
+        splitLine: { lineStyle: { color: 'rgba(61, 255, 154, 0.14)', type: 'dashed' } },
+        axisLabel: { fontSize: 10, color: DIM }
       },
       series: [
         {
           name: 'Average Risk',
           type: 'line',
-          smooth: true,
+          step: 'middle',
           connectNulls: true,
+          symbol: 'rect',
+          symbolSize: 5,
           data: data.map(item => item.avgRisk),
-          itemStyle: {
-            color: '#2980b9' // Example line color
-          },
-          areaStyle: { // Optional: to fill area under line
+          lineStyle: { color: GREEN, width: 1.5, shadowColor: GREEN, shadowBlur: 8 },
+          itemStyle: { color: GREEN },
+          areaStyle: {
             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-              { offset: 0, color: 'rgba(41, 128, 185, 0.5)' },
-              { offset: 1, color: 'rgba(41, 128, 185, 0.1)' }
+              { offset: 0, color: 'rgba(61, 255, 154, 0.35)' },
+              { offset: 1, color: 'rgba(61, 255, 154, 0)' }
             ])
           }
         }
-      ],
-      // Optional: DataZoom for larger datasets, not strictly needed for 14 points
-      // dataZoom: [
-      //   {
-      //     type: 'inside',
-      //     start: 0,
-      //     end: 100
-      //   },
-      //   {
-      //     start: 0,
-      //     end: 100,
-      //     handleSize: '80%',
-      //     handleStyle: { color: '#fff', shadowBlur: 3, shadowColor: 'rgba(0,0,0,0.6)', shadowOffsetX: 2, shadowOffsetY: 2 },
-      //     bottom: 10, // Position of the slider
-      //     height: 20 // Height of the slider
-      //   }
-      // ]
+      ]
     };
 
     chartInstance.setOption(option, true); // true to not merge with previous options
   }
 </script>
 
-<div bind:this={chartContainer} style="width: 100%; height: 300px;">
-  <!-- EChart will be rendered here -->
-</div>
-{#if !chartInstance && typeof window !== 'undefined'}
-  <p style="text-align: center;">Initializing timeseries chart...</p>
-{:else if typeof window !== 'undefined' && (!dailyAverageRiskData || dailyAverageRiskData.length === 0)}
-  <p style="text-align: center;">No timeseries data available.</p>
+<div bind:this={chartContainer} class="chart"></div>
+{#if !dailyAverageRiskData || dailyAverageRiskData.length === 0}
+  <p>NO TREND DATA</p>
 {/if}
 
 <style>
-  div {
+  .chart {
     width: 100%;
-    height: 300px; /* Default height, can be overridden by parent or props */
+    height: 190px;
   }
   p {
-    font-size: 0.9em;
-    color: #777;
+    margin: 0;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--hud-green-dim);
   }
 </style>
