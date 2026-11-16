@@ -56,7 +56,7 @@
   const newsTip = (item) =>
     [item.summary, [item.source, clock(item.published)].filter(Boolean).join(' · ')].filter(Boolean).join('\n');
   const marketTip = (item) =>
-    `${item.name} (${item.symbol})\nClose ${price(item.price)}${item.currency ? ' ' + item.currency : ''} on ${item.as_of}\n` +
+    `${item.name} (${item.symbol})\nLast ${price(item.price)}${item.currency ? ' ' + item.currency : ''}, session of ${item.as_of}\n` +
     `1D ${signed(item.change_1d)}   1W ${signed(item.change_1w)}   1M ${signed(item.change_1m)}`;
 
   $: active = mode === 'news' ? news : markets;
@@ -122,8 +122,13 @@
   </div>
 
   {#if active}
-    <span class="stamp" title="Feed last fetched {clock(active.updated)}">
-      {mode === 'markets' ? `CLOSE ${active.items[0].as_of}` : `FETCHED ${clock(active.updated)}`}
+    <span
+      class="stamp"
+      title={mode === 'markets'
+        ? 'Last price of each market\'s most recent session when the feed was fetched; hover an index for its date'
+        : 'When the headlines were fetched'}
+    >
+      FETCHED {clock(active.updated)}
     </span>
   {/if}
 </section>

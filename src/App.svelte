@@ -86,9 +86,24 @@
     }
 
     // Calculate Top 10 Events by risk_score
-    top10Events = [...events] // Create a new array to sort
+    // Target list: one entry per source article (GDELT records one article as
+    // several events), highest risk first. Events GDELT saw in fewer than
+    // MIN_ARTICLES articles are the most often miscoded, so they only fill the
+    // list when there are not enough better-covered ones. Data files without
+    // an article count are not filtered.
+    const MIN_ARTICLES = 3;
+    const seen = new Set();
+    const ranked = [...events]
       .sort((a, b) => b.risk_score - a.risk_score)
-      .slice(0, 10);
+      .filter((event) => {
+        const key = event.source_url || `${event.title}|${event.lat}|${event.lon}`;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+    const wellCovered = ranked.filter((event) => event.articles == null || event.articles >= MIN_ARTICLES);
+    const thinlyCovered = ranked.filter((event) => event.articles != null && event.articles < MIN_ARTICLES);
+    top10Events = [...wellCovered, ...thinlyCovered].slice(0, 10);
 
     // Calculate Global Average Risk for the last 14 days
     const riskByDay = {}; // Store sum of risks and count for each day

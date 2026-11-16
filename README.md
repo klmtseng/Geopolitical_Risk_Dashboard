@@ -63,13 +63,13 @@ Key Features:
 The bar under the header scrolls either the latest headlines or market index performance; the NEWS / MARKETS buttons switch between them. Both lists are set in `config.json` and refreshed by the daily ETL run:
 
 - `news_feeds`: RSS or Atom feeds, each with a `name` and `url`. Written to `static/data/news.json`.
-- `markets`: instruments to show, each with a display `name` and a Yahoo Finance `symbol` (for example `^GSPC`, `^TWII`, `GC=F`, `BTC-USD`, `2330.TW`). Written to `static/data/markets.json` with the last daily close and the 1-day, 1-week and 1-month change.
+- `markets`: instruments to show, each with a display `name` and a Yahoo Finance `symbol` (for example `^GSPC`, `^TWII`, `GC=F`, `BTC-USD`, `2330.TW`). Written to `static/data/markets.json` with the latest daily price and the 1-day, 1-week and 1-month change.
 
-Prices are daily closes as of the last ETL run, not live quotes. Market data comes from Yahoo Finance's unofficial chart endpoint, which has no service guarantee; when a source fails the previous file is kept.
+Prices are as of the last ETL run, not live quotes: the close of each market's most recent session, or the price at fetch time for a market that was still trading. Market data comes from Yahoo Finance's unofficial chart endpoint, which has no service guarantee; when a source fails the previous file is kept.
 
 ## Event briefs
 
-Hovering an entry in the target list or a marker on the map shows a brief: what happened (the CAMEO action for the event code, from `src/cameo.json`), where, who, when, tone and source. For the 20 highest-risk source articles the ETL also reads the page's title and description metadata and stores them as `headline` and `summary`.
+Hovering an entry in the target list or a marker on the map shows a brief: what happened (the CAMEO action for the event code, from `src/cameo.json`), where, who, when, tone and source. The target list shows one entry per source article and prefers events GDELT found in at least three articles, since thinly covered events are the ones most often miscoded. For the 20 highest-risk source articles the ETL also reads the page's title and description metadata and stores them as `headline` and `summary`.
 
 ## Adding New Data Sources
 
