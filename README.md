@@ -73,7 +73,7 @@ The daily data update is managed by a GitHub Actions workflow defined in `.githu
 ## Data Source Attribution and Licensing
 
 -   **GDELT Project:** Data from the GDELT Project is available under an open data policy. Please refer to their website for specific terms and citation guidelines.
--   **OpenStreetMap:** Maps and geodata may utilize OpenStreetMap data. Data is available under the Open Data Commons Open Database License (ODbL). If you use map tiles from OpenStreetMap, ensure you attribute them correctly, usually with "© OpenStreetMap contributors".
+-   **Natural Earth:** The world outline is the public-domain Natural Earth 1:50m dataset, bundled through the `world-atlas` package.
 
 ## Project Structure
 

@@ -2,6 +2,7 @@
   import { onMount, onDestroy } from 'svelte';
   import L from 'leaflet';
   import 'leaflet/dist/leaflet.css';
+  import { feature, mesh } from 'topojson-client';
 
   export let events = []; // all events from App.svelte
   export let highlight = []; // events drawn as lock-on reticles (the target list)
@@ -75,6 +76,65 @@
     });
   }
 
+  const WORLD_VIEW = [[-56, -168], [80, 178]];
+
+  // Shapes that cross the 180° meridian (eastern Russia, Fiji) jump from +180 to
+  // -180 mid-outline, which a flat map draws as a line across the whole world.
+  // Make each outline's longitudes continuous, letting it run slightly past ±180.
+  function unwrapLine(line) {
+    let offset = 0;
+    let sum = 0;
+    const out = line.map(([lon, lat], i) => {
+      if (i > 0) {
+        const step = lon - line[i - 1][0];
+        if (step > 180) offset -= 360;
+        else if (step < -180) offset += 360;
+      }
+      sum += lon + offset;
+      return [lon + offset, lat];
+    });
+    // keep the outline in the copy of the world where most of it lies
+    const shift = -360 * Math.round(sum / out.length / 360);
+    return shift ? out.map(([lon, lat]) => [lon + shift, lat]) : out;
+  }
+
+  function unwrapAntimeridian(geo) {
+    const walk = (coords, depth) => (depth === 1 ? unwrapLine(coords) : coords.map((c) => walk(c, depth - 1)));
+    const DEPTH = { LineString: 1, MultiLineString: 2, Polygon: 2, MultiPolygon: 3 };
+    const fix = (geometry) =>
+      DEPTH[geometry.type] ? { ...geometry, coordinates: walk(geometry.coordinates, DEPTH[geometry.type]) } : geometry;
+    if (geo.type === 'Feature') return { ...geo, geometry: fix(geo.geometry) };
+    if (geo.type === 'FeatureCollection') return { ...geo, features: geo.features.map(unwrapAntimeridian) };
+    return fix(geo);
+  }
+
+  // Vector world outline bundled with the app (Natural Earth 1:50m), so the
+  // map is sharp at every zoom and does not depend on a tile server.
+  async function drawWorld() {
+    const { default: world } = await import('world-atlas/countries-50m.json');
+    if (!mapInstance) return;
+    const canvas = L.canvas({ padding: 0.5 });
+    const base = { renderer: canvas, interactive: false, pane: 'tilePane' };
+
+    const land = unwrapAntimeridian(feature(world, world.objects.land));
+
+    L.geoJSON(land, {
+      ...base,
+      style: { stroke: false, fillColor: '#0f3a29', fillOpacity: 1 }
+    }).addTo(mapInstance);
+
+    // internal borders, then the coastline on top
+    L.geoJSON(unwrapAntimeridian(mesh(world, world.objects.countries, (a, b) => a !== b)), {
+      ...base,
+      style: { color: '#2a9a68', weight: 0.7, opacity: 0.8, fill: false }
+    }).addTo(mapInstance);
+
+    L.geoJSON(land, {
+      ...base,
+      style: { color: GREEN, weight: 1.3, opacity: 1, fill: false }
+    }).addTo(mapInstance);
+  }
+
   function drawMarkers() {
     if (!mapInstance) return;
     dotLayer.clearLayers();
@@ -123,12 +183,21 @@
   }
 
   onMount(() => {
-    mapInstance = L.map(mapContainer, { worldCopyJump: true, minZoom: 2 }).setView([20, 10], 2);
+    mapInstance = L.map(mapContainer, {
+      zoomSnap: 0.25,
+      minZoom: 1,
+      maxZoom: 7,
+      maxBounds: [[-89, -200], [89, 200]],
+      maxBoundsViscosity: 0.8,
+      attributionControl: false
+    });
+    mapInstance.fitBounds(WORLD_VIEW);
+    L.control
+      .attribution({ prefix: false })
+      .addAttribution('Map: Natural Earth')
+      .addTo(mapInstance);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      className: 'hud-tiles'
-    }).addTo(mapInstance);
+    drawWorld();
 
     dotLayer = L.layerGroup().addTo(mapInstance);
     reticleLayer = L.layerGroup().addTo(mapInstance);
@@ -211,8 +280,8 @@
       from 0deg,
       rgba(61, 255, 154, 0) 0deg,
       rgba(61, 255, 154, 0) 300deg,
-      rgba(61, 255, 154, 0.22) 358deg,
-      rgba(61, 255, 154, 0.5) 360deg
+      rgba(61, 255, 154, 0.07) 358deg,
+      rgba(61, 255, 154, 0.22) 360deg
     );
     animation: hud-sweep 7s linear infinite;
   }
@@ -223,9 +292,9 @@
     pointer-events: none;
     z-index: 501;
     background:
-      linear-gradient(rgba(61, 255, 154, 0.25), rgba(61, 255, 154, 0.25)) center / 1px 100% no-repeat,
-      linear-gradient(rgba(61, 255, 154, 0.25), rgba(61, 255, 154, 0.25)) center / 100% 1px no-repeat,
-      repeating-radial-gradient(circle at center, transparent 0 89px, rgba(61, 255, 154, 0.2) 89px 90px);
+      linear-gradient(rgba(61, 255, 154, 0.12), rgba(61, 255, 154, 0.12)) center / 1px 100% no-repeat,
+      linear-gradient(rgba(61, 255, 154, 0.12), rgba(61, 255, 154, 0.12)) center / 100% 1px no-repeat,
+      repeating-radial-gradient(circle at center, transparent 0 139px, rgba(61, 255, 154, 0.1) 139px 140px);
   }
 
   .coords,
@@ -267,13 +336,8 @@
     color: var(--hud-green-dim);
   }
 
-  /* Recolour the map tiles to a dark green monochrome */
-  :global(.hud-tiles) {
-    filter: grayscale(1) invert(1) contrast(1.15) brightness(0.55) sepia(1) hue-rotate(75deg) saturate(2.2);
-  }
-
   :global(.leaflet-container) {
-    background: #020503;
+    background: #03100b;
     font-family: var(--hud-font);
   }
 
