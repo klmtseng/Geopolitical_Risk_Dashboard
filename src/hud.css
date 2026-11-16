@@ -1,0 +1,78 @@
+/* Cockpit HUD theme: phosphor green and amber on near-black. */
+:root {
+  --hud-bg: #040907;
+  --hud-panel: rgba(8, 22, 16, 0.82);
+  --hud-green: #3dff9a;
+  --hud-green-dim: #1f7a53;
+  --hud-green-faint: rgba(61, 255, 154, 0.14);
+  --hud-amber: #ffb000;
+  --hud-red: #ff4b3a;
+  --hud-text: #b8ffd9;
+  --hud-font: 'Share Tech Mono', 'OCR A Std', 'Consolas', 'Menlo', 'DejaVu Sans Mono', monospace;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--hud-bg);
+  color: var(--hud-text);
+  font-family: var(--hud-font);
+  letter-spacing: 0.04em;
+}
+
+body {
+  /* faint grid, like a plotting board behind the glass */
+  background-image:
+    linear-gradient(var(--hud-green-faint) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hud-green-faint) 1px, transparent 1px),
+    radial-gradient(ellipse at 50% 30%, #0b2419 0%, var(--hud-bg) 70%);
+  background-size: 40px 40px, 40px 40px, 100% 100%;
+  background-attachment: fixed;
+}
+
+/* CRT scanlines over everything; never intercepts input */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.16) 3px
+  );
+}
+
+a {
+  color: var(--hud-green);
+}
+
+::selection {
+  background: var(--hud-green);
+  color: #000;
+}
+
+@keyframes hud-blink {
+  0%, 60% { opacity: 1; }
+  61%, 100% { opacity: 0.25; }
+}
+
+@keyframes hud-sweep {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes hud-lock {
+  0% { transform: scale(1.9); opacity: 0; }
+  40% { opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

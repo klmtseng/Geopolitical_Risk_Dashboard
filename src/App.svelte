@@ -3,10 +3,16 @@
   import Map from './components/Map.svelte';
   import Timeseries from './components/Timeseries.svelte';
   import Hotlist from './components/Hotlist.svelte';
+  import Panel from './components/Panel.svelte';
+  import Ticker from './components/Ticker.svelte';
+  import SevenSeg from './components/SevenSeg.svelte';
 
   let allEvents = [];
   let dailyAverageRiskData = []; // For Timeseries: array of {date: 'YYYY-MM-DD', avgRisk: X}
   let top10Events = [];
+  let focusEvent = null; // event selected in the target list; the map locks onto it
+  let loadState = 'loading'; // 'loading' | 'ready' | 'error'
+  let now = new Date();
   let dataUpdatedAt = null; // Last-Modified of latest.json, when the server reports it
 
   // Data files live next to index.html; resolve them relative to the page so
@@ -24,7 +30,26 @@
     }
   }
 
-  onMount(async () => {
+  const pad = (n, width = 2) => String(n).padStart(width, '0');
+  const utcClock = (d) => `${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}:${pad(d.getUTCSeconds())}`;
+  const utcStamp = (d) =>
+    `${d.getUTCFullYear()}-${pad(d.getUTCMonth() + 1)}-${pad(d.getUTCDate())} ${pad(d.getUTCHours())}:${pad(d.getUTCMinutes())}Z`;
+
+  $: maxRisk = allEvents.reduce((max, e) => Math.max(max, e.risk_score || 0), 0);
+  $: hostileCount = allEvents.filter((e) => e.tag === 'conflict').length;
+  // Most recent day that has an average
+  $: latestAverage = [...dailyAverageRiskData].reverse().find((d) => d.avgRisk != null)?.avgRisk ?? null;
+  $: threatColor =
+    maxRisk > 70 ? 'var(--hud-red)' : maxRisk > 40 ? 'var(--hud-amber)' : 'var(--hud-green)';
+  $: threatLabel = maxRisk > 70 ? 'CONDITION RED' : maxRisk > 40 ? 'CONDITION AMBER' : 'CONDITION GREEN';
+
+  onMount(() => {
+    const timer = setInterval(() => (now = new Date()), 1000);
+    loadData();
+    return () => clearInterval(timer);
+  });
+
+  async function loadData() {
     try {
       const response = await fetch(dataUrl('latest.json'));
       if (!response.ok) {
@@ -45,11 +70,13 @@
       if (history) {
         dailyAverageRiskData = history;
       }
+      loadState = 'ready';
     } catch (error) {
       console.error("Failed to fetch or process event data:", error);
       allEvents = []; // Ensure it's an array even on error
+      loadState = 'error';
     }
-  });
+  }
 
   function processEventData(events) {
     if (!events || events.length === 0) {
@@ -104,112 +131,210 @@
 </script>
 
 <main>
-  <header>
-    <h1>Geopolitical Risk Dashboard</h1>
+  <header class="topbar">
+    <div class="ident">
+      <span class="unit">GRD-01</span>
+      <h1>Geopolitical Risk <span>Tactical Display</span></h1>
+    </div>
+    <dl class="readouts">
+      <div><dt>Contacts</dt><dd>{pad(allEvents.length, 4)}</dd></div>
+      <div><dt>Hostile</dt><dd class="amber">{pad(hostileCount, 3)}</dd></div>
+      <div><dt>Peak</dt><dd style="color: {threatColor}">{pad(maxRisk, 3)}</dd></div>
+      <div><dt>UTC</dt><dd>{utcClock(now)}</dd></div>
+    </dl>
+    <div class="condition" style="--c: {threatColor}">
+      {#if loadState === 'loading'}
+        <span class="blink">LINK ESTABLISHING…</span>
+      {:else if loadState === 'error'}
+        <span class="blink" style="--c: var(--hud-red)">NO SIGNAL</span>
+      {:else}
+        <span>{threatLabel}</span>
+      {/if}
+    </div>
   </header>
+
+  <Ticker {dataUrl} />
 
   <div class="dashboard-layout">
     <div class="map-container">
-      <Map events={allEvents} />
+      <Panel title="Tactical Radar" code="SCN-A">
+        <Map events={allEvents} highlight={top10Events} focus={focusEvent} />
+      </Panel>
     </div>
     <aside class="sidebar">
-      <div class="timeseries-container">
+      <Panel title="Threat Index" code="AVG/24H">
+        <div class="threat">
+          <SevenSeg value={latestAverage == null ? '---' : pad(latestAverage, 3)} color={threatColor} height={56} />
+          <div class="threat-meta">
+            <span>MEAN RISK</span>
+            <span>SCALE 000–100</span>
+            <span class="amber">PEAK {pad(maxRisk, 3)}</span>
+          </div>
+        </div>
         <Timeseries {dailyAverageRiskData} />
-      </div>
-      <div class="hotlist-container">
-        <Hotlist events={top10Events} />
-      </div>
+      </Panel>
+      <Panel title="Target List" code="TOP 10">
+        <Hotlist events={top10Events} selected={focusEvent} on:select={(e) => (focusEvent = e.detail)} />
+      </Panel>
     </aside>
   </div>
 
   <footer>
-    {#if dataUpdatedAt}
-      <p>Data updated: {dataUpdatedAt.toLocaleString()}</p>
-    {/if}
+    <span>SRC: GDELT 2.0 EVENT EXPORT</span>
+    <span>{dataUpdatedAt ? `DATA ${utcStamp(dataUpdatedAt)}` : 'DATA TIME UNKNOWN'}</span>
+    <span>NOT FOR OPERATIONAL USE</span>
   </footer>
 </main>
 
 <style>
-  :global(body) {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    background-color: #f4f7f9;
-    color: #333;
-  }
-
   main {
     display: flex;
     flex-direction: column;
-    align-items: center;
     min-height: 100vh;
+    max-width: 1700px;
+    margin: 0 auto;
+    padding: 0 16px;
+    box-sizing: border-box;
   }
 
-  header {
-    width: 100%;
-    background-color: #2c3e50;
-    color: white;
-    padding: 1rem 0;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  .topbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 28px;
+    padding: 12px 4px;
+    border-bottom: 2px solid var(--hud-green-dim);
   }
 
-  header h1 {
+  .ident {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-right: auto;
+  }
+
+  .unit {
+    padding: 3px 8px;
+    background: var(--hud-amber);
+    color: #000;
+    font-weight: bold;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  h1 {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 1.25rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--hud-green);
+    text-shadow: 0 0 8px rgba(61, 255, 154, 0.7);
+  }
+
+  h1 span {
+    color: var(--hud-text);
+    opacity: 0.7;
+  }
+
+  .readouts {
+    display: flex;
+    gap: 22px;
+    margin: 0;
+  }
+
+  .readouts div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  dt {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    color: var(--hud-green-dim);
+  }
+
+  dd {
+    margin: 0;
+    font-size: 1.15rem;
+    color: var(--hud-green);
+    text-shadow: 0 0 6px currentColor;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .amber {
+    color: var(--hud-amber);
+  }
+
+  .condition {
+    padding: 6px 14px;
+    border: 1px solid var(--c);
+    color: var(--c);
+    font-size: 0.85rem;
+    text-shadow: 0 0 6px currentColor;
+    box-shadow: inset 0 0 12px color-mix(in srgb, var(--c) 25%, transparent);
+  }
+
+  .blink {
+    color: var(--c, var(--hud-green));
+    animation: hud-blink 1.1s steps(1) infinite;
   }
 
   .dashboard-layout {
     display: flex;
-    flex-wrap: wrap; /* Allow wrapping for smaller screens if necessary */
-    padding: 20px;
-    gap: 20px;
-    width: 100%;
-    max-width: 1600px; /* Max width for the dashboard content */
-    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px 0;
+    align-items: flex-start;
   }
 
   .map-container {
-    flex: 3; /* Map takes more space */
-    min-width: 300px; /* Minimum width for the map */
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    flex: 3;
+    min-width: 300px;
   }
 
   .sidebar {
-    flex: 1; /* Sidebar takes less space */
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    min-width: 280px; /* Minimum width for sidebar elements */
+    gap: 16px;
+    min-width: 300px;
   }
 
-  .timeseries-container,
-  .hotlist-container {
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  .threat {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 6px;
+  }
+
+  .threat-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-size: 0.68rem;
+    color: var(--hud-green-dim);
   }
 
   footer {
-    width: 100%;
-    text-align: center;
-    padding: 15px 0;
-    font-size: 0.9em;
-    color: #777;
-    margin-top: auto; /* Pushes footer to the bottom */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 6px 20px;
+    margin-top: auto;
+    padding: 10px 4px 14px;
+    border-top: 1px solid var(--hud-green-dim);
+    font-size: 0.68rem;
+    color: var(--hud-green-dim);
   }
 
-  /* Basic responsiveness: stack layout on smaller screens */
   @media (max-width: 768px) {
     .dashboard-layout {
       flex-direction: column;
+      align-items: stretch;
     }
-    .map-container, .sidebar {
-      flex: 1 1 100%; /* Take full width when stacked */
+    .readouts {
+      gap: 14px;
     }
   }
 </style>

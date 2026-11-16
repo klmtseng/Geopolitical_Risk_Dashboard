@@ -58,6 +58,19 @@ Key Features:
     npm run build
     ```
 
+## Ticker: news and market indices
+
+The bar under the header scrolls either the latest headlines or market index performance; the NEWS / MARKETS buttons switch between them. Both lists are set in `config.json` and refreshed by the daily ETL run:
+
+- `news_feeds`: RSS or Atom feeds, each with a `name` and `url`. Written to `static/data/news.json`.
+- `markets`: instruments to show, each with a display `name` and a Yahoo Finance `symbol` (for example `^GSPC`, `^TWII`, `GC=F`, `BTC-USD`, `2330.TW`). Written to `static/data/markets.json` with the last daily close and the 1-day, 1-week and 1-month change.
+
+Prices are daily closes as of the last ETL run, not live quotes. Market data comes from Yahoo Finance's unofficial chart endpoint, which has no service guarantee; when a source fails the previous file is kept.
+
+## Event briefs
+
+Hovering an entry in the target list or a marker on the map shows a brief: what happened (the CAMEO action for the event code, from `src/cameo.json`), where, who, when, tone and source. For the 20 highest-risk source articles the ETL also reads the page's title and description metadata and stores them as `headline` and `summary`.
+
 ## Adding New Data Sources
 
 To add new data sources, you will primarily need to modify the `etl.py` script.
@@ -73,7 +86,7 @@ The daily data update is managed by a GitHub Actions workflow defined in `.githu
 ## Data Source Attribution and Licensing
 
 -   **GDELT Project:** Data from the GDELT Project is available under an open data policy. Please refer to their website for specific terms and citation guidelines.
--   **OpenStreetMap:** Maps and geodata may utilize OpenStreetMap data. Data is available under the Open Data Commons Open Database License (ODbL). If you use map tiles from OpenStreetMap, ensure you attribute them correctly, usually with "© OpenStreetMap contributors".
+-   **Natural Earth:** The world outline is the public-domain Natural Earth 1:50m dataset, bundled through the `world-atlas` package.
 
 ## Project Structure
 
@@ -93,6 +106,7 @@ The daily data update is managed by a GitHub Actions workflow defined in `.githu
 │   │   ├── Map.svelte
 │   │   └── Timeseries.svelte
 │   ├── App.svelte       # Main Svelte application component
+├── config.json          # News feeds and market symbols for the ticker
 ├── etl.py               # Python script for Extract, Transform, Load processes
 ├── package.json         # Node.js project metadata and dependencies
 ├── vite.config.js       # Vite configuration (serves static/ and builds into build/)
