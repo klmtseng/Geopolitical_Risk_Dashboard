@@ -6,6 +6,10 @@ on:
     # by hours; the ETL catches up on everything published since its last run.
     - cron: '47 * * * *'
   workflow_dispatch: # Allows manual triggering (on any branch; only main deploys)
+  # Preview: pushing to a working branch runs the ETL and build against the
+  # preview state, without deploying.
+  push:
+    branches: ['claude/**']
 
 # One run at a time per branch, so two runs never write the state at once.
 concurrency:
