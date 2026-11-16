@@ -1,11 +1,151 @@
 {
-  "updated": "2026-11-16T07:21:06Z",
+  "updated": "2026-11-16T11:04:07Z",
   "items": [
     {
-      "title": "Yemeni forces' retreat leaves Houthis in control of key Red Sea waterway",
+      "title": "Two mass shootings in South Africa leave 17 dead",
+      "link": "https://www.bbc.co.uk/news/articles/c8y5x3n4kywpo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "published": "2026-11-16T10:57:48Z",
+      "summary": "The shootings in KwaZulu-Natal and Gauteng highlight South Africa's struggle to curb violent crime."
+    },
+    {
+      "title": "Lebanon’s second airport could provide economic and political benefits",
+      "link": "https://www.aljazeera.com/features/2026/11/16/lebanons-second-airport-could-provide-economic-and-political-benefits?traffic_source=rss",
+      "source": "Al Jazeera",
+      "published": "2026-11-16T10:28:22Z",
+      "summary": "The establishment of a second airport in Lebanon gives the war-devastated country more options for air travel."
+    },
+    {
+      "title": "USS Roosevelt arrives in Middle East: Is the US-Iran war about to resume?",
+      "link": "https://www.aljazeera.com/news/2026/11/16/uss-roosevelt-arrives-in-middle-east-is-the-us-iran-war-about-to-resume?traffic_source=rss",
+      "source": "Al Jazeera",
+      "published": "2026-11-16T10:14:27Z",
+      "summary": "The aircraft carrier joins two others operating in the US Central Command area of responsibility."
+    },
+    {
+      "title": "Jordan bans Telegram over national security concerns",
+      "link": "https://www.aljazeera.com/news/2026/11/16/jordan-bans-telegram-messing-app-over-national-security-concerns?traffic_source=rss",
+      "source": "Al Jazeera",
+      "published": "2026-11-16T10:12:28Z",
+      "summary": "The measure comes amid a security crackdown after last month's deadly attack on a Greek Orthodox church."
+    },
+    {
+      "title": "‘NATO will collapse’: Russia stalls Ukraine talks, seeks to divide Europe",
+      "link": "https://www.aljazeera.com/news/2026/11/16/nato-will-collapse-russia-stalls-ukraine-talks-seeks-to-divide-europe?traffic_source=rss",
+      "source": "Al Jazeera",
+      "published": "2026-11-16T10:03:11Z",
+      "summary": "Russia has proposed nonaggression pacts with individual nations, which could shatter collective defence against Moscow."
+    },
+    {
+      "title": "Trump heads to Asia to meet with Xi and Putin amid Nvidia fallout",
+      "link": "https://www.npr.org/2026/11/16/nx-s1-6041738/trump-xi-and-putin-china-nvidia",
+      "source": "NPR World",
+      "published": "2026-11-16T10:00:00Z",
+      "summary": "The trip to China marks Trump's second time this year, and comes as the president and his party faced widespread backlash from voters in the recent midterm elections."
+    },
+    {
+      "title": "Antimicrobial resistance could kill 39 million people over 25 years: WHO",
+      "link": "https://www.aljazeera.com/news/2026/11/16/un-health-agency-sounds-alarm-on-antimicrobial-resistance-threat?traffic_source=rss",
+      "source": "Al Jazeera",
+      "published": "2026-11-16T09:57:37Z",
+      "summary": "UN's health agency says growing resistance to antibiotics and other medicines threatens 'future of modern medicine'."
+    },
+    {
+      "title": "Sadiq Khan: Global North must take responsibility for climate change",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/11/16/sadiq-khan-global-north-must-take-responsibility-for-climate-change?traffic_source=rss",
+      "source": "Al Jazeera",
+      "published": "2026-11-16T09:52:11Z",
+      "summary": "At COP31, Sadiq Khan urges wealthy nations to support the Global South, which bears the brunt of climate change."
+    },
+    {
+      "title": "Third US aircraft carrier arrives in Middle East amid tensions with Iran",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/11/16/third-us-aircraft-carrier-arrives-in-middle-east-amid-tensions-with-iran?traffic_source=rss",
+      "source": "Al Jazeera",
+      "published": "2026-11-16T09:31:36Z",
+      "summary": "Trump shares a message saying: ‘May God protect our troops’ as the USS Theodore Roosevelt arrives in the Middle East."
+    },
+    {
+      "title": "'You're going to win the war': Harry praises war veterans on surprise Ukraine visit",
+      "link": "https://www.bbc.co.uk/news/articles/c60evn992jq8o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "published": "2026-11-16T09:21:31Z",
+      "summary": "He has been showing support for injured veterans in Ukraine and praising the country's resilience."
+    },
+    {
+      "title": "UK and allies call on Israel to allow rapid humanitarian access to Gaza",
+      "link": "https://www.bbc.co.uk/news/articles/cwm2mllj1pp8o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "published": "2026-11-16T08:56:04Z",
+      "summary": "The UK, Australia, Canada and Italy say Israeli authorities are holding back vital supplies at the borders, including 150,00 tents."
+    },
+    {
+      "title": "Ronaldinho comes out retirement for 45 mins in Italy’s third division",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/11/16/ronaldinho-comes-out-retirement-for-45-mins-in-italys-third-division?traffic_source=rss",
+      "source": "Al Jazeera",
+      "published": "2026-11-16T08:54:58Z",
+      "summary": "Football legend Ronaldinho came out of retirement to play 45 minutes of a match in Italy’s third division."
+    },
+    {
+      "title": "Kachin: where Myanmar’s rare earth minerals are in tight grip",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/11/16/kachin-where-myanmars-rare-earth-minerals-are-in-tight-grip?traffic_source=rss",
+      "source": "Al Jazeera",
+      "published": "2026-11-16T08:49:51Z",
+      "summary": "In Myanmar’s northern state of Kachin lies millions of dollars worth of rare earth minerals."
+    },
+    {
+      "title": "Ahmad Tibi elected deputy speaker of Israel’s Knesset",
+      "link": "https://www.aljazeera.com/news/2026/11/16/ahmed-tibi-appointed-as-deputy-speaker-of-israels-knesset?traffic_source=rss",
+      "source": "Al Jazeera",
+      "published": "2026-11-16T08:45:07Z",
+      "summary": "Leader of alliance representing Palestinian citizens of Israel says election is 'rightful achievement' for Joint List."
+    },
+    {
+      "title": "Over 2,000 people cross over from Senegal into Spain’s Canary Islands",
+      "link": "https://www.aljazeera.com/video/newsfeed/2026/11/16/over-2000-people-cross-over-from-senegal-into-spains-canary-islands?traffic_source=rss",
+      "source": "Al Jazeera",
+      "published": "2026-11-16T08:23:19Z",
+      "summary": "Around 2,000 migrants have crossed into Spain’s Canary Islands from Senegal in two days."
+    },
+    {
+      "title": "Russia out of IIHF World Junior Ice Hockey as Canada refuses entry",
+      "link": "https://www.aljazeera.com/sports/2026/11/16/russia-out-of-iihf-world-junior-ice-hockey-as-canada-refuses-entry?traffic_source=rss",
+      "source": "Al Jazeera",
+      "published": "2026-11-16T08:20:17Z",
+      "summary": "Norway back in the tournament after being bumped to make room for Russia after a Court of Arbitration for Sport ruling."
+    },
+    {
+      "title": "Ecuador’s president denies existence of US military base",
+      "link": "https://www.aljazeera.com/news/2026/11/16/ecuadors-president-denies-us-has-military-base-in-country?traffic_source=rss",
+      "source": "Al Jazeera",
+      "published": "2026-11-16T08:14:48Z",
+      "summary": "Daniel Noboa says US personnel in the country for 'temporary activities'."
+    },
+    {
+      "title": "Why is China resisting a nuclear treaty with the US and Russia?",
+      "link": "https://www.aljazeera.com/news/2026/11/16/why-is-china-not-keen-on-a-nuclear-treaty-with-us-and-russia?traffic_source=rss",
+      "source": "Al Jazeera",
+      "published": "2026-11-16T07:54:09Z",
+      "summary": "Beijing has a smaller arsenal than Washington and Moscow and worries that a pact could limit its nuclear capabilities."
+    },
+    {
+      "title": "At least 11 killed in blaze on Thailand’s Phuket island",
+      "link": "https://www.aljazeera.com/news/2026/11/16/shophouse-fire-on-thai-resort-island-kills-11?traffic_source=rss",
+      "source": "Al Jazeera",
+      "published": "2026-11-16T07:42:48Z",
+      "summary": "Authorities are investigating the cause of the fire, which also injured 16, but have ruled out arson."
+    },
+    {
+      "title": "US basketball player arrested with 34kg of cannabis at Nigerian airport",
+      "link": "https://www.bbc.co.uk/news/articles/cj93rggenq4xo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC World",
+      "published": "2026-11-16T07:24:45Z",
+      "summary": "The anti-drugs agency says the American attempted to leave the airport, abandoning his luggage with the drugs."
+    },
+    {
+      "title": "Yemeni forces' retreat leaves Houthis in control of key area on coast of Red Sea waterway",
       "link": "https://www.bbc.co.uk/news/articles/cqvg2xgyvnjpo?at_medium=RSS&at_campaign=rss",
       "source": "BBC World",
-      "published": "2026-11-16T07:19:52Z",
+      "published": "2026-11-16T07:23:23Z",
       "summary": "Saudi-backed forces say they are moving troops from the Bab al-Mandab Strait to defend the interim capital Aden."
     },
     {
@@ -70,146 +210,6 @@
       "source": "BBC World",
       "published": "2026-11-16T04:36:45Z",
       "summary": "Rescuers found the pet cat in the ruins of Zariah's apartment four days after she made an emotional plea to the public."
-    },
-    {
-      "title": "Indonesian president apologises to Singapore, Malaysia for wildfire haze",
-      "link": "https://www.aljazeera.com/news/2026/11/16/indonesian-president-apologises-to-singapore-malaysia-for-wildfire-haze?traffic_source=rss",
-      "source": "Al Jazeera",
-      "published": "2026-11-16T04:11:53Z",
-      "summary": "Prabowo says his government has a 'zero-tolerance policy' for firms that contribute to blazes and pledges strict action."
-    },
-    {
-      "title": "Pope Leo flies to mass in the Papacoptero",
-      "link": "https://www.aljazeera.com/video/newsfeed/2026/11/16/pope-leo-flies-to-mass-in-the-papacoptero?traffic_source=rss",
-      "source": "Al Jazeera",
-      "published": "2026-11-16T03:54:04Z",
-      "summary": "Pope Leo was filmed flying in the cockpit of an army helicopter to celebrate mass"
-    },
-    {
-      "title": "Shophouse fire kills at least 11 in Phuket",
-      "link": "https://www.aljazeera.com/video/newsfeed/2026/11/16/shophouse-fire-kills-at-least-11-in-phuket?traffic_source=rss",
-      "source": "Al Jazeera",
-      "published": "2026-11-16T03:51:43Z",
-      "summary": "Fire engulfed buildings in Thailand’s popular tourist town of Patong, killing several people and injuring many others."
-    },
-    {
-      "title": "Mexican drug lord Miguel Ángel Félix Gallardo dies age 80",
-      "link": "https://www.bbc.co.uk/news/articles/c51k9nkwrndxo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "published": "2026-11-16T03:21:56Z",
-      "summary": "Known as the 'Boss of Bosses', he was the head of all-powerful Guadalajara Cartel in the 1980s before his arrest broke up his drug organisation."
-    },
-    {
-      "title": "Australian MP 'full of gratitude' upon leaving hospital after alleged car attack",
-      "link": "https://www.bbc.co.uk/news/articles/cmpqr9j81888o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "published": "2026-11-16T03:09:49Z",
-      "summary": "The MP lost both of her legs after the alleged attack outside her electorate office four weeks ago."
-    },
-    {
-      "title": "ASEAN, China fall short of agreeing on South China Sea code",
-      "link": "https://www.aljazeera.com/news/2026/11/16/asean-china-fall-short-of-agreeing-on-south-china-sea-code?traffic_source=rss",
-      "source": "Al Jazeera",
-      "published": "2026-11-16T02:46:35Z",
-      "summary": "Southeast Asian leaders also denounce violence in Myanmar and extend ban on country's leader attending bloc's summits."
-    },
-    {
-      "title": "Houthis advance in Yemen as government forces move to defend Aden",
-      "link": "https://www.aljazeera.com/video/newsfeed/2026/11/16/houthis-advance-in-yemen-as-government-forces-move-to-defend-aden?traffic_source=rss",
-      "source": "Al Jazeera",
-      "published": "2026-11-16T02:22:29Z",
-      "summary": "An advance by the Houthi armed group in Yemen is threatening one of the government’s last strongholds."
-    },
-    {
-      "title": "Pope condemns murders of Peru’s Indigenous leaders, deforestation of Amazon",
-      "link": "https://www.aljazeera.com/news/2026/11/16/pope-condemns-murders-of-perus-indigenous-leaders-deforestation-of-amazon?traffic_source=rss",
-      "source": "Al Jazeera",
-      "published": "2026-11-16T01:52:12Z",
-      "summary": "Pontiff says he supports Indigenous efforts to protect their lands, demands justice for slain environmental defenders."
-    },
-    {
-      "title": "Suspected China spy linked to Nvidia's ex-boss left in 2025, Megaspeed says",
-      "link": "https://www.bbc.co.uk/news/articles/cmdx1vpprk9vo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "published": "2026-11-16T01:47:57Z",
-      "summary": "The Nvidia scandal has raised questions over whether advanced AI chips ended up in China, despite US restrictions."
-    },
-    {
-      "title": "Pope urges end to Amazon deforestation",
-      "link": "https://www.aljazeera.com/video/newsfeed/2026/11/16/pope-urges-end-to-amazon-deforestation?traffic_source=rss",
-      "source": "Al Jazeera",
-      "published": "2026-11-16T01:44:11Z",
-      "summary": "Pope Leo XIV warns deforestation and illegal mining are threatening the Amazon rainforest and the local communities."
-    },
-    {
-      "title": "Founder of Guadalajara cartel dies in hospital after decades in prison",
-      "link": "https://www.aljazeera.com/news/2026/11/16/founder-of-guadalajara-cartel-dies-in-hospital-after-decades-in-prison?traffic_source=rss",
-      "source": "Al Jazeera",
-      "published": "2026-11-16T00:51:23Z",
-      "summary": "Miguel Angel Felix Gallardo was convicted of the 1985 murder of a US drug enforcement agent and a Mexican pilot."
-    },
-    {
-      "title": "After a nationwide ground stop, US faces aviation infrastructure questions",
-      "link": "https://www.aljazeera.com/news/2026/11/16/after-a-nationwide-ground-stop-us-faces-aviation-infrastructure-questions?traffic_source=rss",
-      "source": "Al Jazeera",
-      "published": "2026-11-16T00:45:48Z",
-      "summary": "Trump has requested $50bn for upgrades, but Democratic lawmakers are asking for transparency before spending more."
-    },
-    {
-      "title": "Czechs rally against gov’t threat to media independence",
-      "link": "https://www.aljazeera.com/video/newsfeed/2026/11/16/czechs-rally-against-govt-threat-to-media-independence?traffic_source=rss",
-      "source": "Al Jazeera",
-      "published": "2026-11-16T00:26:32Z",
-      "summary": "Czechs rallied in Prague over plans to shift public media funding to the state, raising fears of government influence."
-    },
-    {
-      "title": "Russia's mega-rich are already imagining a future after Putin",
-      "link": "https://www.bbc.co.uk/news/articles/c60733mxm0x0o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "published": "2026-11-16T00:13:14Z",
-      "summary": "Some Russian tycoons are pining after a return to a 1990s system of oligarchy, when businessmen enjoyed power"
-    },
-    {
-      "title": "Zambia’s copper boom attracts billions in investment, but who benefits?",
-      "link": "https://www.aljazeera.com/news/2026/11/16/zambias-copper-boom-attracts-billions-in-investment-but-who-benefits?traffic_source=rss",
-      "source": "Al Jazeera",
-      "published": "2026-11-16T00:04:28Z",
-      "summary": "Workers' rights, environmental concerns and local businesses remain at the centre of the debate."
-    },
-    {
-      "title": "Eisenkot says Netanyahu can’t remain Israel PM amid alleged vote meddling",
-      "link": "https://www.aljazeera.com/news/2026/11/16/eisenkot-says-netanyahu-cant-remain-israel-pm-amid-alleged-vote-meddling?traffic_source=rss",
-      "source": "Al Jazeera",
-      "published": "2026-11-16T00:01:45Z",
-      "summary": "Arab party members were reportedly arrested before Israeli elections based on unfounded evidence from the PM's office."
-    },
-    {
-      "title": "Iran war live: Third US carrier arrives, Iran says oil tankers hit mines",
-      "link": "https://www.aljazeera.com/news/liveblog/2026/11/16/iran-war-live-tehran-warns-it-may-strike-first-before-another-us-attack?traffic_source=rss",
-      "source": "Al Jazeera",
-      "published": "2026-11-16T00:00:00Z",
-      "summary": "The USS Theodore Roosevelt arrives in the Middle East, while IRGC says mines struck tankers in Strait of Hormuz."
-    },
-    {
-      "title": "Brawl erupts in Brazil’s Women’s League final",
-      "link": "https://www.aljazeera.com/video/newsfeed/2026/11/15/brawl-erupts-in-brazils-womens-league-final?traffic_source=rss",
-      "source": "Al Jazeera",
-      "published": "2026-11-15T23:46:37Z",
-      "summary": "A fist fight erupted between opposing players during the final of Brazil's under-20 Women’s League."
-    },
-    {
-      "title": "Steering failure preceded New Orleans cruise ship collision, says NTSB",
-      "link": "https://www.bbc.co.uk/news/articles/c65y131w1534o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC World",
-      "published": "2026-11-15T22:57:27Z",
-      "summary": "Preliminary findings by National Transportation Safety Board investigators suggest the tanker suffered a \"steering casualty\" before colliding with the cruise ship on Friday."
-    },
-    {
-      "title": "England stun Spain to end La Roja’s 43-game unbeaten run",
-      "link": "https://www.aljazeera.com/sports/2026/11/15/england-stun-spain-to-end-la-rojas-43-game-unbeaten-run?traffic_source=rss",
-      "source": "Al Jazeera",
-      "published": "2026-11-15T22:40:01Z",
-      "summary": "Spain suffer first defeat since March 2024 after losing 3-2 to England in Madrid despite grandstand finish."
     }
   ]
 }
