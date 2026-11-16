@@ -3,20 +3,27 @@
 
   export let event;
   export let risk = true; // show the risk line (off where the score is already visible)
+  export let compact = false; // only the key facts, for the map popup
+
+  const KEY_FACTS = ['ACTIVITY', 'LOCATION', 'COVERAGE', 'SURGE'];
 
   $: brief = buildBrief(event);
 </script>
 
 <div class="brief">
   <strong>{brief.headline}</strong>
-  {#if brief.headlineIsGuess}<em>headline read from the link</em>{/if}
-  {#if brief.summary}<p>{brief.summary}</p>{/if}
+  {#if brief.headlineIsGuess}
+    <em>most-covered article · headline read from the link</em>
+  {:else if event.headline}
+    <em>most-covered article</em>
+  {/if}
+  {#if brief.summary && !compact}<p>{brief.summary}</p>{/if}
   <dl>
     {#if risk}
-      <dt>RISK</dt>
+      <dt>SCORE</dt>
       <dd>{event.risk_score ?? '---'} · {(event.tag || 'n/a').toUpperCase()}</dd>
     {/if}
-    {#each brief.facts as [label, value]}
+    {#each compact ? brief.facts.filter(([label]) => KEY_FACTS.includes(label)) : brief.facts as [label, value]}
       <dt>{label}</dt>
       <dd>{value}</dd>
     {/each}

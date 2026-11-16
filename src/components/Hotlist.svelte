@@ -9,11 +9,12 @@
   const dispatch = createEventDispatcher();
   const pad = (n, width) => String(n).padStart(width, '0');
   const level = (risk) => (risk > 70 ? 'high' : risk > 40 ? 'medium' : 'low');
-  // "GDELT Event: 192 in TU" -> "EVT 192 / TU": keeps the part that differs visible in a narrow column
-  const shortName = (title) =>
-    (title || 'UNIDENTIFIED').replace(/^GDELT Event:\s*/i, 'EVT ').replace(/\s+in\s+/i, ' / ');
-  // What happened; the country code sits in its own column so it is never cut off.
-  const rowName = (event) => actionLabel(event) || shortName(event.title);
+  // "Tehran, Tehran, Iran" -> "Tehran"; the country code has its own column.
+  const placeName = (event) => (event.location || '').split(',')[0].trim() || event.country || 'Unknown';
+  const rowName = (event) => {
+    const activity = actionLabel(event);
+    return activity ? `${placeName(event)}, ${activity}` : placeName(event);
+  };
 
   // The panel clips its contents, so the card is moved to <body> to float above it.
   function portal(node) {
@@ -61,11 +62,17 @@
         >
           <span class="idx">{pad(i + 1, 2)}</span>
           <span class="cc">{event.country || '--'}</span>
-          <span class="name">{rowName(event)}</span>
+          <span class="name">
+            {placeName(event)}
+            <small>{actionLabel(event) || ''}</small>
+          </span>
           <span class="gauge" aria-hidden="true">
             <span style="width: {Math.max(0, Math.min(100, event.risk_score || 0))}%"></span>
           </span>
           <span class="score">{event.risk_score != null ? pad(event.risk_score, 3) : '---'}</span>
+          <span class="surge" class:hot={event.surge >= 3} title="Outlets now vs earlier windows of the same length">
+            {event.surge != null && event.surge >= 2 ? `×${event.surge >= 10 ? Math.round(event.surge) : event.surge.toFixed(1)}` : ''}
+          </span>
         </button>
         {#if isLink(event.source_url)}
           <a href={event.source_url} target="_blank" rel="noopener noreferrer" title="Open source article">SRC</a>
@@ -107,10 +114,10 @@
     flex: 1;
     min-width: 0;
     display: grid;
-    grid-template-columns: 2ch 2ch minmax(0, 1fr) 48px 3ch;
+    grid-template-columns: 2ch 2ch minmax(0, 1fr) 40px 3ch 4ch;
     align-items: center;
     gap: 8px;
-    padding: 7px 4px;
+    padding: 5px 4px;
     background: none;
     border: 0;
     color: var(--hud-text);
@@ -134,6 +141,8 @@
   }
 
   .idx { color: var(--hud-green-dim); }
+  .surge { color: var(--hud-green-dim); font-size: 0.7rem; text-align: right; }
+  .surge.hot { color: var(--hud-red); text-shadow: 0 0 6px currentColor; }
   .cc { color: var(--hud-amber); }
 
   .name {
@@ -141,6 +150,15 @@
     overflow: hidden;
     text-overflow: ellipsis;
     text-transform: uppercase;
+  }
+
+  .name small {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.66rem;
+    text-transform: none;
+    color: var(--hud-green-dim);
   }
 
   .gauge {
