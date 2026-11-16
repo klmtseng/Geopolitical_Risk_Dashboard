@@ -7,7 +7,7 @@ The Geopolitical Risk Dashboard is a web application designed to display and ana
 Key Features:
 - **Daily Updates:** Data is fetched and processed daily to provide the latest insights.
 - **GitHub Pages Hosting:** The dashboard is designed to be easily deployable via GitHub Pages.
-- **Multiple Data Sources:** Integrates data from sources like GDELT, ACLED, and potentially others.
+- **Data Source:** Events come from the GDELT 2.0 event export. Other sources can be added in `etl.py`.
 
 ## Local Setup and Running
 
@@ -40,27 +40,19 @@ Key Features:
     npm install
     ```
 
-5.  **Configure environment variables:**
-    Create a `.env` file in the project root and add the following variables. These are essential for the ETL script to access data APIs.
-    ```env
-    ACLED_TOKEN=your_acled_api_token
-    OPENAI_API_KEY=your_openai_api_key
-    ```
-    *Note: Obtain these keys from the respective service providers.*
-
-6.  **Run the ETL script:**
+5.  **Run the ETL script:**
     This script fetches and processes data. As per recent updates, it should save its primary output to `static/data/latest.json` for the frontend and potentially archival data to `data/YYYY-MM-DD.json`.
     ```bash
     python etl.py
     ```
 
-7.  **Run the frontend development server:**
+6.  **Run the frontend development server:**
     This will start a local server, typically at `http://localhost:5173`.
     ```bash
     npm run dev
     ```
 
-8.  **Build the frontend for production:**
+7.  **Build the frontend for production:**
     This command compiles the Svelte app into static files in the `build` directory (including a copy of `static/`), ready for deployment.
     ```bash
     npm run build
@@ -81,9 +73,7 @@ The daily data update is managed by a GitHub Actions workflow defined in `.githu
 ## Data Source Attribution and Licensing
 
 -   **GDELT Project:** Data from the GDELT Project is available under an open data policy. Please refer to their website for specific terms and citation guidelines.
--   **ACLED (Armed Conflict Location & Event Data Project):** If using ACLED data, ensure adherence to their terms of service and citation requirements, typically available on the ACLED website. Be aware of any access tier limitations.
 -   **OpenStreetMap:** Maps and geodata may utilize OpenStreetMap data. Data is available under the Open Data Commons Open Database License (ODbL). If you use map tiles from OpenStreetMap, ensure you attribute them correctly, usually with "© OpenStreetMap contributors".
--   **OpenAI:** If using OpenAI's API (e.g., for summarization or analysis), be mindful of their API usage policies, data privacy considerations, and associated costs.
 
 ## Project Structure
 
@@ -103,7 +93,6 @@ The daily data update is managed by a GitHub Actions workflow defined in `.githu
 │   │   ├── Map.svelte
 │   │   └── Timeseries.svelte
 │   ├── App.svelte       # Main Svelte application component
-├── .env.example         # Example environment variables file
 ├── etl.py               # Python script for Extract, Transform, Load processes
 ├── package.json         # Node.js project metadata and dependencies
 ├── vite.config.js       # Vite configuration (serves static/ and builds into build/)
@@ -111,8 +100,6 @@ The daily data update is managed by a GitHub Actions workflow defined in `.githu
 ├── requirements.txt     # Python dependencies for the ETL script
 └── test_etl.py          # Pytest unit tests for etl.py
 ```
-*Note: A `.env` file (not committed to the repository) should be present in the root directory for local development to store API keys and other secrets.*
-
 *Further note on data paths: The `etl.py` script is responsible for generating `static/data/latest.json` (for the frontend) and potentially daily archive files like `data/YYYY-MM-DD.json`. The GitHub Actions workflow is configured to commit changes in both `static/data/` and `data/` directories.*
 
 ---
