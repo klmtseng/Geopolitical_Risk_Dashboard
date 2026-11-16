@@ -255,3 +255,144 @@ def test_download_gdelt_export_other_errors_do_not_fall_back(monkeypatch):
     with pytest.raises(etl.requests.exceptions.HTTPError):
         etl.download_gdelt_export(BASE + "20261116054500.export.CSV.zip")
     assert len(requested) == 1
+
+
+# --- hover-brief fields, article metadata, news and market parsing ---
+
+def test_process_data_adds_context_fields():
+    rows = [{
+        "Day": "20261115", "EventBaseCode": "190", "AvgTone": "-8.04",
+        "ActionGeo_Lat": "35.7", "ActionGeo_Long": "51.4", "ActionGeo_CountryCode": "IR",
+        "ActionGeo_FullName": "Tehran, Tehran, Iran", "Actor1Name": "IRAN", "Actor2Name": "",
+        "NumArticles": "12", "SOURCEURL": "https://example.com/a",
+    }]
+    (item,) = etl.process_data(rows)
+    assert item["title"] == "GDELT Event: 190 in IR"  # unchanged, the frontend parses it
+    assert item["event_code"] == "190"
+    assert item["location"] == "Tehran, Tehran, Iran"
+    assert item["actors"] == ["Iran"]
+    assert item["tone"] == -8.0
+    assert item["articles"] == 12
+
+
+def test_extract_article_meta_prefers_opengraph():
+    html = """<html><head><title>Site | Fallback title</title>
+      <meta name="description" content="Plain description.">
+      <meta property="og:title" content="Troops cross the border &amp; hold a town">
+      <meta property="og:description" content="  A longer   summary\nof the event. "></head><body><p>ignored</p></body></html>"""
+    assert etl.extract_article_meta(html) == (
+        "Troops cross the border & hold a town", "A longer summary of the event.")
+
+
+def test_extract_article_meta_falls_back_and_truncates():
+    html = "<title>Only a title</title><meta name='description' content='" + "word " * 100 + "'>"
+    headline, summary = etl.extract_article_meta(html)
+    assert headline == "Only a title"
+    assert len(summary) <= etl.MAX_SUMMARY_CHARS + 1 and summary.endswith("…")
+    assert etl.extract_article_meta("") == ("", "")
+
+
+def test_enrich_top_events_fetches_each_url_once_and_survives_errors(monkeypatch):
+    class Resp:
+        encoding = "utf-8"
+        def __init__(self, body): self.raw = self; self._body = body
+        def read(self, n, decode_content=False): return self._body
+        def raise_for_status(self): pass
+        def close(self): pass
+
+    calls = []
+
+    def fake_get(url, **kwargs):
+        calls.append(url)
+        if "bad" in url:
+            raise etl.requests.exceptions.ConnectionError("blocked")
+        return Resp(b'<meta property="og:title" content="Headline"><meta name="description" content="Summary">')
+
+    monkeypatch.setattr(etl.requests, "get", fake_get)
+    items = [
+        {"risk_score": 50, "source_url": "https://ok.example/a"},
+        {"risk_score": 49, "source_url": "https://ok.example/a"},
+        {"risk_score": 48, "source_url": "https://bad.example/b"},
+        {"risk_score": 1, "source_url": "https://ok.example/c"},
+        {"risk_score": 60, "source_url": ""},
+    ]
+    etl.enrich_top_events(items, limit=2)
+    assert calls == ["https://ok.example/a", "https://bad.example/b"]
+    assert items[0]["headline"] == "Headline" and items[1]["summary"] == "Summary"
+    assert "headline" not in items[2] and "headline" not in items[3]
+
+
+RSS = """<?xml version="1.0"?><rss version="2.0"><channel><title>Feed</title>
+<item><title>Older &amp; story</title><link>https://n.example/1</link>
+  <description>&lt;p&gt;Body text&lt;/p&gt;</description><pubDate>Sat, 14 Nov 2026 10:00:00 GMT</pubDate></item>
+<item><title>Newer story</title><link>https://n.example/2</link><pubDate>Sun, 15 Nov 2026 08:30:00 +0800</pubDate></item>
+<item><title>No link</title></item>
+</channel></rss>"""
+
+ATOM = """<feed xmlns="http://www.w3.org/2005/Atom"><entry><title>Atom story</title>
+<link href="https://n.example/3"/><updated>2026-11-15T12:00:00Z</updated><summary>Short</summary></entry></feed>"""
+
+
+def test_parse_rss_and_atom():
+    items = etl.parse_rss(RSS, "Feed")
+    assert [i["title"] for i in items] == ["Older & story", "Newer story"]
+    assert items[0]["summary"] == "Body text"
+    assert items[0]["published"] == "2026-11-14T10:00:00Z"
+    assert items[1]["published"] == "2026-11-15T00:30:00Z"  # converted to UTC
+    (atom,) = etl.parse_rss(ATOM, "A")
+    assert atom == {"title": "Atom story", "link": "https://n.example/3", "source": "A",
+                    "published": "2026-11-15T12:00:00Z", "summary": "Short"}
+
+
+def test_fetch_news_sorts_dedupes_and_skips_failed_feeds(monkeypatch):
+    class Resp:
+        def __init__(self, content): self.content = content
+        def raise_for_status(self): pass
+
+    def fake_get(url, **kwargs):
+        if "down" in url:
+            raise etl.requests.exceptions.Timeout("slow")
+        return Resp(RSS)
+
+    monkeypatch.setattr(etl.requests, "get", fake_get)
+    feeds = [{"name": "One", "url": "https://one"}, {"name": "Down", "url": "https://down"},
+             {"name": "Two", "url": "https://two"}]
+    items = etl.fetch_news(feeds)
+    assert [i["link"] for i in items] == ["https://n.example/2", "https://n.example/1"]
+
+
+def _chart(closes, start=1794700800):
+    return {"chart": {"result": [{
+        "meta": {"currency": "USD"},
+        "timestamp": [start + 86400 * i for i in range(len(closes))],
+        "indicators": {"quote": [{"close": closes}]},
+    }]}}
+
+
+def test_parse_market_chart():
+    closes = [100, 101, None, 102, 103, 104, 105, 110]
+    entry = etl.parse_market_chart(_chart(closes), "Index", "^IDX")
+    assert entry["price"] == 110 and entry["currency"] == "USD"
+    assert entry["change_1d"] == round((110 / 105 - 1) * 100, 2)
+    assert entry["change_1w"] == round((110 / 101 - 1) * 100, 2)  # 5 sessions back, skipping the null bar
+    assert entry["change_1m"] == 10.0
+    assert entry["as_of"] == datetime.utcfromtimestamp(1794700800 + 86400 * 7).strftime("%Y-%m-%d")
+    with pytest.raises(ValueError):
+        etl.parse_market_chart(_chart([100, None]), "Index", "^IDX")
+
+
+def test_fetch_markets_skips_symbols_that_fail(monkeypatch):
+    class Resp:
+        def raise_for_status(self): pass
+        def json(self): return _chart([10, 11])
+
+    def fake_get(url, **kwargs):
+        if "BAD" in url:
+            raise etl.requests.exceptions.HTTPError("429")
+        assert kwargs["params"] == {"range": "1mo", "interval": "1d"}
+        return Resp()
+
+    monkeypatch.setattr(etl.requests, "get", fake_get)
+    items = etl.fetch_markets([{"name": "Good", "symbol": "^GOOD"}, {"name": "Bad", "symbol": "BAD"}])
+    assert [i["name"] for i in items] == ["Good"]
+    assert "%5EGOOD" not in items[0]["symbol"]

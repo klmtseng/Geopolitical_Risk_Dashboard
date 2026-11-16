@@ -4,6 +4,7 @@
   import Timeseries from './components/Timeseries.svelte';
   import Hotlist from './components/Hotlist.svelte';
   import Panel from './components/Panel.svelte';
+  import Ticker from './components/Ticker.svelte';
   import SevenSeg from './components/SevenSeg.svelte';
 
   let allEvents = [];
@@ -151,6 +152,8 @@
       {/if}
     </div>
   </header>
+
+  <Ticker {dataUrl} />
 
   <div class="dashboard-layout">
     <div class="map-container">

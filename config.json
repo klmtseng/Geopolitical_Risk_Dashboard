@@ -1,0 +1,20 @@
+{
+  "news_feeds": [
+    { "name": "BBC World", "url": "https://feeds.bbci.co.uk/news/world/rss.xml" },
+    { "name": "Al Jazeera", "url": "https://www.aljazeera.com/xml/rss/all.xml" },
+    { "name": "NPR World", "url": "https://feeds.npr.org/1004/rss.xml" }
+  ],
+  "markets": [
+    { "name": "S&P 500", "symbol": "^GSPC" },
+    { "name": "Dow Jones", "symbol": "^DJI" },
+    { "name": "Nasdaq", "symbol": "^IXIC" },
+    { "name": "FTSE 100", "symbol": "^FTSE" },
+    { "name": "DAX", "symbol": "^GDAXI" },
+    { "name": "CAC 40", "symbol": "^FCHI" },
+    { "name": "Nikkei 225", "symbol": "^N225" },
+    { "name": "Hang Seng", "symbol": "^HSI" },
+    { "name": "Shanghai Comp", "symbol": "000001.SS" },
+    { "name": "TAIEX", "symbol": "^TWII" },
+    { "name": "KOSPI", "symbol": "^KS11" }
+  ]
+}

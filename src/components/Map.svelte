@@ -3,6 +3,7 @@
   import L from 'leaflet';
   import 'leaflet/dist/leaflet.css';
   import { feature, mesh } from 'topojson-client';
+  import Brief from './Brief.svelte';
 
   export let events = []; // all events from App.svelte
   export let highlight = []; // events drawn as lock-on reticles (the target list)
@@ -34,20 +35,13 @@
     return `${Math.abs(value).toFixed(2).padStart(6, '0')}${value >= 0 ? positive : negative}`;
   }
 
-  // Popup built from DOM nodes so event text is never parsed as HTML.
-  function popupContent(event) {
+  // Hover and click both show the same brief, rendered by the Brief component
+  // (so event text is never parsed as HTML).
+  function briefNode(event, withLink) {
     const root = document.createElement('div');
     root.className = 'hud-popup';
-
-    const title = document.createElement('strong');
-    title.textContent = event.title || 'UNIDENTIFIED';
-    root.appendChild(title);
-
-    const risk = document.createElement('div');
-    risk.textContent = `RISK ${event.risk_score != null ? pad(event.risk_score, 3) : '---'}  ·  ${(event.tag || 'n/a').toUpperCase()}`;
-    root.appendChild(risk);
-
-    if (/^https?:\/\//.test(event.source_url || '')) {
+    new Brief({ target: root, props: { event } });
+    if (withLink && /^https?:\/\//.test(event.source_url || '')) {
       const link = document.createElement('a');
       link.href = event.source_url;
       link.target = '_blank';
@@ -56,6 +50,18 @@
       root.appendChild(link);
     }
     return root;
+  }
+
+  function attachBrief(marker, event) {
+    return marker
+      .bindPopup(() => briefNode(event, true), { maxWidth: 320, minWidth: 220 })
+      .bindTooltip(() => briefNode(event, false), {
+        className: 'hud-tooltip',
+        direction: 'auto',
+        opacity: 1,
+        sticky: true
+      })
+      .on('popupopen', () => marker.closeTooltip());
   }
 
   function reticleIcon(event, index) {
@@ -148,27 +154,29 @@
       if (!position || targets.has(event)) continue;
       const risk = event.risk_score || 0;
       const color = riskColor(risk);
-      L.circleMarker(position, {
-        radius: Math.max(2, Math.min(2 + risk / 12, 9)),
-        color,
-        weight: 1,
-        fillColor: color,
-        fillOpacity: 0.35
-      })
-        .bindPopup(() => popupContent(event))
-        .addTo(dotLayer);
+      attachBrief(
+        L.circleMarker(position, {
+          radius: Math.max(2, Math.min(2 + risk / 12, 9)),
+          color,
+          weight: 1,
+          fillColor: color,
+          fillOpacity: 0.35
+        }),
+        event
+      ).addTo(dotLayer);
     }
 
     (highlight || []).forEach((event, index) => {
       const position = coords(event);
       if (!position) return;
-      const marker = L.marker(position, {
-        icon: reticleIcon(event, index),
-        zIndexOffset: 1000 - index,
-        keyboard: false
-      })
-        .bindPopup(() => popupContent(event))
-        .addTo(reticleLayer);
+      const marker = attachBrief(
+        L.marker(position, {
+          icon: reticleIcon(event, index),
+          zIndexOffset: 1000 - index,
+          keyboard: false
+        }),
+        event
+      ).addTo(reticleLayer);
       reticles.set(event, marker);
     });
   }
@@ -392,10 +400,20 @@
     gap: 4px;
   }
 
-  :global(.hud-popup strong) {
-    color: var(--hud-green);
-    font-weight: normal;
-    text-transform: uppercase;
+  :global(.leaflet-tooltip.hud-tooltip) {
+    width: 280px;
+    white-space: normal;
+    padding: 10px 12px;
+    background: rgba(4, 9, 7, 0.97);
+    color: var(--hud-text);
+    border: 1px solid var(--hud-green);
+    border-radius: 0;
+    box-shadow: 0 0 14px rgba(61, 255, 154, 0.3);
+    font-family: var(--hud-font);
+  }
+
+  :global(.leaflet-tooltip.hud-tooltip::before) {
+    display: none;
   }
 
   :global(.hud-popup a) {
