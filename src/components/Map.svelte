@@ -160,11 +160,11 @@
       attachBrief(
         L.circleMarker(position, {
           // area grows with the number of outlets reporting
-          radius: Math.max(2.5, Math.min(2 + 2.2 * Math.sqrt(event.outlets || 1), 16)),
+          radius: Math.max(2, Math.min(1.5 + 1.1 * Math.sqrt(event.outlets || 1), 11)),
           color,
           weight: 1,
           fillColor: color,
-          fillOpacity: 0.35
+          fillOpacity: 0.22
         }),
         event
       ).addTo(dotLayer);

@@ -114,8 +114,9 @@ def test_score_rises_with_outlets_and_saturates():
 def test_score_uses_severity_and_actors():
     assert etl.score_cluster(_cluster(200, goldstein=-5.0), 8) == 50
     assert etl.score_cluster(_cluster(200, goldstein=3.0), 8) == 0            # cooperative on balance
-    assert etl.score_cluster(_cluster(200, strategic=0), 8) == 50             # no state or armed actor
-    assert etl.score_cluster(_cluster(200, events=4, strategic=2), 8) == 75
+    assert etl.score_cluster(_cluster(200, strategic=0), 8) == 20             # no state or armed actor
+    assert etl.score_cluster(_cluster(200, events=4, strategic=1), 8) == 60   # a quarter of the events
+    assert etl.score_cluster(_cluster(200, events=4, strategic=2), 8) == 100  # half is enough
 
 
 # --- windows -----------------------------------------------------------------
@@ -134,7 +135,7 @@ def test_rank_window_counts_distinct_outlets_across_hours():
     window = etl.rank_window(loader(hours), "2026111610", 2, 4, 50)
     assert (window["from"], window["to"], window["hours_covered"], window["total"]) == ("2026111609", "2026111610", 2, 2)
     top, other = window["hotspots"]
-    assert (top["id"], top["outlets"], top["events"]) == ("IR26|19", 3, 4)     # a.example counted once
+    assert (top["id"], top["outlets"], top["events"]) == ("IR|19", 3, 4)       # a.example counted once
     assert top["location"] == "Tehran, Tehran, Iran" and (top["lat"], top["lon"]) == (35.7, 51.4)
     assert top["tag"] == "conflict" and top["severity"] == 10.0 and top["strategic_share"] == 1.0
     assert len(top["links"]) == 3 and top["source_url"] == top["links"][0]["url"]
@@ -146,7 +147,7 @@ def test_rank_window_counts_distinct_outlets_across_hours():
 
 
 def test_rank_window_reports_missing_hours_and_limits_output():
-    hours = _hours({"2026111610": [row(place=f"X{i}", url=f"https://o{i}.example/") for i in range(5)]})
+    hours = _hours({"2026111610": [row(place=f"X{i}", country=f"C{i}", url=f"https://o{i}.example/") for i in range(5)]})
     window = etl.rank_window(loader(hours), "2026111610", 6, 8, 3)
     assert window["hours_covered"] == 1 and window["total"] == 5 and len(window["hotspots"]) == 3
 
@@ -163,11 +164,24 @@ def test_surge_compares_with_previous_windows():
 
 
 def test_surge_for_a_new_hotspot_uses_a_floor_of_one_outlet():
-    other = [row(place="US06", url="https://z.example/1")]
+    other = [row(place="US06", country="US", url="https://z.example/1")]
     hours = _hours({"2026111607": other, "2026111608": other, "2026111609": other,
                     "2026111610": [row(url=f"https://o{i}.example/") for i in range(4)]})
-    hotspot = next(h for h in etl.rank_window(loader(hours), "2026111610", 1, 4, 50)["hotspots"] if h["id"] == "IR26|19")
+    hotspot = next(h for h in etl.rank_window(loader(hours), "2026111610", 1, 4, 50)["hotspots"] if h["id"] == "IR|19")
     assert hotspot["surge"] == 4.0
+
+
+def test_grouping_by_country_or_region():
+    hours = _hours({"2026111610": [
+        row(place="IR26", name="Tehran, Tehran, Iran", url="https://a.example/1"),
+        row(place="IR26", name="Tehran, Tehran, Iran", url="https://b.example/1"),
+        row(place="IR09", name="Bushehr, Bushehr, Iran", lat="28.9", lon="50.8", url="https://c.example/1"),
+    ]})
+    by_country = etl.rank_window(loader(hours), "2026111610", 1, 8, 50, group_by="country")
+    (iran,) = by_country["hotspots"]
+    assert (iran["id"], iran["outlets"], iran["location"]) == ("IR|19", 3, "Tehran, Tehran, Iran")  # busiest place names it
+    by_region = etl.rank_window(loader(hours), "2026111610", 1, 8, 50, group_by="region")
+    assert [h["id"] for h in by_region["hotspots"]] == ["IR26|19", "IR09|19"]
 
 
 def test_global_index():
@@ -224,8 +238,28 @@ def test_ingest_first_run_then_catch_up(tmp_path, monkeypatch):
     })
     assert etl.ingest(state, config) == "20261116104500"
     assert requested == ["20261116103000", "20261116104500"]
+
+    # nothing new: no downloads, and the newest stored export is still reported
+    requested = _fake_gdelt(monkeypatch, "20261116104500", {})
+    assert etl.ingest(state, config) == "20261116104500" and requested == []
     assert json.load(open(etl.hour_path(state, "2026111610")))["IR26|19"]["domains"] == [
         "b.example", "c.example", "d.example"]
+
+
+def test_ingest_retries_exports_listed_before_they_are_published(tmp_path, monkeypatch):
+    state = str(tmp_path)
+    config = {**etl.DEFAULT_ETL_CONFIG, "max_catchup_hours": 1}
+    # lastupdate.txt already lists 10:45, but only the files up to 10:15 can be downloaded
+    requested = _fake_gdelt(monkeypatch, "20261116104500", {
+        "20261116100000": [row(url="https://a.example/1")], "20261116101500": [row(url="https://b.example/1")]})
+    assert etl.ingest(state, config) == "20261116101500"
+    assert json.load(open(os.path.join(state, "meta.json")))["last_export"] == "20261116101500"
+
+    requested = _fake_gdelt(monkeypatch, "20261116110000", {
+        "20261116103000": [row(url="https://c.example/1")], "20261116104500": [row(url="https://d.example/1")]})
+    assert etl.ingest(state, config) == "20261116104500"
+    assert requested == ["20261116103000", "20261116104500", "20261116110000"]
+    assert len(json.load(open(etl.hour_path(state, "2026111610")))["IR26|19"]["domains"]) == 4
 
 
 def test_ingest_keeps_state_when_nothing_could_be_fetched(tmp_path, monkeypatch):

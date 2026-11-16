@@ -60,7 +60,9 @@ DEFAULT_ETL_CONFIG = {
     # Ranking windows in hours.
     "windows": {"1h": 1, "6h": 6, "24h": 24, "7d": 168},
     # Outlets at which coverage reaches about 63% of its maximum, per window.
-    "coverage_scale": {"1h": 4, "6h": 8, "24h": 15, "7d": 40},
+    "coverage_scale": {"1h": 8, "6h": 15, "24h": 30, "7d": 80},
+    # "country": one hotspot per country and kind of activity; "region": per first-level region.
+    "group_by": "country",
     # Hotspots written per window.
     "max_hotspots": 250,
 }
@@ -220,8 +222,9 @@ def prune_hours(state_dir, newest_hour, retention_hours):
 def ingest(state_dir, etl_config):
     """
     Fetches every export published since the last run into the hourly state.
-    Returns the newest export timestamp, or None when nothing could be fetched
-    (the state is then left untouched so the next run retries).
+    Returns the timestamp of the newest export held in the state, or None when
+    files were due but none could be fetched (the state is then left untouched
+    so the next run retries).
     """
     meta_path = os.path.join(state_dir, "meta.json")
     meta = _read_json(meta_path, {})
@@ -231,6 +234,7 @@ def ingest(state_dir, etl_config):
 
     hours = {}
     fetched = missing = failed = 0
+    newest_fetched = None
     for ts in todo:
         try:
             rows = download_export(ts)
@@ -242,21 +246,26 @@ def ingest(state_dir, etl_config):
             missing += 1
             continue
         fetched += 1
+        newest_fetched = ts
         hour_id = ts[:10]
         if hour_id not in hours:
             hours[hour_id] = _read_json(hour_path(state_dir, hour_id), {})
         aggregate_rows(rows, hours[hour_id])
     print(f"GDELT: {fetched} fetched, {missing} not published, {failed} failed.")
 
-    if todo and fetched == 0:
-        return None
+    if newest_fetched is None:
+        # nothing new (or nothing reachable): leave the state as it is
+        return None if todo else meta.get("last_export")
     for hour_id, clusters in hours.items():
         _write_json(hour_path(state_dir, hour_id), clusters)
-    meta["last_export"] = latest
+    # lastupdate.txt runs ahead of what can be downloaded, so the newest files
+    # are often not there yet. Only move past what was fetched; the rest is
+    # retried on the next run.
+    meta["last_export"] = newest_fetched
     _write_json(meta_path, meta)
-    removed = prune_hours(state_dir, latest[:10], etl_config["retention_hours"])
+    removed = prune_hours(state_dir, newest_fetched[:10], etl_config["retention_hours"])
     print(f"State: {len(stored_hours(state_dir))} hour(s) kept, {removed} pruned.")
-    return latest
+    return newest_fetched
 
 
 # --- Windows, scoring, surge ------------------------------------------------
@@ -267,11 +276,20 @@ def hour_range(end_hour, length):
     return [(end - timedelta(hours=i)).strftime(HOUR_FORMAT) for i in range(length - 1, -1, -1)]
 
 
-def merge_hours(hour_states):
+def group_key(key, cluster, group_by):
+    """State is kept per first-level region; "country" ranking merges a country's regions."""
+    if group_by != "country":
+        return key
+    place, root = key.split("|")
+    return f"{cluster['country'] or place[:2]}|{root}"
+
+
+def merge_hours(hour_states, group_by="region"):
     """Merges several hours of hotspots into one set (domains become sets)."""
     merged = {}
     for state in hour_states:
-        for key, cluster in state.items():
+        for raw_key, cluster in state.items():
+            key = group_key(raw_key, cluster, group_by)
             target = merged.setdefault(key, {
                 "country": cluster["country"], "domains": set(), "events": 0, "articles": 0,
                 "goldstein": 0.0, "tone": 0.0, "strategic": 0, "places": {}, "urls": {},
@@ -293,16 +311,18 @@ def score_cluster(cluster, coverage_scale):
     0-100: severity x coverage x actor factor.
       severity  how conflictual the events are (mean Goldstein scale, 0 to -10)
       coverage  1 - exp(-outlets / scale): one outlet counts for little, many saturate
-      actors    0.5 when no event involves a state or armed actor, up to 1.0 when all do
+      actors    0.2 when no event involves a state or armed actor, rising to 1.0
+                once half of them do (everyday crime and culture-war stories are
+                widely covered too, but rarely involve such actors)
     """
     events = max(cluster["events"], 1)
     severity = min(max(-cluster["goldstein"] / events, 0.0), 10.0) / 10.0
     coverage = 1.0 - math.exp(-len(cluster["domains"]) / coverage_scale)
-    actors = 0.5 + 0.5 * (cluster["strategic"] / events)
+    actors = 0.2 + 0.8 * min(cluster["strategic"] / events / 0.5, 1.0)
     return round(100 * severity * coverage * actors)
 
 
-def rank_window(load_hour, end_hour, length, coverage_scale, max_hotspots, baseline_windows=6):
+def rank_window(load_hour, end_hour, length, coverage_scale, max_hotspots, baseline_windows=6, group_by="country"):
     """
     Ranks the hotspots of the `length` hours ending at `end_hour`.
 
@@ -313,7 +333,7 @@ def rank_window(load_hour, end_hour, length, coverage_scale, max_hotspots, basel
     hours = hour_range(end_hour, length)
     states = [load_hour(h) for h in hours]
     covered = sum(1 for state in states if state is not None)
-    merged = merge_hours([state for state in states if state])
+    merged = merge_hours([state for state in states if state], group_by)
 
     previous = []
     for i in range(1, baseline_windows + 1):
@@ -321,7 +341,7 @@ def rank_window(load_hour, end_hour, length, coverage_scale, max_hotspots, basel
         prev_states = [load_hour(h) for h in hour_range(end, length)]
         if any(state is None for state in prev_states):
             break
-        previous.append(merge_hours(prev_states))
+        previous.append(merge_hours(prev_states, group_by))
 
     hotspots = []
     for key, cluster in merged.items():
@@ -379,7 +399,7 @@ def build_history(load_hour, end_hour, etl_config, days=14):
         last_hour = min(day, end).strftime(HOUR_FORMAT)
         length = int(last_hour[8:]) + 1
         window = rank_window(load_hour, last_hour, length, etl_config["coverage_scale"]["24h"],
-                             etl_config["max_hotspots"], baseline_windows=0)
+                             etl_config["max_hotspots"], baseline_windows=0, group_by=etl_config["group_by"])
         history.append({
             "date": day.strftime("%Y-%m-%d"),
             "avgRisk": global_index(window["hotspots"]) if window["hours_covered"] else None,
@@ -403,7 +423,7 @@ def build_outputs(state_dir, end_hour, etl_config):
     windows = {}
     for name, length in etl_config["windows"].items():
         window = rank_window(load_hour, end_hour, length, etl_config["coverage_scale"][name],
-                             etl_config["max_hotspots"])
+                             etl_config["max_hotspots"], group_by=etl_config["group_by"])
         window["index"] = global_index(window["hotspots"])
         windows[name] = window
         print(f"Window {name}: {window['total']} hotspots, {window['hours_covered']}/{length}h covered, "
