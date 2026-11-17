@@ -1,20 +1,22 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount, onDestroy, createEventDispatcher } from 'svelte';
   import L from 'leaflet';
   import 'leaflet/dist/leaflet.css';
   import { feature, mesh } from 'topojson-client';
-  import Brief from './Brief.svelte';
 
   export let events = []; // all events from App.svelte
   export let highlight = []; // events drawn as lock-on reticles (the target list)
-  export let focus = null; // event the radar should lock onto
+  export let focus = null; // selected hotspot: ringed on the map
+  export let flyToFocus = true; // move the map to it (off when it was picked on the map itself)
+
+  const dispatch = createEventDispatcher();
 
   let mapContainer;
   let mapInstance = null;
   let dotLayer = null;
   let reticleLayer = null;
+  let focusLayer = null;
   let cursor = null; // { lat, lon } under the pointer
-  const reticles = new Map(); // event -> marker
 
   const GREEN = '#3dff9a';
   const DIM = '#1f7a53';
@@ -35,36 +37,13 @@
     return `${Math.abs(value).toFixed(2).padStart(6, '0')}${value >= 0 ? positive : negative}`;
   }
 
-  // Hover and click both show the same brief, rendered by the Brief component
-  // (so event text is never parsed as HTML).
-  function briefNode(event, withLink) {
-    const root = document.createElement('div');
-    root.className = 'hud-popup';
-    new Brief({ target: root, props: { event, compact: withLink } });
-    if (withLink) {
-      for (const item of event.links || []) {
-        if (!/^https?:\/\//.test(item.url || '')) continue;
-        const link = document.createElement('a');
-        link.href = item.url;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        link.textContent = `▸ ${item.domain || 'source'}`;
-        root.appendChild(link);
-      }
-    }
-    return root;
-  }
-
-  function attachBrief(marker, event) {
+  // Markers only report hover and click; the brief itself is shown in a fixed
+  // panel under the map, so nothing floats over the map or the lists.
+  function wire(marker, event) {
     return marker
-      .bindPopup(() => briefNode(event, true), { maxWidth: 320, minWidth: 220 })
-      .bindTooltip(() => briefNode(event, false), {
-        className: 'hud-tooltip',
-        direction: 'auto',
-        opacity: 1,
-        sticky: true
-      })
-      .on('popupopen', () => marker.closeTooltip());
+      .on('mouseover', () => dispatch('hover', event))
+      .on('mouseout', () => dispatch('hover', null))
+      .on('click', () => dispatch('select', event));
   }
 
   function reticleIcon(event, index) {
@@ -73,7 +52,6 @@
       className: 'hud-reticle-wrap',
       iconSize: [34, 34],
       iconAnchor: [17, 17],
-      popupAnchor: [0, -14],
       html: `<div class="hud-reticle" style="--c:${color}">
         <svg viewBox="0 0 34 34" aria-hidden="true">
           <path d="M2 10V2h8M24 2h8v8M32 24v8h-8M10 32H2v-8" fill="none" stroke="currentColor" stroke-width="2"/>
@@ -148,7 +126,6 @@
     if (!mapInstance) return;
     dotLayer.clearLayers();
     reticleLayer.clearLayers();
-    reticles.clear();
 
     const targets = new Set(highlight);
 
@@ -157,7 +134,7 @@
       if (!position || targets.has(event)) continue;
       const risk = event.risk_score || 0;
       const color = riskColor(risk);
-      attachBrief(
+      wire(
         L.circleMarker(position, {
           // area grows with the number of outlets reporting
           radius: Math.max(2, Math.min(1.5 + 1.1 * Math.sqrt(event.outlets || 1), 11)),
@@ -173,7 +150,7 @@
     (highlight || []).forEach((event, index) => {
       const position = coords(event);
       if (!position) return;
-      const marker = attachBrief(
+      wire(
         L.marker(position, {
           icon: reticleIcon(event, index),
           zIndexOffset: 1000 - index,
@@ -181,17 +158,17 @@
         }),
         event
       ).addTo(reticleLayer);
-      reticles.set(event, marker);
     });
   }
 
-  function lockOn(event) {
-    if (!mapInstance || !event) return;
-    const position = coords(event);
+  function showFocus(event, fly) {
+    if (!mapInstance) return;
+    focusLayer.clearLayers();
+    const position = event && coords(event);
     if (!position) return;
-    mapInstance.flyTo(position, Math.max(mapInstance.getZoom(), 5), { duration: 0.8 });
-    const marker = reticles.get(event);
-    if (marker) marker.openPopup();
+    L.circleMarker(position, { radius: 22, color: AMBER, weight: 2, fill: false, interactive: false, className: 'hud-focus' })
+      .addTo(focusLayer);
+    if (fly) mapInstance.flyTo(position, Math.max(mapInstance.getZoom(), 5), { duration: 0.8 });
   }
 
   onMount(() => {
@@ -213,6 +190,7 @@
 
     dotLayer = L.layerGroup().addTo(mapInstance);
     reticleLayer = L.layerGroup().addTo(mapInstance);
+    focusLayer = L.layerGroup().addTo(mapInstance);
 
     mapInstance.on('mousemove', (e) => {
       const wrapped = e.latlng.wrap();
@@ -237,7 +215,7 @@
     drawMarkers();
   }
 
-  $: if (mapInstance && focus) lockOn(focus);
+  $: if (mapInstance) showFocus(focus, flyToFocus);
 </script>
 
 <div class="radar">
@@ -265,8 +243,8 @@
 <style>
   .radar {
     position: relative;
-    height: min(68vh, 640px);
-    min-height: 360px;
+    height: min(50vh, 520px);
+    min-height: 320px;
     overflow: hidden;
     border: 1px solid var(--hud-green-dim);
     background: #020503;
@@ -384,49 +362,10 @@
     text-shadow: 0 0 3px #000, 0 0 3px #000;
   }
 
-  :global(.leaflet-popup-content-wrapper),
-  :global(.leaflet-popup-tip) {
-    background: rgba(4, 9, 7, 0.95);
-    color: var(--hud-text);
-    border: 1px solid var(--hud-green);
-    border-radius: 0;
-    box-shadow: 0 0 14px rgba(61, 255, 154, 0.35);
-  }
-
-  :global(.leaflet-popup-content) {
-    margin: 10px 12px;
-    font-size: 0.75rem;
-  }
-
-  :global(.hud-popup) {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  :global(.leaflet-tooltip.hud-tooltip) {
-    width: 280px;
-    white-space: normal;
-    padding: 10px 12px;
-    background: rgba(4, 9, 7, 0.97);
-    color: var(--hud-text);
-    border: 1px solid var(--hud-green);
-    border-radius: 0;
-    box-shadow: 0 0 14px rgba(61, 255, 154, 0.3);
-    font-family: var(--hud-font);
-  }
-
-  :global(.leaflet-tooltip.hud-tooltip::before) {
-    display: none;
-  }
-
-  :global(.hud-popup a) {
-    color: var(--hud-amber);
-    text-decoration: none;
-  }
-
-  :global(.leaflet-container a.leaflet-popup-close-button) {
-    color: var(--hud-green);
+  :global(.hud-focus) {
+    filter: drop-shadow(0 0 6px #ffb000);
+    stroke-dasharray: 10 6;
+    animation: hud-blink 1.2s steps(1) infinite;
   }
 
   :global(.leaflet-bar a.leaflet-disabled) {

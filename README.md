@@ -93,7 +93,7 @@ Hourly aggregates and the published data files are kept on a separate branch, `e
 
 ## Event briefs
 
-Hovering an entry in the target list or a marker on the map shows a brief: the kind of activity (from `src/cameo.json`), where, how many outlets and articles, the surge, severity, share of state or armed actors, tone and the most-covered source. For the best-covered article of the top hotspots in each window the ETL also reads the page's title and description metadata and stores them as `headline` and `summary`.
+Hovering an entry in the target list or a marker on the map previews it in the Target Brief panel under the map, and clicking locks it there (nothing floats over the map or the lists). The brief shows: the kind of activity (from `src/cameo.json`), where, how many outlets and articles, the surge, severity, share of state or armed actors, tone and the most-covered source. For the best-covered article of the top hotspots in each window the ETL also reads the page's title and description metadata and stores them as `headline` and `summary`.
 
 ## Adding New Data Sources
 

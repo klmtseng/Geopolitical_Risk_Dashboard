@@ -3,6 +3,7 @@
   import Map from './components/Map.svelte';
   import Timeseries from './components/Timeseries.svelte';
   import Hotlist from './components/Hotlist.svelte';
+  import Brief from './components/Brief.svelte';
   import Panel from './components/Panel.svelte';
   import Ticker from './components/Ticker.svelte';
   import SevenSeg from './components/SevenSeg.svelte';
@@ -19,7 +20,9 @@
   let payload = null; // hotspots.json: { updated, data_through, windows }
   let windowId = '24h';
   let dailyAverageRiskData = []; // For Timeseries: array of {date: 'YYYY-MM-DD', avgRisk: X}
-  let focusEvent = null; // hotspot selected in the target list; the map locks onto it
+  let focusEvent = null; // selected hotspot (ringed on the map)
+  let focusFromMap = false; // picked on the map itself, so the map should not move
+  let hoverEvent = null; // hotspot under the pointer, previewed in the brief panel
   let loadState = 'loading'; // 'loading' | 'ready' | 'error'
   let now = new Date();
 
@@ -42,6 +45,14 @@
     maxRisk > 70 ? 'var(--hud-red)' : maxRisk > 40 ? 'var(--hud-amber)' : 'var(--hud-green)';
   $: threatLabel = maxRisk > 70 ? 'CONDITION RED' : maxRisk > 40 ? 'CONDITION AMBER' : 'CONDITION GREEN';
   $: partial = current && current.hours_covered < current.hours;
+  // One brief at a time, always in the same place: what is hovered, else what is selected, else the top hotspot.
+  $: briefEvent = hoverEvent || focusEvent || top10[0] || null;
+  $: briefMode = hoverEvent ? 'PREVIEW' : focusEvent ? 'LOCKED' : 'TOP';
+
+  function select(hotspot, fromMap) {
+    focusFromMap = fromMap;
+    focusEvent = hotspot;
+  }
 
   onMount(() => {
     try {
@@ -58,6 +69,7 @@
   function setWindow(id) {
     windowId = id;
     focusEvent = null;
+    hoverEvent = null;
     try {
       localStorage.setItem(WINDOW_KEY, id);
     } catch {
@@ -137,8 +149,24 @@
   <div class="dashboard-layout">
     <div class="map-container">
       <Panel title="Tactical Radar" code="SCN-A">
-        <Map events={hotspots} highlight={top10} focus={focusEvent} />
+        <Map
+          events={hotspots}
+          highlight={top10}
+          focus={focusEvent}
+          flyToFocus={!focusFromMap}
+          on:hover={(e) => (hoverEvent = e.detail)}
+          on:select={(e) => select(e.detail, true)}
+        />
       </Panel>
+      <div class="brief-panel">
+        <Panel title="Target Brief" code={briefMode}>
+          {#if briefEvent}
+            <Brief event={briefEvent} />
+          {:else}
+            <p class="no-brief">NO HOTSPOT IN THIS WINDOW</p>
+          {/if}
+        </Panel>
+      </div>
     </div>
     <aside class="sidebar">
       <Panel title="Threat Index" code="TOP 20 / {windowId.toUpperCase()}">
@@ -153,7 +181,12 @@
         <Timeseries {dailyAverageRiskData} />
       </Panel>
       <Panel title="Target List" code="TOP 10">
-        <Hotlist events={top10} selected={focusEvent} on:select={(e) => (focusEvent = e.detail)} />
+        <Hotlist
+          events={top10}
+          selected={focusEvent}
+          on:select={(e) => select(e.detail, false)}
+          on:hover={(e) => (hoverEvent = e.detail)}
+        />
       </Panel>
     </aside>
   </div>
@@ -320,6 +353,18 @@
   .map-container {
     flex: 3;
     min-width: 300px;
+  }
+
+  .brief-panel {
+    margin-top: 16px;
+    /* room for a headline, summary and the facts, so the page does not jump while hovering */
+    min-height: 190px;
+  }
+
+  .no-brief {
+    margin: 0;
+    color: var(--hud-green-dim);
+    font-size: 0.8rem;
   }
 
   .sidebar {
