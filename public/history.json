@@ -1,0 +1,72 @@
+[
+  {
+    "date": "2026-11-15",
+    "avgRisk": null,
+    "hours_covered": 0
+  },
+  {
+    "date": "2026-11-16",
+    "avgRisk": null,
+    "hours_covered": 0
+  },
+  {
+    "date": "2026-11-17",
+    "avgRisk": null,
+    "hours_covered": 0
+  },
+  {
+    "date": "2026-11-18",
+    "avgRisk": null,
+    "hours_covered": 0
+  },
+  {
+    "date": "2026-11-19",
+    "avgRisk": 40,
+    "hours_covered": 10
+  },
+  {
+    "date": "2026-11-20",
+    "avgRisk": 54,
+    "hours_covered": 24
+  },
+  {
+    "date": "2026-11-21",
+    "avgRisk": 47,
+    "hours_covered": 24
+  },
+  {
+    "date": "2026-11-22",
+    "avgRisk": 45,
+    "hours_covered": 24
+  },
+  {
+    "date": "2026-11-23",
+    "avgRisk": 52,
+    "hours_covered": 24
+  },
+  {
+    "date": "2026-11-24",
+    "avgRisk": 51,
+    "hours_covered": 24
+  },
+  {
+    "date": "2026-11-25",
+    "avgRisk": 53,
+    "hours_covered": 24
+  },
+  {
+    "date": "2026-11-26",
+    "avgRisk": 50,
+    "hours_covered": 24
+  },
+  {
+    "date": "2026-11-27",
+    "avgRisk": 48,
+    "hours_covered": 24
+  },
+  {
+    "date": "2026-11-28",
+    "avgRisk": 35,
+    "hours_covered": 15
+  }
+]

@@ -1,0 +1,115 @@
+{
+  "updated": "2026-11-28T14:35:00Z",
+  "items": [
+    {
+      "name": "S&P 500",
+      "symbol": "^GSPC",
+      "price": 7297.49,
+      "currency": "USD",
+      "as_of": "2026-11-27",
+      "change_1d": 1.6,
+      "change_1w": 1.7,
+      "change_1m": -5.77
+    },
+    {
+      "name": "Dow Jones",
+      "symbol": "^DJI",
+      "price": 50774.94,
+      "currency": "USD",
+      "as_of": "2026-11-27",
+      "change_1d": 1.18,
+      "change_1w": 3.42,
+      "change_1m": -3.24
+    },
+    {
+      "name": "Nasdaq",
+      "symbol": "^IXIC",
+      "price": 24129.5,
+      "currency": "USD",
+      "as_of": "2026-11-27",
+      "change_1d": 2.31,
+      "change_1w": 1.05,
+      "change_1m": -9.12
+    },
+    {
+      "name": "FTSE 100",
+      "symbol": "^FTSE",
+      "price": 10698.8,
+      "currency": "GBP",
+      "as_of": "2026-11-27",
+      "change_1d": 0.84,
+      "change_1w": 3.41,
+      "change_1m": 0.12
+    },
+    {
+      "name": "DAX",
+      "symbol": "^GDAXI",
+      "price": 25441.24,
+      "currency": "EUR",
+      "as_of": "2026-11-27",
+      "change_1d": 0.9,
+      "change_1w": 2.57,
+      "change_1m": -0.58
+    },
+    {
+      "name": "CAC 40",
+      "symbol": "^FCHI",
+      "price": 8156.09,
+      "currency": "EUR",
+      "as_of": "2026-11-27",
+      "change_1d": 0.58,
+      "change_1w": 2.88,
+      "change_1m": 3.41
+    },
+    {
+      "name": "Nikkei 225",
+      "symbol": "^N225",
+      "price": 58711.11,
+      "currency": "JPY",
+      "as_of": "2026-11-27",
+      "change_1d": 2.11,
+      "change_1w": -1.23,
+      "change_1m": -7.2
+    },
+    {
+      "name": "Hang Seng",
+      "symbol": "^HSI",
+      "price": 22694.77,
+      "currency": "HKD",
+      "as_of": "2026-11-27",
+      "change_1d": 2.11,
+      "change_1w": 1.27,
+      "change_1m": -1.5
+    },
+    {
+      "name": "Shanghai Comp",
+      "symbol": "000001.SS",
+      "price": 3606.49,
+      "currency": "CNY",
+      "as_of": "2026-11-27",
+      "change_1d": 3.73,
+      "change_1w": 2.06,
+      "change_1m": -1.15
+    },
+    {
+      "name": "TAIEX",
+      "symbol": "^TWII",
+      "price": 39308.08,
+      "currency": "TWD",
+      "as_of": "2026-11-27",
+      "change_1d": 0.4,
+      "change_1w": 9.09,
+      "change_1m": -14.73
+    },
+    {
+      "name": "KOSPI",
+      "symbol": "^KS11",
+      "price": 4915.68,
+      "currency": "KRW",
+      "as_of": "2026-11-27",
+      "change_1d": 4.34,
+      "change_1w": 0.94,
+      "change_1m": -12.82
+    }
+  ]
+}
